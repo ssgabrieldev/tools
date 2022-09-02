@@ -48,7 +48,6 @@ function encrypt(text, rotation = 0) {
     textEncrypted.push(isLowerCase ? alphabet[newPos].toLowerCase() : alphabet[newPos])
   })
 
-  console.log(textEncrypted)
   return textEncrypted.join('')
 }
 
