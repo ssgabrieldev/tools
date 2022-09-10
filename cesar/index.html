@@ -1,44 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-  <title>Cifra de César</title>
-</head>
-<body class="text-bg-dark">
-  <div class="container py-3">
-    <section>
-      <h1 class="text-danger">Cifra de César</h1>
-      <p>
-        Em criptografia, a Cifra de César, também conhecida como cifra de troca, código de César ou troca de César, é uma das mais simples e conhecidas técnicas de criptografia. É um tipo de cifra de substituição na qual cada letra do texto é substituída por outra, que se apresenta no alfabeto abaixo dela um número fixo de vezes.
-      </p>
-    </section>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>Cifra de César</title>
+  </head>
+  <body class="text-bg-dark">
+    <div class="container py-3">
+      <section>
+        <h1 class="text-danger">Cifra de César</h1>
+        <p>
+          Em criptografia, a Cifra de César, também conhecida como cifra de troca, código de César ou troca de César, é uma das mais simples e conhecidas técnicas de criptografia. É um tipo de cifra de substituição na qual cada letra do texto é substituída por outra, que se apresenta no alfabeto abaixo dela um número fixo de vezes.
+        </p>
+      </section>
 
-    <section>
-      <h3 class="text-danger">Formulário</h3>
-      <form id="text-form" class="mb-3">
-        <div class="mb-3">
-          <label for="text" class="form-label">Texto</label>
-          <textarea class="form-control text-bg-dark" placeholder="Digite o seu texto" name="text" cols="30" rows="10"></textarea>
-        </div>
-        <div class="mb-3">
-          <label for="rotation" class="form-label">Rotação</label>
-          <input class="form-control text-bg-dark w-25" name="rotation" type="number" value="0" max="26" min="-26">
-        </div>
-        <button class="btn btn-danger" type="submit">Encriptar</button>
-      </form>
-    </section>
+      <section>
+        <h3 class="text-danger">Formulário</h3>
+        <form id="text-form" class="mb-3">
+          <div class="mb-3">
+            <label for="text" class="form-label">Texto</label>
+            <textarea class="form-control text-bg-dark" placeholder="Digite o seu texto" name="text" cols="30" rows="10"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="rotation" class="form-label">Rotação</label>
+            <input class="form-control text-bg-dark w-25" name="rotation" type="number" value="0" max="26" min="-26">
+          </div>
+          <button class="btn btn-danger" type="submit">Encriptar</button>
+        </form>
+      </section>
 
-    <section>
-      <h3 class="text-danger">Resultado</h3>
-      <p id="result">
-      </p>
-    </section>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-  <script src="./scripts.js"></script>
-</body>
+      <section>
+        <h3 class="text-danger">Resultado</h3>
+        <p id="result">
+        </p>
+      </section>
+
+    </div>
+
+    <footer class="text-bg-danger text-center py-3">
+      Coded by <a class="text-light fw-bolder" target="_blank" href="https://github.com/gabrielssh">@gabrielssh</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="./scripts.js"></script>
+  </body>
 </html>
