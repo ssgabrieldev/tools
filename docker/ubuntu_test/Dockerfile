@@ -8,6 +8,7 @@ RUN apt install vim -y
 RUN apt install curl -y
 RUN apt install git -y
 RUN apt install unzip -y
+RUN apt install snapd -y
 
 EXPOSE 80
 
