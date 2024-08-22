@@ -3,7 +3,6 @@ local M = {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-  tag = "nightly",
   keys = {
     { "<leader>te", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file explorer" }
   }
@@ -34,6 +33,16 @@ function M.config()
       ignore = false
     }
   })
+
+  -- vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+  --   pattern = { "*" },
+  --   callback = function()
+  --     if (vim.bo.buftype == "terminal") then
+  --       vim.cmd("NvimTreeToggle")
+  --       vim.cmd("NvimTreeToggle")
+  --     end
+  --   end
+  -- })
 end
 
 return M

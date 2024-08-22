@@ -23,7 +23,17 @@ local M = {
     {
       "<leader>dou",
       function()
+        local tree_command = ":NvimTreeToggle"
+        if vim.fn.exists(tree_command) > 0 then
+          vim.cmd(tree_command)
+        end
+
         require("dapui").toggle({ reset = true })
+
+        if vim.fn.exists(tree_command) > 0 then
+          vim.cmd(tree_command)
+          vim.cmd("wincmd b")
+        end
       end,
       desc = "Debugger toggle ui"
     },
@@ -34,14 +44,6 @@ local M = {
       end,
       desc = "Debugger toggle ui",
       mode = "n"
-    },
-    {
-      "<leader>dov",
-      function()
-        require("dapui").eval()
-      end,
-      desc = "Debugger toggle ui",
-      mode = "v"
     },
     {
       "<leader>dor",

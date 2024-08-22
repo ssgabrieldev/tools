@@ -15,9 +15,24 @@ local M = {
     }
   },
   keys = {
-    { '<leader>tt', ':ToggleTerm<CR>',                      { desc = 'Toggle terminal' } },
-    { '<leader>tf', ':ToggleTerm direction=float<CR>',      { desc = 'Toggle terminal float' } },
-    { '<leader>th', ':ToggleTerm direction=horizontal<CR>', { desc = 'Toggle terminal horizontal' } },
+    { '<leader>tf', ':ToggleTerm direction=float<CR>', { desc = 'Toggle terminal float' } },
+    {
+      '<leader>tt',
+      function()
+        local tree_command = ":NvimTreeToggle"
+        if vim.fn.exists(tree_command) > 0 then
+          vim.cmd(tree_command)
+        end
+
+        vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
+
+        if vim.fn.exists(tree_command) > 0 then
+          vim.cmd(tree_command)
+          vim.cmd("wincmd b")
+        end
+      end,
+      { desc = 'Toggle terminal horizontal' }
+    },
   }
 }
 
