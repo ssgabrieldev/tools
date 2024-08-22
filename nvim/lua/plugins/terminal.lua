@@ -19,16 +19,22 @@ local M = {
     {
       '<leader>tt',
       function()
-        local tree_command = ":NvimTreeToggle"
-        if vim.fn.exists(tree_command) > 0 then
-          vim.cmd(tree_command)
-        end
 
         vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
 
-        if vim.fn.exists(tree_command) > 0 then
-          vim.cmd(tree_command)
-          vim.cmd("wincmd b")
+        local tree_module = "nvim-tree"
+        if package.loaded[tree_module] and require(tree_module .. ".view").is_visible() then
+          local tree_focus_command = "NvimTreeFocus"
+          local tree_resize_command = "NvimTreeResize 30"
+          vim.cmd(tree_focus_command)
+          vim.cmd("wincmd H")
+          vim.cmd("wincmd p")
+          vim.cmd(tree_resize_command)
+        end
+
+        local dap_module = "dapui"
+        if package.loaded[dap_module] then
+          require(dap_module).close()
         end
       end,
       { desc = 'Toggle terminal horizontal' }

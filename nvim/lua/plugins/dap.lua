@@ -23,17 +23,23 @@ local M = {
     {
       "<leader>dou",
       function()
-        local tree_command = ":NvimTreeToggle"
-        if vim.fn.exists(tree_command) > 0 then
-          vim.cmd(tree_command)
+        local tree_module = "nvim-tree"
+        if package.loaded[tree_module] then
+          vim.cmd("NvimTreeClose")
+        end
+
+        local terminal_module = "toggleterm"
+        if package.loaded[terminal_module] then
+          for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+            if vim.fn.bufwinid(bufnr) ~= -1 then
+              if vim.bo[bufnr].filetype == "toggleterm" then
+                vim.cmd("ToggleTermToggleAll")
+              end
+            end
+          end
         end
 
         require("dapui").toggle({ reset = true })
-
-        if vim.fn.exists(tree_command) > 0 then
-          vim.cmd(tree_command)
-          vim.cmd("wincmd b")
-        end
       end,
       desc = "Debugger toggle ui"
     },

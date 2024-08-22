@@ -4,7 +4,18 @@ local M = {
     "nvim-tree/nvim-web-devicons",
   },
   keys = {
-    { "<leader>te", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file explorer" }
+    {
+      "<leader>te",
+      function()
+        local dapui_module = "dapui"
+        if package.loaded[dapui_module] then
+          require(dapui_module).close()
+        end
+
+        vim.cmd("NvimTreeToggle")
+      end,
+      desc = "Toggle file explorer"
+    }
   }
 }
 
@@ -33,16 +44,6 @@ function M.config()
       ignore = false
     }
   })
-
-  -- vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-  --   pattern = { "*" },
-  --   callback = function()
-  --     if (vim.bo.buftype == "terminal") then
-  --       vim.cmd("NvimTreeToggle")
-  --       vim.cmd("NvimTreeToggle")
-  --     end
-  --   end
-  -- })
 end
 
 return M
