@@ -19,6 +19,7 @@ require("lazy").setup("plugins")
 
 vim.wo.wrap = false
 vim.wo.number = true
+vim.wo.relativenumber = true
 
 vim.opt.mouse = ""
 vim.opt.cursorline = true

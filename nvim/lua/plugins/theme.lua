@@ -1,15 +1,15 @@
 local M = {
-  'navarasu/onedark.nvim',
-  priority = 1000,
+  "craftzdog/solarized-osaka.nvim",
   lazy = false,
-  config = function()
-    require("onedark").setup({
-      style = "deep",
-      transparent = false
+  priority = 1000,
+  opts = {},
+  config = function ()
+    require("solarized-osaka").setup({
+      transparent = false;
     })
 
-    require('onedark').load()
-  end,
+    vim.cmd[[colorscheme solarized-osaka]]
+  end
 }
 
 return M
