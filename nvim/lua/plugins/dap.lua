@@ -99,27 +99,6 @@ local M = {
       },
     }
 
-    dap.adapters.firefox = {
-      type = 'executable',
-      command = vim.fn.stdpath("data") .. "/mason/bin/firefox-debug-adapter",
-      args = {},
-    }
-
-    dap.configurations.javascript = {
-      {
-        name = 'Debug with Firefox',
-        type = 'firefox',
-        request = 'launch',
-        reAttach = true,
-        url = function ()
-          return vim.fn.input("URL: ")
-        end,
-        port = "3000",
-        webRoot = '${workspaceFolder}',
-        firefoxExecutable = '/usr/bin/firefox',
-      }
-    }
-
     dapui.setup()
   end
 }
