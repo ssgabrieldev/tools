@@ -77,20 +77,46 @@ local M = {
     local dap = require("dap")
     local dapui = require("dapui")
 
-    dap.adapters.node = {
-      type = "executable",
-      command = vim.fn.stdpath("data") .. "/mason/bin/node-debug2-adapter",
+    dap.adapters["pwa-node"] = {
+      type = "server",
+      host = "localhost",
+      port = "${port}",
+      protocol = "inspector",
+      executable = {
+        command = vim.fn.stdpath("data") .. "/mason/bin/js-debug-adapter",
+        args = { "${port}" },
+      }
     }
 
-    dap.configurations["javascript"] = {
+    dap.configurations.javascript = {
       {
-        name = "Node Launch",
-        type = "node",
+        type = "pwa-node",
         request = "launch",
+        name = "Launch file",
         program = "${file}",
-        cwd = vim.fn.getcwd(),
-        sourceMaps = true,
-        protocol = "inspector",
+        cwd = "${workspaceFolder}",
+        console = "integratedTerminal",
+      },
+    }
+
+    dap.adapters.firefox = {
+      type = 'executable',
+      command = vim.fn.stdpath("data") .. "/mason/bin/firefox-debug-adapter",
+      args = {},
+    }
+
+    dap.configurations.javascript = {
+      {
+        name = 'Debug with Firefox',
+        type = 'firefox',
+        request = 'launch',
+        reAttach = true,
+        url = function ()
+          return vim.fn.input("URL: ")
+        end,
+        port = "3000",
+        webRoot = '${workspaceFolder}',
+        firefoxExecutable = '/usr/bin/firefox',
       }
     }
 
