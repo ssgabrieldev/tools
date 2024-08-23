@@ -3,7 +3,7 @@ local M = {
   lazy = false,
   priority = 1000,
   opts = {},
-  config = function ()
+    config = function ()
     require("solarized-osaka").setup({
       transparent = false;
     })
