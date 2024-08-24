@@ -1,34 +1,39 @@
+local setup_ui = function(init_ui)
+  local tree_module = "nvim-tree"
+  if package.loaded[tree_module] then
+    vim.cmd("NvimTreeClose")
+  end
+
+  local terminal_module = "toggleterm"
+  if package.loaded[terminal_module] then
+    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.fn.bufwinid(bufnr) ~= -1 then
+        if vim.bo[bufnr].filetype == "toggleterm" then
+          vim.cmd("ToggleTermToggleAll")
+        end
+      end
+    end
+  end
+
+  init_ui()
+end
+
 local M = {
   "rcarriga/nvim-dap-ui",
   dependencies = {
     "mfussenegger/nvim-dap",
     "nvim-neotest/nvim-nio",
-    "mxsdev/nvim-dap-vscode-js"
   },
   keys = {
-    { "<leader>dt", ":DapToggleBreakpoint<cr>", desc = "Debugger breakpoint" },
+    { "<leader>db", ":DapToggleBreakpoint<cr>", desc = "Debugger breakpoint" },
     { "<leader>de", ":DapTerminate<cr>",        desc = "Debugger terminate" },
     { "<leader>dc", ":DapContinue<cr>",         desc = "Debugger continue" },
     {
       "<leader>du",
       function()
-        local tree_module = "nvim-tree"
-        if package.loaded[tree_module] then
-          vim.cmd("NvimTreeClose")
-        end
-
-        local terminal_module = "toggleterm"
-        if package.loaded[terminal_module] then
-          for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-            if vim.fn.bufwinid(bufnr) ~= -1 then
-              if vim.bo[bufnr].filetype == "toggleterm" then
-                vim.cmd("ToggleTermToggleAll")
-              end
-            end
-          end
-        end
-
-        require("dapui").toggle({ reset = true })
+        setup_ui(function()
+          require("dapui").toggle({ reset = true })
+        end)
       end,
       desc = "Debugger ui"
     },
@@ -66,7 +71,9 @@ local M = {
     local dap = require("dap")
     local dapui = require("dapui")
 
-    dap.adapters["pwa-node"] = {
+    dap.set_log_level("DEBUG")
+
+    dap.adapters["pwa-chrome"] = {
       type = "server",
       host = "localhost",
       port = "${port}",
@@ -77,44 +84,80 @@ local M = {
       }
     }
 
-    dap.configurations.javascript = {
-      {
-        type = "pwa-node",
-        request = "launch",
-        name = "Launch file",
-        program = "${file}",
-        cwd = "${workspaceFolder}",
-        console = "integratedTerminal",
-      },
-    }
+    local js = { "javascriptreact", "javascript" }
+    for _, language in ipairs(js) do
+      dap.configurations[language] = {
+        {
+          type = "pwa-chrome",
+          request = "launch",
+          name = "Node",
+          runtimeExecutable = function()
+            local executable = vim.fn.input("COMMAND (default: node): ", "")
 
-    dap.adapters["firefox"] = {
-      type = 'executable',
-      command = vim.fn.stdpath("data") .. "/mason/bin/firefox-debug-adapter",
-    }
+            if executable == "" then
+              return "node"
+            end
 
-    dap.configurations.javascriptreact = {
-      {
-        name = 'Launch Firefox',
-        type = 'firefox',
-        request = 'launch',
-        reAttach = true,
-        console = "integratedTerminal",
-        webRoot = '${workspaceFolder}',
-        firefoxExecutable = function ()
-          return vim.fn.input("FIREFOX EXECUTABLE: ", '/usr/bin/firefox')
-        end,
-        url = function ()
-          return vim.fn.input("APP URL: ", "http://localhost:3000")
-        end
+            return executable
+          end,
+          runtimeArgs = function()
+            local args = {}
+
+            while true do
+              local arg = vim.fn.input("COMMAND ARGS (default: ${file}): ", "")
+
+              if arg == "" then
+                break
+              end
+
+              table.insert(args, arg)
+            end
+
+            if next(args) ~= nil then
+              return args
+            end
+
+            return { "${file}" }
+          end,
+          cwd = "${workspaceFolder}",
+          console = "integratedTerminal",
+        },
+        {
+          type = "pwa-chrome",
+          request = "launch",
+          name = "Chrome - launch",
+          runtimeExecutable = "/usr/bin/google-chrome",
+          runtimeArgs = {},
+          webRoot = "${workspaceFolder}",
+          console = "integratedTerminal",
+          sourceMaps = true,
+          url = function()
+            return vim.fn.input("APP URL: ", "http://localhost:3000")
+          end,
+        },
+        {
+          type = "pwa-chrome",
+          request = "attach",
+          name = "Chrome - attatch",
+          webRoot = "${workspaceFolder}",
+          console = "integratedTerminal",
+          sourceMaps = true,
+          port = function()
+            return vim.fn.input("CHROME PORT: ", "9222")
+          end,
+        },
       }
-    }
+    end
 
     dap.listeners.before.attach.dapui_config = function()
-      dapui.open()
+      setup_ui(function()
+        dapui.open({ reset = true })
+      end)
     end
     dap.listeners.before.launch.dapui_config = function()
-      dapui.open()
+      setup_ui(function()
+        dapui.open({ reset = true })
+      end)
     end
 
     dapui.setup()
