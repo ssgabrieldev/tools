@@ -105,7 +105,7 @@ local M = {
           return vim.fn.input("FIREFOX EXECUTABLE: ", '/usr/bin/firefox')
         end,
         url = function ()
-          return vim.fn.input("APP URL: ")
+          return vim.fn.input("APP URL: ", "http://localhost:3000")
         end
       }
     }
