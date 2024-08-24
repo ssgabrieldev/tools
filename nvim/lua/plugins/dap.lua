@@ -2,7 +2,8 @@ local M = {
   "rcarriga/nvim-dap-ui",
   dependencies = {
     "mfussenegger/nvim-dap",
-    "nvim-neotest/nvim-nio"
+    "nvim-neotest/nvim-nio",
+    "mxsdev/nvim-dap-vscode-js"
   },
   keys = {
     { "<leader>dt", ":DapToggleBreakpoint<cr>", desc = "Debugger breakpoint" },
@@ -86,6 +87,35 @@ local M = {
         console = "integratedTerminal",
       },
     }
+
+    dap.adapters["firefox"] = {
+      type = 'executable',
+      command = vim.fn.stdpath("data") .. "/mason/bin/firefox-debug-adapter",
+    }
+
+    dap.configurations.javascriptreact = {
+      {
+        name = 'Launch Firefox',
+        type = 'firefox',
+        request = 'launch',
+        reAttach = true,
+        console = "integratedTerminal",
+        webRoot = '${workspaceFolder}',
+        firefoxExecutable = function ()
+          return vim.fn.input("FIREFOX EXECUTABLE: ", '/usr/bin/firefox')
+        end,
+        url = function ()
+          return vim.fn.input("APP URL: ")
+        end
+      }
+    }
+
+    dap.listeners.before.attach.dapui_config = function()
+      dapui.open()
+    end
+    dap.listeners.before.launch.dapui_config = function()
+      dapui.open()
+    end
 
     dapui.setup()
   end
