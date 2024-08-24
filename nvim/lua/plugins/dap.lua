@@ -142,6 +142,9 @@ local M = {
           webRoot = "${workspaceFolder}",
           console = "integratedTerminal",
           sourceMaps = true,
+          url = function()
+            return vim.fn.input("APP URL: ", "http://localhost:3000")
+          end,
           port = function()
             return vim.fn.input("CHROME PORT: ", "9222")
           end,
