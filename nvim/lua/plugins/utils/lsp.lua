@@ -35,19 +35,19 @@ M.on_attach = function(_, bufnr)
   }
   vim.keymap.set(
     "n",
-    "<LEADER>gd",
+    "<LEADER>ld",
     vim.lsp.buf.definition,
     bufopts
   )
   vim.keymap.set(
     "n",
-    "<LEADER>fm",
+    "<LEADER>lf",
     function() vim.lsp.buf.format({ async = true }) end,
     bufopts
   )
   vim.keymap.set(
     "n",
-    "<LEADER>gh",
+    "<LEADER>lh",
     function()
       vim.lsp.buf.hover()
     end,
@@ -55,19 +55,19 @@ M.on_attach = function(_, bufnr)
   )
   vim.keymap.set(
     "n",
-    "<LEADER>rn",
+    "<LEADER>lr",
     vim.lsp.buf.rename,
     bufopts
   )
   vim.keymap.set(
     "n",
-    "<LEADER>ca",
+    "<LEADER>la",
     vim.lsp.buf.code_action,
     opts
   )
   vim.keymap.set(
     "n",
-    "<LEADER>le",
+    "<LEADER>ld",
     function()
       vim.diagnostic.open_float()
     end,

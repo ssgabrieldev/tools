@@ -5,7 +5,7 @@ local M = {
   },
   keys = {
     {
-      "<leader>te",
+      "<leader>ee",
       function()
         local dapui_module = "dapui"
         if package.loaded[dapui_module] then
@@ -14,7 +14,7 @@ local M = {
 
         vim.cmd("NvimTreeToggle")
       end,
-      desc = "Toggle file explorer"
+      desc = "Explorer"
     }
   }
 }

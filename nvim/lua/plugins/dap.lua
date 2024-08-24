@@ -5,23 +5,11 @@ local M = {
     "nvim-neotest/nvim-nio"
   },
   keys = {
-    { "<leader>db", ":DapToggleBreakpoint<cr>", desc = "Debugger toggle breakpoint" },
+    { "<leader>dt", ":DapToggleBreakpoint<cr>", desc = "Debugger breakpoint" },
     { "<leader>de", ":DapTerminate<cr>",        desc = "Debugger terminate" },
     { "<leader>dc", ":DapContinue<cr>",         desc = "Debugger continue" },
     {
-      "<leader>dl",
-      function()
-        require("dap.ext.vscode").load_launchjs(
-          nil,
-          {
-            ["node"] = { "javascript" }
-          }
-        )
-      end,
-      desc = "Debugger load configuration file"
-    },
-    {
-      "<leader>dou",
+      "<leader>du",
       function()
         local tree_module = "nvim-tree"
         if package.loaded[tree_module] then
@@ -41,32 +29,32 @@ local M = {
 
         require("dapui").toggle({ reset = true })
       end,
-      desc = "Debugger toggle ui"
+      desc = "Debugger ui"
     },
     {
-      "<leader>dov",
+      "<leader>dv",
       function()
         require("dapui").eval()
       end,
-      desc = "Debugger toggle ui",
-      mode = "n"
+      mode = { "n", "v" },
+      desc = "Debugger evaluate",
     },
     {
-      "<leader>dor",
+      "<leader>dr",
       function()
         require("dapui").float_element("repl", { enter = true })
       end,
-      desc = "Debugger open repl"
+      desc = "Debugger repl"
     },
     {
-      "<leader>dob",
+      "<leader>dd",
       function()
         require("dapui").float_element("breakpoints", { enter = true })
       end,
-      desc = "Debugger open breakpoints"
+      desc = "Debugger breakpoints"
     },
     {
-      "<leader>dow",
+      "<leader>dw",
       function()
         require("dapui").float_element("watches", { enter = true })
       end,

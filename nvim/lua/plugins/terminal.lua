@@ -15,11 +15,9 @@ local M = {
     }
   },
   keys = {
-    { '<leader>tf', ':ToggleTerm direction=float<CR>', { desc = 'Toggle terminal float' } },
     {
       '<leader>tt',
       function()
-
         vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
 
         local tree_module = "nvim-tree"
@@ -37,6 +35,7 @@ local M = {
           require(dap_module).close()
         end
       end,
+      mode = { "n", "t" },
       { desc = 'Toggle terminal horizontal' }
     },
   }
