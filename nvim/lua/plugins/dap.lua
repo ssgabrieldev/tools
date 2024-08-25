@@ -1,3 +1,23 @@
+local got_to_propper_win = function()
+  if
+      string.match(vim.bo.filetype, "dap")
+      or vim.bo.filetype == "toggleterm"
+  then
+    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+      local current_bufnr = vim.bo[bufnr]
+      if vim.fn.bufwinid(bufnr) ~= -1 then
+        if
+            not string.match(current_bufnr.filetype, "dap")
+            and current_bufnr.filetype ~= "toggleterm"
+            and current_bufnr.filetype ~= "NvimTree"
+        then
+          vim.api.nvim_set_current_win(vim.fn.bufwinid(bufnr))
+        end
+      end
+    end
+  end
+end
+
 local setup_ui = function(init_ui)
   local tree_module = "nvim-tree"
   if package.loaded[tree_module] then
@@ -23,11 +43,27 @@ local M = {
   dependencies = {
     "mfussenegger/nvim-dap",
     "nvim-neotest/nvim-nio",
+    "nvim-telescope/telescope.nvim",
+    "nvim-telescope/telescope-dap.nvim"
   },
   keys = {
     { "<leader>db", ":DapToggleBreakpoint<cr>", desc = "Debugger breakpoint" },
-    { "<leader>de", ":DapTerminate<cr>",        desc = "Debugger terminate" },
-    { "<leader>dc", ":DapContinue<cr>",         desc = "Debugger continue" },
+    {
+      "<leader>de",
+      function()
+        vim.cmd("DapTerminate")
+        require("dapui").close()
+      end,
+      desc = "Debugger terminate"
+    },
+    {
+      "<leader>dc",
+      function()
+        got_to_propper_win()
+        vim.cmd("DapContinue")
+      end,
+      desc = "Debugger continue"
+    },
     {
       "<leader>du",
       function()
@@ -71,24 +107,25 @@ local M = {
     local dap = require("dap")
     local dapui = require("dapui")
 
-    dap.set_log_level("DEBUG")
-
-    dap.adapters["pwa-chrome"] = {
-      type = "server",
-      host = "localhost",
-      port = "${port}",
-      protocol = "inspector",
-      executable = {
-        command = vim.fn.stdpath("data") .. "/mason/bin/js-debug-adapter",
-        args = { "${port}" },
+    local js_debugger = { "pwa-chrome", "pwa-node" }
+    for _, debugger in ipairs(js_debugger) do
+      dap.adapters[debugger] = {
+        type = "server",
+        host = "localhost",
+        port = "${port}",
+        protocol = "inspector",
+        executable = {
+          command = vim.fn.stdpath("data") .. "/mason/bin/js-debug-adapter",
+          args = { "${port}" },
+        }
       }
-    }
+    end
 
     local js = { "javascriptreact", "javascript" }
     for _, language in ipairs(js) do
       dap.configurations[language] = {
         {
-          type = "pwa-chrome",
+          type = "pwa-node",
           request = "launch",
           name = "Node",
           runtimeExecutable = function()
@@ -128,9 +165,14 @@ local M = {
           name = "Chrome - launch",
           runtimeExecutable = "/usr/bin/google-chrome",
           runtimeArgs = {},
-          webRoot = "${workspaceFolder}",
           console = "integratedTerminal",
           sourceMaps = true,
+          webRoot = function()
+            return vim.fn.input("WEB ROOT: ", "${workspaceFolder}")
+          end,
+          remoteRoot = function()
+            return vim.fn.input("REMOTE ROOT: ", "${workspaceFolder}")
+          end,
           url = function()
             return vim.fn.input("APP URL: ", "http://localhost:3000")
           end,
@@ -139,9 +181,14 @@ local M = {
           type = "pwa-chrome",
           request = "attach",
           name = "Chrome - attatch",
-          webRoot = "${workspaceFolder}",
           console = "integratedTerminal",
           sourceMaps = true,
+          webRoot = function()
+            return vim.fn.input("WEB ROOT: ", "${workspaceFolder}")
+          end,
+          remoteRoot = function()
+            return vim.fn.input("REMOTE ROOT: ", "${workspaceFolder}")
+          end,
           url = function()
             return vim.fn.input("APP URL: ", "http://localhost:3000")
           end,
