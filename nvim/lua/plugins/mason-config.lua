@@ -11,7 +11,8 @@ function M.config()
     ensure_installed = {
       "lua_ls",
       "tsserver",
-      "emment_ls"
+      "emment_ls",
+      "css_ls"
     }
   })
   require("mason-lspconfig").setup_handlers({
