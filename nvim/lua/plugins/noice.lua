@@ -9,7 +9,7 @@ local M = {
     {
       '<leader><C-l>',
       function()
-        vim.cmd("NoiceDimiss")
+        vim.cmd("NoiceDismiss")
       end,
       mode = { "n", "t" },
       { desc = 'Toggle terminal horizontal' }
