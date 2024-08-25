@@ -77,6 +77,7 @@ local M = {
       "<leader>dv",
       function()
         require("dapui").eval()
+        require("dapui").eval()
       end,
       mode = { "n", "v" },
       desc = "Debugger evaluate",
