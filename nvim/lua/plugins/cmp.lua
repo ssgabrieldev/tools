@@ -8,8 +8,9 @@ local M = {
     "saadparwaiz1/cmp_luasnip",
     "onsails/lspkind.nvim",
     "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-cmdline"
   },
-  event = "InsertEnter"
+  lazy = false
 }
 
 function M.config()
@@ -50,6 +51,23 @@ function M.config()
     }, {
       { name = "buffer" },
     }),
+  })
+
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    }),
+    matching = { disallow_symbol_nonprefix_matching = false }
   })
 end
 
