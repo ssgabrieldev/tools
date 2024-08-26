@@ -15,7 +15,13 @@ local M = {
       { desc = 'Toggle terminal horizontal' }
     },
   },
-  config = true
+  config = function ()
+    require("noice").setup({
+      presets = {
+        lsp_doc_border = true
+      }
+    })
+  end
 }
 
 return M
