@@ -130,7 +130,7 @@ local M = {
           request = "launch",
           name = "Node",
           runtimeExecutable = function()
-            local executable = vim.fn.input("COMMAND (default: node): ", "")
+            local executable = vim.fn.input("COMMAND: ", "")
 
             if executable == "" then
               return "node"
@@ -142,7 +142,7 @@ local M = {
             local args = {}
 
             while true do
-              local arg = vim.fn.input("COMMAND ARGS (default: ${file}): ", "")
+              local arg = vim.fn.input("COMMAND ARGS: ", "")
 
               if arg == "" then
                 break
@@ -169,10 +169,10 @@ local M = {
           console = "integratedTerminal",
           sourceMaps = true,
           webRoot = function()
-            return vim.fn.input("WEB ROOT: ", "${workspaceFolder}")
+            return "${workspaceFolder}" .. vim.fn.input("WEB ROOT: ")
           end,
           remoteRoot = function()
-            return vim.fn.input("REMOTE ROOT: ", "${workspaceFolder}")
+            return  "${workspaceFolder}" .. vim.fn.input("REMOTE ROOT: ")
           end,
           url = function()
             return vim.fn.input("APP URL: ", "http://localhost:3000")
@@ -185,10 +185,10 @@ local M = {
           console = "integratedTerminal",
           sourceMaps = true,
           webRoot = function()
-            return vim.fn.input("WEB ROOT: ", "${workspaceFolder}")
+            return "${workspaceFolder}" .. vim.fn.input("WEB ROOT: ")
           end,
           remoteRoot = function()
-            return vim.fn.input("REMOTE ROOT: ", "${workspaceFolder}")
+            return  "${workspaceFolder}" .. vim.fn.input("REMOTE ROOT: ")
           end,
           url = function()
             return vim.fn.input("APP URL: ", "http://localhost:3000")
