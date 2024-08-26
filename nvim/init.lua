@@ -8,7 +8,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",     -- latest stable release
+    "--branch=stable", -- latest stable release
     lazypath,
   })
 end
@@ -42,3 +42,4 @@ vim.keymap.set('n', '<leader>qq', ':q<CR>', { silent = true })
 vim.keymap.set('n', '<leader>qa', ':qa<CR>', { silent = true })
 vim.keymap.set('n', '<leader>ww', ':w<CR>', { silent = true })
 vim.keymap.set('n', '<leader>wa', ':wa<CR>', { silent = true })
+vim.keymap.set("n", "<leader>rr", ":so ~/.config/nvim/init.lua", { silent = true })
