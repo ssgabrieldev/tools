@@ -2,7 +2,13 @@ local M = {
   "lewis6991/gitsigns.nvim",
   event = "BufEnter",
   keys = {
-    { '<leader>gd', ':Gitsigns diffthis<CR>', desc = 'Git diff this' }
+    {
+      '<leader>gd',
+      function()
+        vim.cmd('Gitsigns diffthis')
+      end,
+      desc = 'Git diff this'
+    }
   },
   config = function()
     require('gitsigns').setup({

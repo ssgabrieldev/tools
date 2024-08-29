@@ -1,14 +1,9 @@
 local M = {
-  "craftzdog/solarized-osaka.nvim",
+  'AlexvZyl/nordic.nvim',
   lazy = false,
   priority = 1000,
-  opts = {},
-    config = function ()
-    require("solarized-osaka").setup({
-      transparent = false;
-    })
-
-    vim.cmd[[colorscheme solarized-osaka]]
+  config = function()
+    require 'nordic'.load()
   end
 }
 

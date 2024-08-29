@@ -47,7 +47,13 @@ local M = {
     "nvim-telescope/telescope-dap.nvim"
   },
   keys = {
-    { "<leader>db", ":DapToggleBreakpoint<cr>", desc = "Debugger breakpoint" },
+    {
+      "<leader>db",
+      function()
+        vim.cmd("DapToggleBreakpoint")
+      end,
+      desc = "Debugger breakpoint"
+    },
     {
       "<leader>de",
       function()
@@ -172,7 +178,7 @@ local M = {
             return "${workspaceFolder}" .. vim.fn.input("WEB ROOT: ")
           end,
           remoteRoot = function()
-            return  "${workspaceFolder}" .. vim.fn.input("REMOTE ROOT: ")
+            return "${workspaceFolder}" .. vim.fn.input("REMOTE ROOT: ")
           end,
           url = function()
             return vim.fn.input("APP URL: ", "http://localhost:3000")
@@ -188,7 +194,7 @@ local M = {
             return "${workspaceFolder}" .. vim.fn.input("WEB ROOT: ")
           end,
           remoteRoot = function()
-            return  "${workspaceFolder}" .. vim.fn.input("REMOTE ROOT: ")
+            return "${workspaceFolder}" .. vim.fn.input("REMOTE ROOT: ")
           end,
           url = function()
             return vim.fn.input("APP URL: ", "http://localhost:3000")

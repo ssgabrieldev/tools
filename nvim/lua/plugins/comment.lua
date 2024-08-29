@@ -1,7 +1,7 @@
 local M = {
   "terrortylor/nvim-comment",
   keys = {
-    { "<leader>/", ":CommentToggle<cr>", desc = "Comment line", mode = {"v", "n"} },
+    { "<leader>/", "<cmd>CommentToggle<cr>", desc = "Comment line", mode = {"v", "n"} },
     -- { "<leader>/", ":CommentToggle<cr>", mode = 'v',           desc = "Comment selected" },
   },
   config = function()
