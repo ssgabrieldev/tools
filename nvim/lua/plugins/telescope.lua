@@ -1,4 +1,6 @@
-local got_to_propper_win = function()
+local utils_buffers = require("plugins.utils.buffers")
+
+local go_to_buf_file = function()
   if
       string.match(vim.bo.filetype, "dap")
       or vim.bo.filetype == "toggleterm"
@@ -24,13 +26,14 @@ local M = {
     "nvim-lua/plenary.nvim",
     's1n7ax/nvim-window-picker',
     "mfussenegger/nvim-dap",
-    "nvim-telescope/telescope-dap.nvim"
+    "nvim-telescope/telescope-dap.nvim",
+    'akinsho/toggleterm.nvim',
   },
   keys = {
     {
       "<leader>ff",
       function()
-        got_to_propper_win()
+        go_to_buf_file()
         vim.cmd("Telescope find_files")
       end,
       desc = "Find file"
@@ -38,7 +41,7 @@ local M = {
     {
       "<leader>fw",
       function()
-        got_to_propper_win()
+        go_to_buf_file()
         vim.cmd("Telescope live_grep")
       end,
       desc = "Find pattern"
@@ -46,7 +49,7 @@ local M = {
     {
       "<leader>fb",
       function()
-        got_to_propper_win()
+        go_to_buf_file()
         vim.cmd("Telescope buffers")
       end,
       desc = "Find buffer"
@@ -54,7 +57,7 @@ local M = {
     {
       "<leader>fg",
       function()
-        got_to_propper_win()
+        go_to_buf_file()
         vim.cmd("Telescope git_status")
       end,
       desc = "Find git change"
@@ -62,11 +65,11 @@ local M = {
     {
       "<leader>fk",
       function()
-        got_to_propper_win()
+        go_to_buf_file()
         vim.cmd("Telescope keymaps")
       end,
       desc = "Find keymap"
-    },
+    }
   }
 }
 

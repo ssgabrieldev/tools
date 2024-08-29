@@ -1,3 +1,40 @@
+local ask_webroot = function()
+  return "${workspaceFolder}" .. vim.fn.input("WEB ROOT: ")
+end
+
+local ask_remoteroot = function()
+  return "${workspaceFolder}" .. vim.fn.input("REMOTE ROOT: ")
+end
+
+local ask_url = function()
+  return vim.fn.input("APP URL: ", "http://localhost:3000")
+end
+
+local ask_port = function()
+  return vim.fn.input("BROWSER PORT: ", "9222")
+end
+
+local ask_custom_command = function()
+  local terminal_module = "toggleterm"
+
+  if not package.loaded[terminal_module] then
+    return
+  end
+
+  require("dapui").close()
+
+  local command = vim.fn.input("COMMAND TO RUN: ")
+
+  if command ~= "" then
+    local term = require(terminal_module .. ".terminal").Terminal:new({
+      cmd = command,
+      hidden = false,
+      direction = "horizontal"
+    })
+    term:toggle()
+  end
+end
+
 local got_to_propper_win = function()
   if
       string.match(vim.bo.filetype, "dap")
@@ -44,7 +81,8 @@ local M = {
     "mfussenegger/nvim-dap",
     "nvim-neotest/nvim-nio",
     "nvim-telescope/telescope.nvim",
-    "nvim-telescope/telescope-dap.nvim"
+    "nvim-telescope/telescope-dap.nvim",
+    'akinsho/toggleterm.nvim',
   },
   keys = {
     {
@@ -174,14 +212,12 @@ local M = {
           runtimeArgs = {},
           console = "integratedTerminal",
           sourceMaps = true,
-          webRoot = function()
-            return "${workspaceFolder}" .. vim.fn.input("WEB ROOT: ")
-          end,
-          remoteRoot = function()
-            return "${workspaceFolder}" .. vim.fn.input("REMOTE ROOT: ")
-          end,
+          webRoot = ask_webroot,
+          remoteRoot = ask_remoteroot,
           url = function()
-            return vim.fn.input("APP URL: ", "http://localhost:3000")
+            ask_custom_command()
+
+            return ask_url()
           end,
         },
         {
@@ -190,18 +226,14 @@ local M = {
           name = "Chrome - attatch",
           console = "integratedTerminal",
           sourceMaps = true,
-          webRoot = function()
-            return "${workspaceFolder}" .. vim.fn.input("WEB ROOT: ")
-          end,
-          remoteRoot = function()
-            return "${workspaceFolder}" .. vim.fn.input("REMOTE ROOT: ")
-          end,
+          webRoot = ask_webroot,
+          remoteRoot = ask_remoteroot,
           url = function()
-            return vim.fn.input("APP URL: ", "http://localhost:3000")
+            ask_custom_command()
+
+            return ask_url()
           end,
-          port = function()
-            return vim.fn.input("CHROME PORT: ", "9222")
-          end,
+          port = ask_port
         },
       }
     end
@@ -216,7 +248,7 @@ local M = {
         dapui.open({ reset = true })
       end)
     end
-    dap.listeners.before.event_teminated.dapui_config = function()
+    dap.listeners.before.exit.dapui_config = function()
       setup_ui(function()
         dapui.close()
       end)
