@@ -1,8 +1,7 @@
 local M = {
   "terrortylor/nvim-comment",
   keys = {
-    { "<leader>/", "<cmd>CommentToggle<cr>", desc = "Comment line", mode = {"v", "n"} },
-    -- { "<leader>/", ":CommentToggle<cr>", mode = 'v',           desc = "Comment selected" },
+    { "<leader>/", ":CommentToggle<cr>", desc = "Comment line", mode = {"v", "n"} },
   },
   config = function()
     require('nvim_comment').setup()
