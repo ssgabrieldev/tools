@@ -1,17 +1,19 @@
+local utils_vim = require("plugins.utils.vim")
+
 local ask_webroot = function()
-  return "${workspaceFolder}" .. vim.fn.input("WEB ROOT: ")
+  return "${workspaceFolder}" .. utils_vim.input("WEB ROOT: ")
 end
 
 local ask_remoteroot = function()
-  return "${workspaceFolder}" .. vim.fn.input("REMOTE ROOT: ")
+  return "${workspaceFolder}" .. utils_vim.input("REMOTE ROOT: ")
 end
 
 local ask_url = function()
-  return vim.fn.input("APP URL: ", "http://localhost:3000")
+  return utils_vim.input("APP URL: ", "http://localhost:3000")
 end
 
 local ask_port = function()
-  return vim.fn.input("BROWSER PORT: ", "9222")
+  return utils_vim.input("BROWSER PORT: ", "9222")
 end
 
 local ask_custom_command = function()
@@ -23,7 +25,7 @@ local ask_custom_command = function()
 
   require("dapui").close()
 
-  local command = vim.fn.input("COMMAND TO RUN: ")
+  local command = utils_vim.input("COMMAND TO RUN: ")
 
   if command ~= "" then
     local term = require(terminal_module .. ".terminal").Terminal:new({
@@ -174,7 +176,7 @@ local M = {
           request = "launch",
           name = "Node",
           runtimeExecutable = function()
-            local executable = vim.fn.input("COMMAND: ", "")
+            local executable = utils_vim.input("COMMAND: ", "")
 
             if executable == "" then
               return "node"
@@ -186,7 +188,7 @@ local M = {
             local args = {}
 
             while true do
-              local arg = vim.fn.input("COMMAND ARGS: ", "")
+              local arg = utils_vim.input("COMMAND ARGS: ", "")
 
               if arg == "" then
                 break
