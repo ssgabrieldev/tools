@@ -1,4 +1,4 @@
-local utils_buffers = require("utils.buffers")
+local utils_buffers = require("plugins.utils.buffers")
 local go_to_buf_file = utils_buffers.go_to_buf_file
 
 local M = {
