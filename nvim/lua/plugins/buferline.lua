@@ -11,8 +11,8 @@ local M = {
     { "<leader>bh", "<cmd>BufferLineMovePrev<CR>",  desc = "Buffer line close all buffer on the left" },
     { "<leader>bl", "<cmd>BufferLineMoveNext<CR>", desc = "Buffer line close all buffer on the right" },
     { "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", desc = "Buffer line close all buffer on the right" },
-    { "<leader>k",      "<cmd>BufferLineCycleNext<CR>",  desc = "Buffer line next buffer" },
-    { "<leader>j",    "<cmd>BufferLineCyclePrev<CR>",  desc = "Buffer line prev buffer" }
+    { "<leader>j",      "<cmd>BufferLineCycleNext<CR>",  desc = "Buffer line next buffer" },
+    { "<leader>k",    "<cmd>BufferLineCyclePrev<CR>",  desc = "Buffer line prev buffer" }
   },
   lazy = false
 }
