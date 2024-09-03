@@ -32,6 +32,7 @@ vim.opt.splitright = true
 vim.opt.smartindent = true
 vim.opt.scrolloff = 5
 vim.opt.termsync = false
+vim.opt.colorcolumn = "80"
 
 vim.keymap.set('n', '<A-h>', ':vertical resize -2<CR>', { silent = true })
 vim.keymap.set('n', '<A-l>', ':vertical resize +2<CR>', { silent = true })
