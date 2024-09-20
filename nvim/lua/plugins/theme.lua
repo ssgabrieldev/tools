@@ -1,13 +1,9 @@
 local M = {
-  "navarasu/onedark.nvim",
+  'EdenEast/nightfox.nvim',
   lazy = false,
   priority = 1000,
   config = function()
-    require("onedark").setup({
-      style = "darker",
-      -- transparent = true
-    })
-    require('onedark').load()
+    vim.cmd("colorscheme carbonfox")
   end
 }
 
