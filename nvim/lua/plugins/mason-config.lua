@@ -29,7 +29,7 @@ function M.config()
       local utils_lsp = require('plugins.utils.lsp')
 
       require("lspconfig")[server_name].setup({
-        filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'javascript' },
+        filetypes = { 'html', 'typescriptreact', 'javascriptreact' },
         on_attach = utils_lsp.on_attach,
         capabilities = utils_lsp.capabilities,
         handlers = utils_lsp.handlers,
