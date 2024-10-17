@@ -175,20 +175,11 @@ local M = {
           type = "pwa-node",
           request = "launch",
           name = "Node",
-          runtimeExecutable = function()
-            local executable = utils_vim.input("COMMAND: ", "")
-
-            if executable == "" then
-              return "node"
-            end
-
-            return executable
-          end,
           runtimeArgs = function()
             local args = {}
 
             while true do
-              local arg = utils_vim.input("COMMAND ARGS: ", "")
+              local arg = utils_vim.input("COMMAND ARGS (default: " .. vim.fn.expand('%') .. "): ", "")
 
               if arg == "" then
                 break
