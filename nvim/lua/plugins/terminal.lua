@@ -4,7 +4,7 @@ local M = {
   'akinsho/toggleterm.nvim',
   version = "*",
   opts = {
-    direction = "float",
+    direction = "horizontal",
     float_opts = {
       title_pos = "center",
       winblend = 3
@@ -21,7 +21,7 @@ local M = {
       '<leader>tt',
       function()
         utils_buffers.close_for_terminal(function()
-          vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
+          vim.cmd(vim.v.count .. "ToggleTerm")
         end)
       end,
       mode = { "n", "t" },
