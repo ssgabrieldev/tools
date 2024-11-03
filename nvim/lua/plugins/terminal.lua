@@ -1,5 +1,3 @@
-local utils_buffers = require("plugins.utils.buffers")
-
 local M = {
   'akinsho/toggleterm.nvim',
   version = "*",
@@ -20,9 +18,7 @@ local M = {
     {
       '<leader>tt',
       function()
-        utils_buffers.close_for_terminal(function()
-          vim.cmd(vim.v.count .. "ToggleTerm")
-        end)
+        vim.cmd(vim.v.count .. "ToggleTerm")
       end,
       mode = { "n", "t" },
       { desc = 'Toggle terminal' }

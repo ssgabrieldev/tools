@@ -31,7 +31,7 @@ local ask_custom_command = function()
     local term = require(terminal_module .. ".terminal").Terminal:new({
       cmd = command,
       hidden = false,
-      direction = "horizontal"
+      direction = "float"
     })
     term:toggle()
   end
