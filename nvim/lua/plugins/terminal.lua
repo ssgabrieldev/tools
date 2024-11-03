@@ -4,6 +4,7 @@ local M = {
   opts = {
     direction = "float",
     float_opts = {
+      border = vim.g.border_style,
       title_pos = "center",
       winblend = 3
     },

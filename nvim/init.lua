@@ -1,4 +1,4 @@
-vim.g.border_style = "single"
+vim.g.border_style = "rounded"
 vim.g.mapleader = ";"
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
