@@ -4,7 +4,7 @@ local M = {
   'akinsho/toggleterm.nvim',
   version = "*",
   opts = {
-    direction = "horizontal",
+    direction = "float",
     float_opts = {
       title_pos = "center",
       winblend = 3
@@ -25,7 +25,7 @@ local M = {
         end)
       end,
       mode = { "n", "t" },
-      { desc = 'Toggle terminal horizontal' }
+      { desc = 'Toggle terminal' }
     },
   }
 }
