@@ -57,7 +57,7 @@ local M = {
 function M.config()
   require("telescope").setup({
     defaults = {
-      preview = false
+      preview = true
     }
   })
 end
