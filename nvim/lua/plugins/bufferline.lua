@@ -25,7 +25,7 @@ function M.config()
           filetype = "NvimTree",
           text = "File Explorer",
           text_align = "center",
-          separator = true,
+          separator = false,
         },
         {
           filetype = "dapui_watches",
