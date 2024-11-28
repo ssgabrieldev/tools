@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sudo apt install kitty
+
+mkdir ~/.config/kitty -p
+touch ~/.config/kitty/kitty.conf
+echo 'linux_display_server x11' >> ~/.config/kitty/kitty.conf
+gsettings set org.gnome.desktop.default-applications.terminal exec '/usr/bin/kitty'
