@@ -1,0 +1,15 @@
+#!/bin/bash
+
+sudo apt install fish curl -y
+
+curl -sS https://starship.rs/install.sh | sh
+
+mkdir ~/.config/fish
+echo "starship init fish | source" >> ~/.config/fish/config.fish
+
+mkdir ~/apps/bin -p
+
+echo "================================" >> ~/.bashrc
+echo "export PATH=$PATH:~/apps/bin" >> ~/.bashrc
+echo "exec fish" >> ~/.bashrc
+
