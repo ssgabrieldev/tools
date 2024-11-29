@@ -46,3 +46,23 @@ vim.keymap.set('n', '<leader>ww', ':w<CR>', { silent = true })
 vim.keymap.set('n', '<leader>wq', ':wq<CR>', { silent = true })
 vim.keymap.set('n', '<leader>wa', ':wa<CR>', { silent = true })
 vim.keymap.set("n", "<leader>rr", ":so ~/.config/nvim/init.lua<CR>", { silent = true })
+vim.keymap.set("v", "<C-c>", "\"+y", { silent = true })
+vim.keymap.set("i", "<C-v>", "\"+p", { silent = true })
+
+if vim.env.SSH_TTY then
+   local function paste()
+     return { vim.fn.split(vim.fn.getreg(""), "\n"),       vim.fn.getregtype("") }
+   end
+   local osc52 = require("vim.ui.clipboard.osc52")
+   vim.g.clipboard = {
+     name = "OSC 52",
+     copy = {
+      ["+"] = osc52.copy("+"),
+      ["*"] = osc52.copy("*"),
+    },
+    paste = {
+      ["+"] = paste,
+      ["*"] = paste,
+    },
+   }
+ end
