@@ -21,6 +21,7 @@ vim.wo.wrap = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+vim.opt.clipboard = "unnamed"
 vim.opt.mouse = ""
 vim.opt.cursorline = true
 vim.opt.tabstop = 2
@@ -47,7 +48,6 @@ vim.keymap.set('n', '<leader>wq', ':wq<CR>', { silent = true })
 vim.keymap.set('n', '<leader>wa', ':wa<CR>', { silent = true })
 vim.keymap.set("n", "<leader>rr", ":so ~/.config/nvim/init.lua<CR>", { silent = true })
 vim.keymap.set("v", "<C-c>", "\"+y", { silent = true })
-vim.keymap.set("i", "<C-v>", "\"+p", { silent = true })
 
 if vim.env.SSH_TTY then
    local function paste()
