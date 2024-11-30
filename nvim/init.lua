@@ -21,7 +21,7 @@ vim.wo.wrap = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-vim.opt.clipboard = "unnamed"
+vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = ""
 vim.opt.cursorline = true
 vim.opt.tabstop = 2
