@@ -9,7 +9,7 @@ echo "starship init fish | source" >> ~/.config/fish/config.fish
 
 mkdir ~/apps/bin -p
 
-echo "================================" >> ~/.bashrc
+echo "# ================================" >> ~/.bashrc
 echo "export PATH=$PATH:~/apps/bin" >> ~/.bashrc
 echo "exec fish" >> ~/.bashrc
 
