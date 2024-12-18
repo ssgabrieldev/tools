@@ -16,6 +16,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
+if vim.fn.executable("/usr/bin/fish") == 1 then
+  vim.o.shell = "/usr/bin/fish"
+end
 
 vim.wo.wrap = false
 vim.wo.number = true
