@@ -231,21 +231,21 @@ local M = {
       }
     end
 
-    dap.listeners.before.attach.dapui_config = function()
-      setup_ui(function()
-        dapui.open({ reset = true })
-      end)
-    end
-    dap.listeners.before.launch.dapui_config = function()
-      setup_ui(function()
-        dapui.open({ reset = true })
-      end)
-    end
-    dap.listeners.before.exit.dapui_config = function()
-      setup_ui(function()
-        dapui.close()
-      end)
-    end
+    -- dap.listeners.before.attach.dapui_config = function()
+    --   setup_ui(function()
+    --     dapui.open({ reset = true })
+    --   end)
+    -- end
+    -- dap.listeners.before.launch.dapui_config = function()
+    --   setup_ui(function()
+    --     dapui.open({ reset = true })
+    --   end)
+    -- end
+    -- dap.listeners.before.exit.dapui_config = function()
+    --   setup_ui(function()
+    --     dapui.close()
+    --   end)
+    -- end
 
     dapui.setup()
   end
