@@ -1,4 +1,5 @@
 local lazysql_terminal = nil
+local lazygit_terminal = nil
 
 local M = {
   'akinsho/toggleterm.nvim',
@@ -41,6 +42,25 @@ local M = {
         end
 
         lazysql_terminal:toggle();
+      end,
+      mode = { "n", "t" },
+      { desc = "Lazysql" }
+    },
+    {
+      "<leader>tg",
+      function()
+        if not lazygit_terminal then
+          local Terminal = require('toggleterm.terminal').Terminal
+          lazygit_terminal = Terminal:new({
+            cmd = "lazygit",
+            hidden = true,
+            on_exit = function()
+              lazygit_terminal = nil
+            end
+          })
+        end
+
+        lazygit_terminal:toggle();
       end,
       mode = { "n", "t" },
       { desc = "Lazysql" }
