@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+mkdir -p ~/apps/bin
+mkdir -p ~/tools/downloads
+wget -P ~/tools/downloads https://github.com/jorgerojas26/lazysql/releases/download/v0.3.3/lazysql_Linux_arm64.tar.gz
+tar -xzf ~/tools/downloads/lazysql_Linux_arm64.tar.gz -C ~/tools/downloads/
+cp ~/tools/downloads/lazysql ~/apps/bin
+rm ~/tools/downloads -rf
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+sudo apt install kitty
+
+mkdir ~/.config/kitty -p
+touch ~/.config/kitty/kitty.conf
+echo "linux_display_server x11" >> ~/.config/kitty/kitty.conf
+echo "tab_bar_edge top" >> ~/.config/kitty/kitty.conf
+echo "tab_bar_style powerline" >> ~/.config/kitty/kitty.conf
+echo "tab_powerline_style round" >> ~/.config/kitty/kitty.conf
+gsettings set org.gnome.desktop.default-applications.terminal exec '/usr/bin/kitty'

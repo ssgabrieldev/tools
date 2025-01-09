@@ -1,0 +1,14 @@
+#!/bin/bash
+
+mkdir ~/apps/bin -p
+
+wget -O ~/apps/nvim.tar.gz https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+
+tar -xzf ~/apps/nvim.tar.gz -C ~/apps/
+mv ~/apps/nvim-linux64 ~/apps/nvim
+rm ~/apps/nvim.tar.gz
+
+ln -s ~/apps/nvim/bin/nvim ~/apps/bin/nvim
+ln -s ~/tools/nvim ~/.config/nvim
+
+sudo apt install ripgrep

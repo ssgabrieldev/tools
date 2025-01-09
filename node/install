@@ -1,0 +1,18 @@
+#!/bin/bash
+
+sudo apt install npm -y
+
+sudo npm install -g n
+
+echo "" >> $HOME/.config/fish/config.fish
+echo "export N_PREFIX=\"\$HOME/apps/n\"" >> $HOME/.config/fish/config.fish
+
+export N_PREFIX="$HOME/apps/n"
+
+n latest
+
+mkdir $HOME/apps/bin -p
+
+ln -s ~/apps/n/bin/node ~/apps/bin/node
+ln -s ~/apps/n/bin/npm ~/apps/bin/npm 
+ln -s ~/apps/n/bin/npx ~/apps/bin/npx 

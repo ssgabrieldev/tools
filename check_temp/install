@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+mkdir ~/apps/bin/ -p
+cp ./check_temp.sh ~/apps/bin

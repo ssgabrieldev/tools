@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mkdir ~/apps/bin -p
+
+wget -O ~/apps/go.tar.gz https://go.dev/dl/go1.22.5.linux-amd64.tar.gz
+tar -xzf ~/apps/go.tar.gz -C $HOME/apps/
+rm $HOME/apps/go.tar.gz
+
+ln -s $HOME/apps/go/bin/go $HOME/apps/bin/go
+ln -s $HOME/apps/go/bin/gofmt $HOME/apps/bin/gofmt
