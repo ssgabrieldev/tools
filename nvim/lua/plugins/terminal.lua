@@ -1,5 +1,6 @@
 local lazysql_terminal = nil
 local lazygit_terminal = nil
+local vimongo_terminal = nil
 
 local M = {
   'akinsho/toggleterm.nvim',
@@ -26,6 +27,25 @@ local M = {
       end,
       mode = { "n", "t" },
       { desc = 'Toggle terminal' }
+    },
+    {
+      "<leader>tm",
+      function()
+        if not vimongo_terminal then
+          local Terminal = require('toggleterm.terminal').Terminal
+          vimongo_terminal = Terminal:new({
+            cmd = "vi-mongo",
+            hidden = true,
+            on_exit = function()
+              vimongo_terminal = nil
+            end
+          })
+        end
+
+        vimongo_terminal:toggle();
+      end,
+      mode = { "n", "t" },
+      { desc = "Vi-mongo" }
     },
     {
       "<leader>td",
