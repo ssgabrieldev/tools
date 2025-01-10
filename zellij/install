@@ -1,9 +1,9 @@
 #!/bin/bash
 
 mkdir ~/apps/bin -p
+mkdir ~/tools/downloads -p
 
-wget -O ~/apps/zellij.tar.gz https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz
-tar -xzf ~/apps/zellij.tar.gz -C ~/apps/
-rm ~/apps/zellij.tar.gz
-
-ln -s ~/apps/zellij ~/apps/bin/zellij
+wget -O ~/tools/downloads/zellij.tar.gz https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz
+tar -xzf ~/tools/downloads/zellij.tar.gz -C ~/tools/downloads
+cp ~/tools/downloads/zellij ~/apps/bin
+rm ~/tools/downloads -rf
