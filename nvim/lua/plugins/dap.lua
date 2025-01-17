@@ -177,16 +177,11 @@ local M = {
           name = "Node",
           runtimeArgs = function()
             local args = {}
-
-            while true do
-              local arg = utils_vim.input("COMMAND ARGS (default: " .. vim.fn.expand('%') .. "): ", "")
-
-              if arg == "" then
-                break
-              end
-
-              table.insert(args, arg)
-            end
+            local arg = utils_vim.input(
+              "File to run (default: " .. vim.fn.expand('%') .. "): ",
+              ""
+            )
+            table.insert(args, arg)
 
             if next(args) ~= nil then
               return args
@@ -230,22 +225,6 @@ local M = {
         },
       }
     end
-
-    -- dap.listeners.before.attach.dapui_config = function()
-    --   setup_ui(function()
-    --     dapui.open({ reset = true })
-    --   end)
-    -- end
-    -- dap.listeners.before.launch.dapui_config = function()
-    --   setup_ui(function()
-    --     dapui.open({ reset = true })
-    --   end)
-    -- end
-    -- dap.listeners.before.exit.dapui_config = function()
-    --   setup_ui(function()
-    --     dapui.close()
-    --   end)
-    -- end
 
     dapui.setup()
   end
