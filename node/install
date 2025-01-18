@@ -4,8 +4,7 @@ sudo apt install npm -y
 
 sudo npm install -g n
 
-echo "" >> $HOME/.config/fish/config.fish
-echo "export N_PREFIX=\"\$HOME/apps/n\"" >> $HOME/.config/fish/config.fish
+mkdir $HOME/apps/n -p
 
 export N_PREFIX="$HOME/apps/n"
 
