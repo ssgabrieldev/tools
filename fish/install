@@ -7,8 +7,7 @@ curl -sS https://starship.rs/install.sh | sh
 # Config file
 mkdir -p ~/.config/fish
 rm ~/.config/fish/config.fish
-ln -s ~/tools/shell/config.fish ~/.config/fish/config.fish
-
+ln -s ~/tools/fish/config.fish ~/.config/fish/config.fish
 
 mkdir ~/apps/bin -p
 
