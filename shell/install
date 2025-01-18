@@ -4,14 +4,13 @@ sudo apt install fish curl -y
 
 curl -sS https://starship.rs/install.sh | sh
 
-mkdir ~/.config/fish
-echo "" >> ~/.config/fish/config.fish
-echo "starship init fish | source" >> ~/.config/fish/config.fish
+# Config file
+mkdir -p ~/.config/fish
+rm ~/.config/fish/config.fish
+ln -s ~/tools/shell/config.fish ~/.config/fish/config.fish
+
 
 mkdir ~/apps/bin -p
-
-echo "" >> $HOME/.config/fish/config.fish
-echo "export PATH=\"\$HOME/apps/bin:\$PATH\"" >> $HOME/.config/fish/config.fish
 
 export PATH="$HOME/apps/bin:$PATH"
 

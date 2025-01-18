@@ -88,11 +88,11 @@ local M = {
   },
   keys = {
     {
-      "<leader>db",
+      "<leader>dd",
       function()
         vim.cmd("DapToggleBreakpoint")
       end,
-      desc = "Debugger breakpoint"
+      desc = "Debugger toggle breakpoint"
     },
     {
       "<leader>de",
@@ -129,27 +129,12 @@ local M = {
       desc = "Debugger evaluate",
     },
     {
-      "<leader>dr",
+      "<leader>dl",
       function()
-        require("dapui").float_element("repl", { enter = true })
+        require("dapui").float_element()
       end,
-      desc = "Debugger repl"
-    },
-    {
-      "<leader>dd",
-      function()
-        require("dapui").float_element("breakpoints", { enter = true })
-      end,
-      desc = "Debugger breakpoints"
-    },
-    {
-      "<leader>dw",
-      function()
-        require("dapui").float_element("watches", { enter = true })
-      end,
-      desc = "Debugger open watcher"
-    },
-  },
+      desc = "Debugger list frames"
+    }  },
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")
