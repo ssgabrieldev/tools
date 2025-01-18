@@ -1,15 +1,10 @@
-local M = {
-  'EdenEast/nightfox.nvim',
-  lazy = false,
-  priority = 1000,
+return {
+  "nyoom-engineering/oxocarbon.nvim",
   config = function()
-    require("nightfox").setup({
-      options = {
-        transparent = true
-      }
-    })
-    vim.cmd("colorscheme nightfox")
+    vim.opt.background = "dark"
+    vim.cmd.colorscheme "oxocarbon"
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
   end
 }
-
-return M
