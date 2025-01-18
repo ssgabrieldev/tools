@@ -132,7 +132,6 @@ local M = {
       "<leader>dl",
       function()
         require("dapui").float_element()
-        require("dapui").float_element()
       end,
       desc = "Debugger list frames"
     }  },
