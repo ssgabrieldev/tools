@@ -24,7 +24,7 @@ vim.wo.wrap = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = "a"
 vim.opt.cursorline = true
 vim.opt.tabstop = 2
@@ -51,4 +51,4 @@ vim.keymap.set('n', '<leader>wq', ':wq<CR>', { silent = true })
 vim.keymap.set('n', '<leader>wa', ':wa<CR>', { silent = true })
 vim.keymap.set("n", "<leader>rr", ":so ~/.config/nvim/init.lua<CR>", { silent = true })
 vim.keymap.set("v", "<leader>y", "\"+y", { silent = true })
-vim.keymap.set("n", "<leader>p", "\"+p", { silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p", { silent = true })
