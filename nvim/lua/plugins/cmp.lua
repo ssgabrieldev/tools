@@ -34,10 +34,10 @@ function M.config()
       ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.abort(),
       ["<CR>"] = cmp.mapping.confirm({ select = true }),
-      ["<c-n>"] = cmp.mapping(function()
+      ["<tab>"] = cmp.mapping(function()
         cmp.select_next_item()
       end),
-      ["<c-p>"] = cmp.mapping(function()
+      ["<s-tab>"] = cmp.mapping(function()
         cmp.select_prev_item()
       end),
     }),

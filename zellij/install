@@ -9,5 +9,6 @@ cp ~/tools/downloads/zellij ~/apps/bin
 rm ~/tools/downloads -rf
 
 # Configuration
-mkdir ~/.config/zellij/
+mkdir ~/.config/zellij/ -p
+rm ~/.config/zellij/config.kdl
 ln -s ~/tools/zellij/config.kdl ~/.config/zellij/config.kdl
