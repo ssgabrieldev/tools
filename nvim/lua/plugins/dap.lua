@@ -134,7 +134,7 @@ local M = {
         require("dapui").float_element()
       end,
       desc = "Debugger list frames"
-    }  },
+    } },
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")
@@ -164,15 +164,16 @@ local M = {
             local args = {}
             local arg = utils_vim.input(
               "File to run (default: " .. vim.fn.expand('%') .. "): ",
-              "${file}"
+              ""
             )
-            table.insert(args, arg)
 
-            if next(args) ~= nil then
-              return args
+            if arg == "" then
+              arg = "${file}"
             end
 
-            return { vim.fn.expand('%') }
+            table.insert(args, arg)
+
+            return table
           end,
           cwd = "${workspaceFolder}",
           console = "integratedTerminal",
