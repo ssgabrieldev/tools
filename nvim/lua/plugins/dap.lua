@@ -164,7 +164,7 @@ local M = {
             local args = {}
             local arg = utils_vim.input(
               "File to run (default: " .. vim.fn.expand('%') .. "): ",
-              ""
+              "${file}"
             )
             table.insert(args, arg)
 
