@@ -23,10 +23,20 @@ local M = {
     {
       '<leader>tt',
       function()
-        vim.cmd(vim.v.count .. "ToggleTerm")
+        require("plugins.utils.buffers").close_for_terminal(function()
+          vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
+        end)
       end,
       mode = { "n", "t" },
-      { desc = 'Toggle terminal' }
+      { desc = 'Toggle terminal horizontal' }
+    },
+    {
+      '<leader>tf',
+      function()
+        vim.cmd(vim.v.count .. "ToggleTerm direction=float")
+      end,
+      mode = { "n", "t" },
+      { desc = 'Toggle terminal float' }
     },
     {
       "<leader>tm",
@@ -36,6 +46,7 @@ local M = {
           vimongo_terminal = Terminal:new({
             cmd = "vi-mongo",
             hidden = true,
+            count = 1000,
             on_exit = function()
               vimongo_terminal = nil
             end
@@ -55,6 +66,7 @@ local M = {
           lazysql_terminal = Terminal:new({
             cmd = "lazysql",
             hidden = true,
+            count = 1001,
             on_exit = function()
               lazysql_terminal = nil
             end
@@ -74,6 +86,7 @@ local M = {
           lazygit_terminal = Terminal:new({
             cmd = "lazygit",
             hidden = true,
+            count = 1002,
             on_exit = function()
               lazygit_terminal = nil
             end
