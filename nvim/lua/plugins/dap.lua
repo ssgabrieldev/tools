@@ -173,7 +173,7 @@ local M = {
 
             table.insert(args, arg)
 
-            return table
+            return args
           end,
           cwd = "${workspaceFolder}",
           console = "integratedTerminal",
