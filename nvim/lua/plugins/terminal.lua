@@ -13,7 +13,7 @@ local M = {
       winblend = 3
     },
     winbar = {
-      enabled = false,
+      enabled = true,
       name_formatter = function(term)
         return term.name
       end
@@ -24,7 +24,11 @@ local M = {
       '<leader>tt',
       function()
         require("plugins.utils.buffers").close_for_terminal(function()
-          vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
+          if vim.v.count == 0 then
+            vim.cmd("ToggleTermToggleAll")
+          else
+            vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
+          end
         end)
       end,
       mode = { "n", "t" },
