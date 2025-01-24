@@ -172,7 +172,7 @@ local M = {
               return args
             end
 
-            return { "${file}" }
+            return { vim.fn.expand('%') }
           end,
           cwd = "${workspaceFolder}",
           console = "integratedTerminal",
