@@ -130,14 +130,21 @@ local M = {
       function()
         require("dapui").float_element("console", float_opts)
       end,
-      desc = "Debugger list frames"
+      desc = "Debugger console"
     },
     {
       "<leader>dw",
       function()
         require("dapui").float_element("watches", float_opts)
       end,
-      desc = "Debugger list frames"
+      desc = "Debugger watches"
+    },
+    {
+      "<leader>dd",
+      function()
+        require("dapui").float_element("breakpoints", float_opts)
+      end,
+      desc = "Debugger breakpoints"
     },
     {
       "<leader>dl",
