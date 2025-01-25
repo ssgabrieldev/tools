@@ -3,6 +3,7 @@ return {
   name = 'window-picker',
   event = 'VeryLazy',
   version = '2.*',
+  lazy = false,
   keys = {
     {
       "<leader>wp",
@@ -18,6 +19,7 @@ return {
   },
   config = function()
     require('window-picker').setup({
+      show_prompt = false,
       filter_rules = {
         autoselect_one = false,
         include_current_win = true,

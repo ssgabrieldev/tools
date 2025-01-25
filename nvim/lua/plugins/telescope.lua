@@ -1,6 +1,41 @@
 local utils_buffers = require("plugins.utils.buffers")
 local go_to_buf_file = utils_buffers.go_to_buf_file
 
+local get_prpper_window = function(prompt_bufnr)
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+  local entry = action_state.get_selected_entry()
+  local filepath = entry.path or entry[1]
+  actions.close(prompt_bufnr)
+
+  local win_id = require("window-picker").pick_window({
+    hint = 'floating-big-letter',
+    filter_rules = {
+      autoselect_one = true,
+      bo = {
+        filetype = {
+          "NvimTree",
+          "toggleterm",
+          "dapui_watches",
+          "dapui_stacks",
+          "dapui_breakpoints",
+          "dapui_scopes",
+          "dapui_console",
+          "dap-repl",
+        }
+      }
+    }
+  })
+
+  if not win_id then
+    return
+  end
+
+  vim.api.nvim_set_current_win(win_id)
+
+  vim.cmd("edit " .. vim.fn.fnameescape(filepath))
+end
+
 local M = {
   "nvim-telescope/telescope.nvim",
   dependencies = {
@@ -14,7 +49,7 @@ local M = {
     {
       "<leader>ff",
       function()
-        go_to_buf_file()
+        -- go_to_buf_file()
         vim.cmd("Telescope find_files")
       end,
       desc = "Find file"
@@ -65,7 +100,65 @@ local M = {
 function M.config()
   require("telescope").setup({
     defaults = {
-      preview = true
+      preview = true,
+    },
+    pickers = {
+      find_files = {
+        mappings = {
+          i = {
+            ["<CR>"] = function(prompt_bufnr)
+              get_prpper_window(prompt_bufnr)
+            end,
+          },
+          n = {
+            ["<CR>"] = function(prompt_bufnr)
+              get_prpper_window(prompt_bufnr)
+            end,
+          },
+        },
+      },
+      buffers = {
+        mappings = {
+          i = {
+            ["<CR>"] = function(prompt_bufnr)
+              get_prpper_window(prompt_bufnr)
+            end,
+          },
+          n = {
+            ["<CR>"] = function(prompt_bufnr)
+              get_prpper_window(prompt_bufnr)
+            end,
+          },
+        },
+      },
+      live_grep = {
+        mappings = {
+          i = {
+            ["<CR>"] = function(prompt_bufnr)
+              get_prpper_window(prompt_bufnr)
+            end,
+          },
+          n = {
+            ["<CR>"] = function(prompt_bufnr)
+              get_prpper_window(prompt_bufnr)
+            end,
+          },
+        },
+      },
+      git_status = {
+        mappings = {
+          i = {
+            ["<CR>"] = function(prompt_bufnr)
+              get_prpper_window(prompt_bufnr)
+            end,
+          },
+          n = {
+            ["<CR>"] = function(prompt_bufnr)
+              get_prpper_window(prompt_bufnr)
+            end,
+          },
+        },
+      },
     }
   })
 end
