@@ -24,15 +24,21 @@ local M = {
       '<leader>tt',
       function()
         require("plugins.utils.buffers").close_for_terminal(function()
-          if vim.v.count == 0 then
-            vim.cmd("ToggleTermToggleAll")
-          else
-            vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
-          end
+          vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
         end)
       end,
       mode = { "n", "t" },
       { desc = 'Toggle terminal horizontal' }
+    },
+    {
+      '<leader>ta',
+      function()
+        require("plugins.utils.buffers").close_for_terminal(function()
+          vim.cmd("ToggleTermToggleAll")
+        end)
+      end,
+      mode = { "n", "t" },
+      { desc = 'Toggle all terminal' }
     },
     {
       '<leader>tf',
