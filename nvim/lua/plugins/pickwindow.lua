@@ -11,6 +11,11 @@ return {
         local win_id = require("window-picker").pick_window({
           hint = 'floating-big-letter'
         })
+
+        if not win_id then
+          return
+        end
+
         vim.api.nvim_set_current_win(win_id)
       end,
       mode = { "n" },
