@@ -1,5 +1,8 @@
 vim.g.border_style = "rounded"
 vim.g.mapleader = ";"
+vim.g.explore_is_open = false
+vim.g.debugger_is_open = false
+vim.g.terminal_is_open = false
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -56,13 +59,13 @@ vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p", { silent = true })
 
 vim.opt.clipboard = "unnamedplus"
 if vim.env.SSH_TTY then
-   local function paste()
-     return { vim.fn.split(vim.fn.getreg(""), "\n"),       vim.fn.getregtype("") }
-   end
-   local osc52 = require("vim.ui.clipboard.osc52")
-   vim.g.clipboard = {
-     name = "OSC 52",
-     copy = {
+  local function paste()
+    return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+  end
+  local osc52 = require("vim.ui.clipboard.osc52")
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
       ["+"] = osc52.copy("+"),
       ["*"] = osc52.copy("*"),
     },
@@ -70,5 +73,5 @@ if vim.env.SSH_TTY then
       ["+"] = paste,
       ["*"] = paste,
     },
-   }
- end
+  }
+end

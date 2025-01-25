@@ -9,8 +9,7 @@ M.close_for_terminal = function(open_terminal)
     return
   end
 
-  local tree_module = "nvim-tree"
-  if package.loaded[tree_module] and require(tree_module .. ".view").is_visible() then
+  if vim.g.explore_is_open then
     local tree_focus_command = "NvimTreeFocus"
     local tree_resize_command = "NvimTreeResize 30"
     vim.cmd(tree_focus_command)
@@ -20,16 +19,14 @@ M.close_for_terminal = function(open_terminal)
   end
 
   local dap_module = "dapui"
-  if package.loaded[dap_module] then
+  if vim.g.debugger_is_open then
     require(dap_module).close()
+    vim.g.debugger_is_open = false
   end
 end
 
 M.go_to_buf_file = function()
-  if
-      string.match(vim.bo.filetype, "dap")
-      or vim.bo.filetype == "toggleterm"
-  then
+  if vim.g.terminal_is_open or vim.g.debugger_is_open then
     for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
       local current_bufnr = vim.bo[bufnr]
       if vim.fn.bufwinid(bufnr) ~= -1 then
@@ -81,8 +78,9 @@ M.list_toggleterm = function()
         actions.close(prompt_bufnr)
         -- Abrir o terminal selecionado
         if selection then
-          M.close_for_terminal(function ()
+          M.close_for_terminal(function()
             vim.cmd(selection.value.id .. "ToggleTerm")
+            vim.g.terminal_is_open = not vim.g.terminal_is_open
           end)
         end
       end)

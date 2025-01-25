@@ -56,7 +56,7 @@ local M = {
       function()
         utils_buffers.list_toggleterm()
       end,
-      mode = {"t", "n"},
+      mode = { "t", "n" },
       desc = "Find terminal"
     }
   }

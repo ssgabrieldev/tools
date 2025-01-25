@@ -1,4 +1,9 @@
 local utils_vim = require("plugins.utils.vim")
+local float_opts = {
+  enter = true,
+  position = "center",
+  border = vim.g.border_style
+}
 
 local ask_webroot = function()
   return "${workspaceFolder}" .. utils_vim.input("WEB ROOT: ")
@@ -58,23 +63,6 @@ local got_to_propper_win = function()
 end
 
 local setup_ui = function(init_ui)
-  local tree_module = "nvim-tree"
-  if package.loaded[tree_module] then
-    vim.cmd("NvimTreeClose")
-  end
-
-  local terminal_module = "toggleterm"
-  if package.loaded[terminal_module] then
-    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-      if vim.fn.bufwinid(bufnr) ~= -1 then
-        if vim.bo[bufnr].filetype == "toggleterm" then
-          vim.cmd("ToggleTermToggleAll")
-        end
-      end
-    end
-  end
-
-  init_ui()
 end
 
 local M = {
@@ -88,7 +76,7 @@ local M = {
   },
   keys = {
     {
-      "<leader>dd",
+      "<leader>db",
       function()
         vim.cmd("DapToggleBreakpoint")
       end,
@@ -103,7 +91,7 @@ local M = {
       desc = "Debugger terminate"
     },
     {
-      "<leader>dc",
+      "<leader>dr",
       function()
         got_to_propper_win()
         vim.cmd("DapContinue")
@@ -113,9 +101,18 @@ local M = {
     {
       "<leader>du",
       function()
-        setup_ui(function()
-          require("dapui").toggle({ reset = true })
-        end)
+        if vim.g.explore_is_open then
+          vim.cmd("NvimTreeClose")
+          vim.g.explore_is_open = false
+        end
+
+        if vim.g.terminal_is_open then
+          vim.cmd("ToggleTermToggleAll")
+          vim.g.terminal_is_open = false
+        end
+
+        require("dapui").toggle({ reset = true })
+        vim.g.debugger_is_open = not vim.g.debugger_is_open
       end,
       desc = "Debugger ui"
     },
@@ -129,12 +126,27 @@ local M = {
       desc = "Debugger evaluate",
     },
     {
-      "<leader>dl",
+      "<leader>dc",
       function()
-        require("dapui").float_element()
+        require("dapui").float_element("console", float_opts)
       end,
       desc = "Debugger list frames"
-    } },
+    },
+    {
+      "<leader>dw",
+      function()
+        require("dapui").float_element("watches", float_opts)
+      end,
+      desc = "Debugger list frames"
+    },
+    {
+      "<leader>dl",
+      function()
+        require("dapui").float_element(nil, float_opts)
+      end,
+      desc = "Debugger list frames"
+    },
+  },
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")
@@ -212,7 +224,9 @@ local M = {
       }
     end
 
-    dapui.setup()
+    dapui.setup({
+      epand_lines = false
+    })
   end
 }
 

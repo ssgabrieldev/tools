@@ -25,6 +25,7 @@ local M = {
       function()
         require("plugins.utils.buffers").close_for_terminal(function()
           vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
+          vim.g.terminal_is_open = not vim.g.terminal_is_open
         end)
       end,
       mode = { "n", "t" },
@@ -35,6 +36,7 @@ local M = {
       function()
         require("plugins.utils.buffers").close_for_terminal(function()
           vim.cmd("ToggleTermToggleAll")
+          vim.g.terminal_is_open = not vim.g.terminal_is_open
         end)
       end,
       mode = { "n", "t" },
@@ -44,6 +46,7 @@ local M = {
       '<leader>tf',
       function()
         vim.cmd(vim.v.count .. "ToggleTerm direction=float")
+        vim.g.terminal_is_open = not vim.g.terminal_is_open
       end,
       mode = { "n", "t" },
       { desc = 'Toggle terminal float' }
