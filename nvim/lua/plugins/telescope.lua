@@ -50,6 +50,14 @@ local M = {
         vim.cmd("Telescope keymaps")
       end,
       desc = "Find keymap"
+    },
+    {
+      "<leader>ft",
+      function()
+        utils_buffers.list_toggleterm()
+      end,
+      mode = {"t", "n"},
+      desc = "Find terminal"
     }
   }
 }
