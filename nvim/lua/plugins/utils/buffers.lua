@@ -25,23 +25,6 @@ M.close_for_terminal = function(open_terminal)
   end
 end
 
-M.go_to_buf_file = function()
-  if vim.g.terminal_is_open or vim.g.debugger_is_open then
-    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-      local current_bufnr = vim.bo[bufnr]
-      if vim.fn.bufwinid(bufnr) ~= -1 then
-        if
-            not string.match(current_bufnr.filetype, "dap")
-            and current_bufnr.filetype ~= "toggleterm"
-            and current_bufnr.filetype ~= "NvimTree"
-        then
-          vim.api.nvim_set_current_win(vim.fn.bufwinid(bufnr))
-        end
-      end
-    end
-  end
-end
-
 M.list_toggleterm = function()
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")

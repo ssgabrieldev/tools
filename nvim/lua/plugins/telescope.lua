@@ -1,7 +1,6 @@
 local utils_buffers = require("plugins.utils.buffers")
-local go_to_buf_file = utils_buffers.go_to_buf_file
 
-local get_prpper_window = function(prompt_bufnr)
+local get_propper_window = function(prompt_bufnr)
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
   local entry = action_state.get_selected_entry()
@@ -107,12 +106,12 @@ function M.config()
         mappings = {
           i = {
             ["<CR>"] = function(prompt_bufnr)
-              get_prpper_window(prompt_bufnr)
+              get_propper_window(prompt_bufnr)
             end,
           },
           n = {
             ["<CR>"] = function(prompt_bufnr)
-              get_prpper_window(prompt_bufnr)
+              get_propper_window(prompt_bufnr)
             end,
           },
         },
@@ -121,12 +120,12 @@ function M.config()
         mappings = {
           i = {
             ["<CR>"] = function(prompt_bufnr)
-              get_prpper_window(prompt_bufnr)
+              get_propper_window(prompt_bufnr)
             end,
           },
           n = {
             ["<CR>"] = function(prompt_bufnr)
-              get_prpper_window(prompt_bufnr)
+              get_propper_window(prompt_bufnr)
             end,
           },
         },
@@ -135,12 +134,12 @@ function M.config()
         mappings = {
           i = {
             ["<CR>"] = function(prompt_bufnr)
-              get_prpper_window(prompt_bufnr)
+              get_propper_window(prompt_bufnr)
             end,
           },
           n = {
             ["<CR>"] = function(prompt_bufnr)
-              get_prpper_window(prompt_bufnr)
+              get_propper_window(prompt_bufnr)
             end,
           },
         },
@@ -149,12 +148,12 @@ function M.config()
         mappings = {
           i = {
             ["<CR>"] = function(prompt_bufnr)
-              get_prpper_window(prompt_bufnr)
+              get_propper_window(prompt_bufnr)
             end,
           },
           n = {
             ["<CR>"] = function(prompt_bufnr)
-              get_prpper_window(prompt_bufnr)
+              get_propper_window(prompt_bufnr)
             end,
           },
         },

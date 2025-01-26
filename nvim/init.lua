@@ -1,4 +1,18 @@
-vim.g.border_style = "rounded"
+-- • "none": No border (default).
+-- • "single": A single line box.
+-- • "double": A double line box.
+-- • "rounded": Like "single", but with rounded corners
+--   ("╭" etc.).
+-- • "solid": Adds padding by a single whitespace cell.
+-- • "shadow": A drop shadow effect by blending with the
+--   background.
+-- • If it is an array, it should have a length of eight or
+--   any divisor of eight. The array will specify the eight
+--   chars building up the border in a clockwise fashion
+--   starting with the top-left corner. As an example, the
+--   double box style could be specified as: >
+--   [ "╔", "═" ,"╗", "║", "╝", "═", "╚", "║" ].
+vim.g.border_style = "single"
 vim.g.mapleader = ";"
 vim.g.explore_is_open = false
 vim.g.debugger_is_open = false
@@ -57,6 +71,16 @@ vim.keymap.set('n', '<leader>wa', ':wa<CR>', { silent = true })
 vim.keymap.set("n", "<leader>rr", ":so ~/.config/nvim/init.lua<CR>", { silent = true })
 vim.keymap.set("v", "<leader>y", "\"+y", { silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p", { silent = true })
+vim.keymap.set({ "v" }, "<leader>(", "di()<esc><s-p>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>(", "di(va(p", { silent = true })
+vim.keymap.set({ "v" }, "<leader>{", "di{}<esc><s-p>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>{", "di{va{p", { silent = true })
+vim.keymap.set({ "v" }, "<leader>`", "di``<esc><s-p>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>`", "di`va`p", { silent = true })
+vim.keymap.set({ "v" }, "<leader>'", "di''<esc><s-p>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>'", "di'va'p", { silent = true })
+vim.keymap.set({ "v" }, "<leader>\"", "di\"\"<esc><s-p>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>\"", "di\"va\"p", { silent = true })
 
 vim.opt.clipboard = "unnamedplus"
 if vim.env.SSH_TTY then
