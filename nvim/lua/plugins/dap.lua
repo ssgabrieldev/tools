@@ -232,7 +232,7 @@ local M = {
     end
 
     dapui.setup({
-      epand_lines = false
+      expand_lines = false
     })
   end
 }
