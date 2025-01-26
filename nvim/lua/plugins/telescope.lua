@@ -1,6 +1,6 @@
 local utils_buffers = require("plugins.utils.buffers")
 
-local get_propper_window = function(prompt_bufnr)
+local get_propper_window = function(prompt_bufnr, picker)
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
   local entry = action_state.get_selected_entry()
@@ -32,6 +32,12 @@ local get_propper_window = function(prompt_bufnr)
   vim.api.nvim_set_current_win(win_id)
 
   vim.cmd("edit " .. vim.fn.fnameescape(filepath))
+
+  if picker == "live_grep" then
+    local line = entry.lnum
+    local col = entry.col
+    vim.api.nvim_win_set_cursor(0, { line, col })
+  end
 end
 
 local M = {
@@ -47,23 +53,26 @@ local M = {
     {
       "<leader>ff",
       function()
-        -- go_to_buf_file()
-        vim.cmd("Telescope find_files")
+        require('telescope.builtin').find_files({
+          hidden = true,
+          no_ignore = true,
+        })
       end,
       desc = "Find file"
     },
     {
       "<leader>fw",
       function()
-        go_to_buf_file()
-        vim.cmd("Telescope live_grep")
+        require('telescope.builtin').live_grep({
+          hidden = true,
+          no_ignore = true,
+        })
       end,
       desc = "Find pattern"
     },
     {
       "<leader>fb",
       function()
-        go_to_buf_file()
         vim.cmd("Telescope buffers")
       end,
       desc = "Find buffer"
@@ -71,7 +80,6 @@ local M = {
     {
       "<leader>fg",
       function()
-        go_to_buf_file()
         vim.cmd("Telescope git_status")
       end,
       desc = "Find git change"
@@ -79,7 +87,6 @@ local M = {
     {
       "<leader>fk",
       function()
-        go_to_buf_file()
         vim.cmd("Telescope keymaps")
       end,
       desc = "Find keymap"
@@ -99,6 +106,7 @@ function M.config()
   require("telescope").setup({
     defaults = {
       preview = true,
+      border = vim.g.border_style,
     },
     pickers = {
       find_files = {
@@ -133,7 +141,7 @@ function M.config()
         mappings = {
           i = {
             ["<CR>"] = function(prompt_bufnr)
-              get_propper_window(prompt_bufnr)
+              get_propper_window(prompt_bufnr, "live_grep")
             end,
           },
           n = {
