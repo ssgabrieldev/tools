@@ -8,9 +8,7 @@ return {
     {
       "<leader>wp",
       function()
-        local win_id = require("window-picker").pick_window({
-          hint = 'floating-big-letter'
-        })
+        local win_id = require("window-picker").pick_window()
 
         if not win_id then
           return
@@ -24,6 +22,7 @@ return {
   },
   config = function()
     require('window-picker').setup({
+      hint = 'statusline-winbar',
       show_prompt = false,
       filter_rules = {
         autoselect_one = false,

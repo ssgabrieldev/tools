@@ -8,7 +8,6 @@ local get_propper_window = function(prompt_bufnr)
   actions.close(prompt_bufnr)
 
   local win_id = require("window-picker").pick_window({
-    hint = 'floating-big-letter',
     filter_rules = {
       autoselect_one = true,
       bo = {
