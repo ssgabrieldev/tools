@@ -106,7 +106,6 @@ function M.config()
   require("telescope").setup({
     defaults = {
       preview = true,
-      border = vim.g.border_style,
     },
     pickers = {
       find_files = {
