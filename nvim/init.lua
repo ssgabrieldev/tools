@@ -1,17 +1,3 @@
--- • "none": No border (default).
--- • "single": A single line box.
--- • "double": A double line box.
--- • "rounded": Like "single", but with rounded corners
---   ("╭" etc.).
--- • "solid": Adds padding by a single whitespace cell.
--- • "shadow": A drop shadow effect by blending with the
---   background.
--- • If it is an array, it should have a length of eight or
---   any divisor of eight. The array will specify the eight
---   chars building up the border in a clockwise fashion
---   starting with the top-left corner. As an example, the
---   double box style could be specified as: >
---   [ "╔", "═" ,"╗", "║", "╝", "═", "╚", "║" ].
 vim.g.border_style = "single"
 vim.g.mapleader = ";"
 vim.g.explore_is_open = false
@@ -43,6 +29,7 @@ vim.wo.relativenumber = true
 
 vim.opt.mouse = "a"
 vim.opt.cursorline = true
+vim.opt.clipboard = "unnamedplus"
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
@@ -82,7 +69,6 @@ vim.keymap.set({ "n" }, "<leader>'", "di'va'p", { silent = true })
 vim.keymap.set({ "v" }, "<leader>\"", "di\"\"<esc><s-p>", { silent = true })
 vim.keymap.set({ "n" }, "<leader>\"", "di\"va\"p", { silent = true })
 
-vim.opt.clipboard = "unnamedplus"
 if vim.env.SSH_TTY then
   local function paste()
     return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
@@ -101,8 +87,99 @@ if vim.env.SSH_TTY then
   }
 end
 
-vim.api.nvim_create_autocmd("DirChanged", {
-  callback = function(_args)
-    vim.g.explore_is_open = true
+local open_buffer = function(handler)
+  local win_id = vim.api.nvim_get_current_win()      -- Get the current window ID
+  local config = vim.api.nvim_win_get_config(win_id) -- Get the window's configuration
+
+  if config.relative ~= "" then
+    return
+  end
+
+  local current_buf_id = vim.api.nvim_win_get_buf(win_id)
+
+  local file_type = vim.bo[current_buf_id].filetype
+  -- vim.fn.input(file_type)
+
+  handler(file_type)
+end
+
+local open_term_buffer = function(file_type)
+  if file_type == "toggleterm" then
+    vim.g.terminal_is_open = true
+    require("dapui").close()
+
+    if vim.g.explore_is_open then
+      local tree_focus_command = "NvimTreeFocus"
+      local tree_resize_command = "NvimTreeResize 30"
+      vim.cmd(tree_focus_command)
+      vim.cmd("wincmd H")
+      vim.cmd("wincmd p")
+      vim.cmd(tree_resize_command)
+    end
+  end
+end
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  callback = function()
+    open_buffer(function(file_type)
+      if file_type == "NvimTree" then
+        vim.g.explore_is_open = true
+        require("dapui").close()
+      end
+
+      if file_type == "dapui_watches" then
+        vim.g.debugger_is_open = true
+        vim.cmd("NvimTreeClose")
+
+        if vim.g.terminal_is_open then
+          vim.cmd("ToggleTerm")
+        end
+      end
+
+      open_term_buffer(file_type)
+    end)
+  end
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function()
+    open_buffer(open_term_buffer)
+  end
+})
+
+vim.api.nvim_create_autocmd("WinClosed", {
+  callback = function(args)
+    local win_id = tonumber(args.match)
+    if not win_id then
+      return
+    end
+
+    local config = vim.api.nvim_win_get_config(win_id) -- Get the window's configuration
+
+    if config.relative ~= "" then
+      return
+    end
+
+    local buf = vim.api.nvim_win_get_buf(win_id)
+    local file_type = vim.bo[buf].filetype
+
+    if file_type == "toggleterm" then
+      vim.g.terminal_is_open = false
+    end
+
+    if file_type == "NvimTree" then
+      vim.g.explore_is_open = false
+    end
+
+    if
+        file_type == "dapui_watches"
+        or file_type == "dapui_stacks"
+        or file_type == "dapui_breakpoints"
+        or file_type == "dapui_scopes"
+        or file_type == "dapui_console"
+        or file_type == "dap-repl"
+    then
+      vim.g.debugger_is_open = false
+    end
   end,
 })

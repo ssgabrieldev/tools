@@ -101,18 +101,15 @@ local M = {
     {
       "<leader>du",
       function()
-        if vim.g.explore_is_open then
-          vim.cmd("NvimTreeClose")
-          vim.g.explore_is_open = false
-        end
+        -- if vim.g.explore_is_open then
+        --   vim.cmd("NvimTreeClose")
+        -- end
 
-        if vim.g.terminal_is_open then
-          vim.cmd("ToggleTermToggleAll")
-          vim.g.terminal_is_open = false
-        end
+        -- if vim.g.terminal_is_open then
+        --   vim.cmd("ToggleTermToggleAll")
+        -- end
 
         require("dapui").toggle({ reset = true })
-        vim.g.debugger_is_open = not vim.g.debugger_is_open
       end,
       desc = "Debugger ui"
     },
@@ -234,6 +231,8 @@ local M = {
     dapui.setup({
       expand_lines = false
     })
+
+
   end
 }
 

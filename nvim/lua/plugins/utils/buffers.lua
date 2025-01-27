@@ -1,30 +1,5 @@
 local M = {}
 
-M.close_for_terminal = function(open_terminal)
-  local is_terminal = vim.bo.filetype == "toggleterm"
-
-  open_terminal()
-
-  if is_terminal then
-    return
-  end
-
-  if vim.g.explore_is_open then
-    local tree_focus_command = "NvimTreeFocus"
-    local tree_resize_command = "NvimTreeResize 30"
-    vim.cmd(tree_focus_command)
-    vim.cmd("wincmd H")
-    vim.cmd("wincmd p")
-    vim.cmd(tree_resize_command)
-  end
-
-  local dap_module = "dapui"
-  if vim.g.debugger_is_open then
-    require(dap_module).close()
-    vim.g.debugger_is_open = false
-  end
-end
-
 M.list_toggleterm = function()
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
@@ -61,10 +36,7 @@ M.list_toggleterm = function()
         actions.close(prompt_bufnr)
         -- Abrir o terminal selecionado
         if selection then
-          M.close_for_terminal(function()
-            vim.cmd(selection.value.id .. "ToggleTerm")
-            vim.g.terminal_is_open = not vim.g.terminal_is_open
-          end)
+          vim.cmd(selection.value.id .. "ToggleTerm")
         end
       end)
       return true
