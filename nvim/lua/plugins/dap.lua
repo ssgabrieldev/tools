@@ -62,9 +62,6 @@ local got_to_propper_win = function()
   end
 end
 
-local setup_ui = function(init_ui)
-end
-
 local M = {
   "rcarriga/nvim-dap-ui",
   dependencies = {
@@ -86,7 +83,6 @@ local M = {
       "<leader>de",
       function()
         vim.cmd("DapTerminate")
-        -- require("dapui").close()
       end,
       desc = "Debugger terminate"
     },
@@ -101,14 +97,6 @@ local M = {
     {
       "<leader>du",
       function()
-        -- if vim.g.explore_is_open then
-        --   vim.cmd("NvimTreeClose")
-        -- end
-
-        -- if vim.g.terminal_is_open then
-        --   vim.cmd("ToggleTermToggleAll")
-        -- end
-
         require("dapui").toggle({ reset = true })
       end,
       desc = "Debugger ui"
@@ -231,8 +219,6 @@ local M = {
     dapui.setup({
       expand_lines = false
     })
-
-
   end
 }
 

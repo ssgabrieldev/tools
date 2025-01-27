@@ -8,11 +8,6 @@ local M = {
     {
       "<leader>ee",
       function()
-        -- local dapui_module = "dapui"
-        -- if vim.g.debugger_is_open then
-        --   require(dapui_module).close()
-        -- end
-
         vim.cmd("NvimTreeToggle")
       end,
       desc = "Explorer"
