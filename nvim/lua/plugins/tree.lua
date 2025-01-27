@@ -3,6 +3,7 @@ local M = {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
+  lazy = false,
   keys = {
     {
       "<leader>ee",

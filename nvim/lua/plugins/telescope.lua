@@ -12,7 +12,6 @@ local get_propper_window = function(prompt_bufnr, picker)
       autoselect_one = true,
       bo = {
         filetype = {
-          "NvimTree",
           "toggleterm",
           "dapui_watches",
           "dapui_stacks",
