@@ -100,3 +100,9 @@ if vim.env.SSH_TTY then
     },
   }
 end
+
+vim.api.nvim_create_autocmd("DirChanged", {
+  callback = function(_args)
+    vim.g.explore_is_open = true
+  end,
+})
