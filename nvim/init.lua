@@ -107,6 +107,7 @@ local open_term_buffer = function(file_type)
   if file_type == "toggleterm" then
     vim.g.terminal_is_open = true
     require("dapui").close()
+    vim.g.debugger_is_open = false
 
     if vim.g.explore_is_open then
       local tree_focus_command = "NvimTreeFocus"
@@ -125,14 +126,17 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
       if file_type == "NvimTree" then
         vim.g.explore_is_open = true
         require("dapui").close()
+        vim.g.debugger_is_open = false
       end
 
       if file_type == "dapui_watches" then
         vim.g.debugger_is_open = true
         vim.cmd("NvimTreeClose")
+        vim.g.explore_is_open = false
 
         if vim.g.terminal_is_open then
           vim.cmd("ToggleTerm")
+          vim.g.terminal_is_open = false
         end
       end
 
@@ -154,7 +158,7 @@ vim.api.nvim_create_autocmd("WinClosed", {
       return
     end
 
-    local config = vim.api.nvim_win_get_config(win_id) -- Get the window's configuration
+    local config = vim.api.nvim_win_get_config(win_id)
 
     if config.relative ~= "" then
       return
