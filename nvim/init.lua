@@ -50,6 +50,8 @@ vim.keymap.set('n', '<A-k>', ':resize +2<CR>', { silent = true })
 vim.keymap.set('t', '<leader><leader>', '<c-\\><c-n>', { silent = true })
 vim.keymap.set('n', '<leader><S-q><S-q>', ':q!<CR>', { silent = true })
 vim.keymap.set('n', '<leader><S-q><S-a>', ':qa!<CR>', { silent = true })
+vim.keymap.set('n', '<leader>q!', ':q!<CR>', { silent = true })
+vim.keymap.set('n', '<leader>qa!', ':qa!<CR>', { silent = true })
 vim.keymap.set('n', '<leader>qq', ':q<CR>', { silent = true })
 vim.keymap.set('n', '<leader>qa', ':qa<CR>', { silent = true })
 vim.keymap.set('n', '<leader>ww', ':w<CR>', { silent = true })
@@ -98,7 +100,6 @@ local open_buffer = function(handler)
   local current_buf_id = vim.api.nvim_win_get_buf(win_id)
 
   local file_type = vim.bo[current_buf_id].filetype
-  -- vim.fn.input(file_type)
 
   handler(file_type)
 end
