@@ -1,4 +1,4 @@
-vim.g.border_style = "single"
+vim.g.border_style = "rounded"
 vim.g.mapleader = ";"
 vim.g.explore_is_open = false
 vim.g.debugger_is_open = false
