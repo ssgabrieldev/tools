@@ -50,7 +50,7 @@ local M = {
         if not vimongo_terminal then
           local Terminal = require('toggleterm.terminal').Terminal
           vimongo_terminal = Terminal:new({
-            cmd = "vi-mongo",
+            cmd = "vmd",
             hidden = true,
             count = 1000,
             on_exit = function()
@@ -70,7 +70,7 @@ local M = {
         if not lazysql_terminal then
           local Terminal = require('toggleterm.terminal').Terminal
           lazysql_terminal = Terminal:new({
-            cmd = "lazysql",
+            cmd = "lsql",
             hidden = true,
             count = 1001,
             on_exit = function()
@@ -90,7 +90,7 @@ local M = {
         if not lazygit_terminal then
           local Terminal = require('toggleterm.terminal').Terminal
           lazygit_terminal = Terminal:new({
-            cmd = "lazygit",
+            cmd = "lg",
             hidden = true,
             count = 1002,
             on_exit = function()
@@ -102,7 +102,7 @@ local M = {
         lazygit_terminal:toggle();
       end,
       mode = { "n", "t" },
-      { desc = "Lazysql" }
+      { desc = "Lazygit" }
     }
   }
 }

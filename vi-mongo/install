@@ -5,5 +5,5 @@ mkdir -p ~/tools/downloads
 wget -P ~/tools/downloads https://github.com/kopecmaciej/vi-mongo/releases/download/v0.1.21/vi-mongo_Linux_x86_64.tar.gz
 tar -xzf ~/tools/downloads/vi-mongo_Linux_x86_64.tar.gz -C ~/tools/downloads
 chmod +x ~/tools/downloads/vi-mongo
-cp ~/tools/downloads/vi-mongo ~/apps/bin
+cp ~/tools/downloads/vi-mongo ~/apps/bin/vmd
 rm ~/tools/downloads -rf
