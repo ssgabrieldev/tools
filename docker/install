@@ -4,12 +4,25 @@
 mkdir -p ~/apps/bin
 mkdir -p ~/tools/downloads
 
-# Download
+# Download docker
 wget -P ~/tools/downloads https://download.docker.com/linux/static/stable/x86_64/docker-27.5.1.tgz
 tar -xzvf ~/tools/downloads/docker-27.5.1.tgz -C ~/tools/downloads/
 
 # Move to bin
 mv ~/tools/downloads/docker/* ~/apps/bin/
+
+# Download docker-rootless-extras
+wget -P ~/tools/downloads https://download.docker.com/linux/static/stable/x86_64/docker-rootless-extras-27.5.1.tgz
+tar -xzvf ~/tools/downloads/docker-rootless-extras-27.5.1.tgz -C ~/tools/downloads/
+
+# Move to bin
+mv ~/tools/downloads/docker-rootless-extras/* ~/apps/bin/
+
+# Config
+sudo apt-get install -y uidmap
+sudo sysctl -w kernel.apparmor_restrict_unprivileged_unconfined=0
+sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+~/apps/bin/dockerd-rootless-setuptool.sh install
 
 # Clear
 rm ~/tools/downloads/ -rf
