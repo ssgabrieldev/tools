@@ -170,11 +170,13 @@ local M = {
               "File to run (default: " .. vim.fn.expand('%') .. "): ",
               ""
             )
-          
+
             if arg == "" then
-              return {"${file}"}
+              return { "${file}" }
             end
-          
+
+            table.insert(args, arg)
+
             return args
           end,
           cwd = "${workspaceFolder}",
@@ -218,11 +220,17 @@ local M = {
       expand_lines = false
     })
 
+    dap.listeners.before.attach.dapui_config = function()
+      vim.notify("Debugger attatched", "info")
+    end
+    dap.listeners.before.launch.dapui_config = function()
+      vim.notify("Debugger launched", "info")
+    end
     dap.listeners.before.event_terminated.dapui_config = function()
-      require("notify")("Debugger teminated", "info")
+      vim.notify("Debugger teminated", "info")
     end
     dap.listeners.before.event_exited.dapui_config = function()
-      require("notify")("Debugger exited", "error")
+      vim.notify("Debugger exited", "info")
     end
   end
 }
