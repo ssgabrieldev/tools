@@ -175,6 +175,8 @@ local M = {
               return { "${file}" }
             end
 
+            table.insert(args, arg)
+
             return args
           end,
           cwd = "${workspaceFolder}",
