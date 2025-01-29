@@ -37,7 +37,6 @@ local get_propper_window = function(prompt_bufnr, picker)
 
   vim.api.nvim_set_current_win(win_id)
 
-  require("notify").dismiss()
   vim.cmd("edit " .. vim.fn.fnameescape(filepath))
 
   if picker == "live_grep" then
@@ -55,7 +54,6 @@ local M = {
     "mfussenegger/nvim-dap",
     "nvim-telescope/telescope-dap.nvim",
     'akinsho/toggleterm.nvim',
-    "rcarriga/nvim-notify",
   },
   keys = {
     {

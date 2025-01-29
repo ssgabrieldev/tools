@@ -70,6 +70,7 @@ local M = {
     "nvim-telescope/telescope.nvim",
     "nvim-telescope/telescope-dap.nvim",
     'akinsho/toggleterm.nvim',
+    "rcarriga/nvim-notify",
   },
   keys = {
     {

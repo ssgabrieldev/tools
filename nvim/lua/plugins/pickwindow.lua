@@ -1,8 +1,5 @@
 return {
   's1n7ax/nvim-window-picker',
-  dependencies = {
-    "rcarriga/nvim-notify",
-  },
   name = 'window-picker',
   event = 'VeryLazy',
   version = '2.*',
@@ -11,7 +8,7 @@ return {
     {
       "<leader>wp",
       function()
-        require("notify").dismiss()
+        -- require("notify").dismiss()
         local win_id = require("window-picker").pick_window()
 
         if not win_id then
@@ -26,7 +23,7 @@ return {
   },
   config = function()
     require('window-picker').setup({
-      hint = 'statusline-winbar',
+      hint = "floating-letter",
       show_prompt = false,
       picker_config = {
         statusline_winbar_picker = {

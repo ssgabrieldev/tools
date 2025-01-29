@@ -3,7 +3,6 @@ local M = {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     "s1n7ax/nvim-window-picker",
-    "rcarriga/nvim-notify",
   },
   lazy = false,
   keys = {
@@ -46,7 +45,6 @@ function M.config()
         window_picker = {
           enable = true,
           picker = function()
-            require("notify").dismiss()
             return require("window-picker").pick_window({
               filter_rules = {
                 autoselect_one = true,
