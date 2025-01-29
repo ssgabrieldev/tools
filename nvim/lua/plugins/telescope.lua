@@ -4,6 +4,11 @@ local get_propper_window = function(prompt_bufnr, picker)
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
   local entry = action_state.get_selected_entry()
+
+  if not entry then
+    return
+  end
+
   local filepath = entry.path or entry[1]
   actions.close(prompt_bufnr)
 
@@ -20,6 +25,7 @@ local get_propper_window = function(prompt_bufnr, picker)
           "dapui_scopes",
           "dapui_console",
           "dap-repl",
+          "notify"
         }
       }
     }
@@ -31,6 +37,7 @@ local get_propper_window = function(prompt_bufnr, picker)
 
   vim.api.nvim_set_current_win(win_id)
 
+  require("notify").dismiss()
   vim.cmd("edit " .. vim.fn.fnameescape(filepath))
 
   if picker == "live_grep" then
@@ -48,6 +55,7 @@ local M = {
     "mfussenegger/nvim-dap",
     "nvim-telescope/telescope-dap.nvim",
     'akinsho/toggleterm.nvim',
+    "rcarriga/nvim-notify",
   },
   keys = {
     {

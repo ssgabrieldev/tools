@@ -219,6 +219,13 @@ local M = {
     dapui.setup({
       expand_lines = false
     })
+
+    dap.listeners.before.event_terminated.dapui_config = function()
+      require("notify")("Debugger teminated", "info")
+    end
+    dap.listeners.before.event_exited.dapui_config = function()
+      require("notify")("Debugger exited", "error")
+    end
   end
 }
 

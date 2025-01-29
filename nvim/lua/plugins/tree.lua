@@ -2,6 +2,8 @@ local M = {
   "nvim-tree/nvim-tree.lua",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    "s1n7ax/nvim-window-picker",
+    "rcarriga/nvim-notify",
   },
   lazy = false,
   keys = {
@@ -38,7 +40,18 @@ function M.config()
     },
     git = {
       ignore = false
-    }
+    },
+    actions = {
+      open_file = {
+        window_picker = {
+          enable = true,
+          picker = function()
+            require("notify").dismiss()
+            return require("window-picker").pick_window()
+          end,
+        },
+      },
+    },
   })
 end
 
