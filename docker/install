@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+# Crete folders
+mkdir -p ~/apps/bin
+mkdir -p ~/tools/downloads
+
+# Download
+wget -P ~/tools/downloads https://download.docker.com/linux/static/stable/x86_64/docker-17.03.0-ce.tgz
+tar -xzvf ~/tools/downloads/docker-17.03.0-ce.tgz -C ~/tools/downloads/
+
+# Move to bin
+mv ~/tools/downloads/docker/* ~/apps/bin/
+
+# Clear
+rm ~/tools/downloads/ -rf
