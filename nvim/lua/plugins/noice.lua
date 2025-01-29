@@ -15,7 +15,11 @@ return {
           border = vim.g.border_style
         }
       },
-    }
+    },
+    notify = {
+      enabled = false,
+      view = "notify",
+    },
   },
   dependencies = {
     "MunifTanjim/nui.nvim",

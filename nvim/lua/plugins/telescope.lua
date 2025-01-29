@@ -1,52 +1,6 @@
-local utils_buffers = require("plugins.utils.buffers")
+local utils_telescope = require("plugins.utils.telescope")
 
-local get_propper_window = function(prompt_bufnr, picker)
-  local actions = require("telescope.actions")
-  local action_state = require("telescope.actions.state")
-  local entry = action_state.get_selected_entry()
-
-  if not entry then
-    return
-  end
-
-  local filepath = entry.path or entry[1]
-  actions.close(prompt_bufnr)
-
-  local win_id = require("window-picker").pick_window({
-    filter_rules = {
-      autoselect_one = true,
-      bo = {
-        filetype = {
-          "NvimTree",
-          "toggleterm",
-          "dapui_watches",
-          "dapui_stacks",
-          "dapui_breakpoints",
-          "dapui_scopes",
-          "dapui_console",
-          "dap-repl",
-          "notify"
-        }
-      }
-    }
-  })
-
-  if not win_id then
-    return
-  end
-
-  vim.api.nvim_set_current_win(win_id)
-
-  vim.cmd("edit " .. vim.fn.fnameescape(filepath))
-
-  if picker == "live_grep" then
-    local line = entry.lnum
-    local col = entry.col
-    vim.api.nvim_win_set_cursor(0, { line, col })
-  end
-end
-
-local M = {
+return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -54,6 +8,75 @@ local M = {
     "mfussenegger/nvim-dap",
     "nvim-telescope/telescope-dap.nvim",
     'akinsho/toggleterm.nvim',
+    "nvim-telescope/telescope-ui-select.nvim",
+  },
+  opts = {
+    defaults = {
+      preview = true,
+    },
+    pickers = {
+      find_files = {
+        mappings = {
+          i = {
+            ["<CR>"] = function(prompt_bufnr)
+              utils_telescope.get_propper_window(prompt_bufnr)
+            end,
+          },
+          n = {
+            ["<CR>"] = function(prompt_bufnr)
+              utils_telescope.get_propper_window(prompt_bufnr)
+            end,
+          },
+        },
+      },
+      buffers = {
+        mappings = {
+          i = {
+            ["<CR>"] = function(prompt_bufnr)
+              utils_telescope.get_propper_window(prompt_bufnr)
+            end,
+          },
+          n = {
+            ["<CR>"] = function(prompt_bufnr)
+              utils_telescope.get_propper_window(prompt_bufnr)
+            end,
+          },
+        },
+      },
+      live_grep = {
+        mappings = {
+          i = {
+            ["<CR>"] = function(prompt_bufnr)
+              utils_telescope.get_propper_window(prompt_bufnr, "live_grep")
+            end,
+          },
+          n = {
+            ["<CR>"] = function(prompt_bufnr)
+              utils_telescope.get_propper_window(prompt_bufnr)
+            end,
+          },
+        },
+      },
+      git_status = {
+        mappings = {
+          i = {
+            ["<CR>"] = function(prompt_bufnr)
+              utils_telescope.get_propper_window(prompt_bufnr)
+            end,
+          },
+          n = {
+            ["<CR>"] = function(prompt_bufnr)
+              utils_telescope.get_propper_window(prompt_bufnr)
+            end,
+          },
+        },
+      },
+    },
+    extensions = {
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown({})
+      }
+    }
   },
   keys = {
     {
@@ -100,78 +123,13 @@ local M = {
     {
       "<leader>ft",
       function()
-        utils_buffers.list_toggleterm()
+        utils_telescope.list_toggleterm()
       end,
       mode = { "t", "n" },
       desc = "Find terminal"
     }
-  }
+  },
+  init = function()
+    require("telescope").load_extension("ui-select")
+  end
 }
-
-function M.config()
-  require("telescope").setup({
-    defaults = {
-      preview = true,
-    },
-    pickers = {
-      find_files = {
-        mappings = {
-          i = {
-            ["<CR>"] = function(prompt_bufnr)
-              get_propper_window(prompt_bufnr)
-            end,
-          },
-          n = {
-            ["<CR>"] = function(prompt_bufnr)
-              get_propper_window(prompt_bufnr)
-            end,
-          },
-        },
-      },
-      buffers = {
-        mappings = {
-          i = {
-            ["<CR>"] = function(prompt_bufnr)
-              get_propper_window(prompt_bufnr)
-            end,
-          },
-          n = {
-            ["<CR>"] = function(prompt_bufnr)
-              get_propper_window(prompt_bufnr)
-            end,
-          },
-        },
-      },
-      live_grep = {
-        mappings = {
-          i = {
-            ["<CR>"] = function(prompt_bufnr)
-              get_propper_window(prompt_bufnr, "live_grep")
-            end,
-          },
-          n = {
-            ["<CR>"] = function(prompt_bufnr)
-              get_propper_window(prompt_bufnr)
-            end,
-          },
-        },
-      },
-      git_status = {
-        mappings = {
-          i = {
-            ["<CR>"] = function(prompt_bufnr)
-              get_propper_window(prompt_bufnr)
-            end,
-          },
-          n = {
-            ["<CR>"] = function(prompt_bufnr)
-              get_propper_window(prompt_bufnr)
-            end,
-          },
-        },
-      },
-    }
-  })
-end
-
-return M
