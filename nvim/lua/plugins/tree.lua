@@ -47,7 +47,24 @@ function M.config()
           enable = true,
           picker = function()
             require("notify").dismiss()
-            return require("window-picker").pick_window()
+            return require("window-picker").pick_window({
+              filter_rules = {
+                autoselect_one = true,
+                bo = {
+                  filetype = {
+                    "NvimTree",
+                    "toggleterm",
+                    "dapui_watches",
+                    "dapui_stacks",
+                    "dapui_breakpoints",
+                    "dapui_scopes",
+                    "dapui_console",
+                    "dap-repl",
+                    "notify"
+                  }
+                }
+              }
+            })
           end,
         },
       },
