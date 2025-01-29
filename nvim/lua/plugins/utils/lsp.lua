@@ -50,7 +50,6 @@ M.on_attach = function(_, bufnr)
     "<LEADER>lh",
     function()
       vim.lsp.buf.hover()
-      vim.lsp.buf.hover()
     end,
     bufopts
   )
@@ -70,7 +69,6 @@ M.on_attach = function(_, bufnr)
     "n",
     "<LEADER>le",
     function()
-      vim.diagnostic.open_float()
       vim.diagnostic.open_float()
     end,
     opts
