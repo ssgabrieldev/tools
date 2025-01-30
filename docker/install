@@ -9,6 +9,11 @@ wget -P ~/tools/downloads https://download.docker.com/linux/static/stable/x86_64
 tar -xzvf ~/tools/downloads/docker-27.5.1.tgz -C ~/tools/downloads/
 
 # Move to bin
+rm ~/apps/bin/containerd*
+rm ~/apps/bin/docker*
+rm ~/apps/bin/ctr
+rm ~/apps/bin/runc
+rm ~/apps/bin/vpnkit
 mv ~/tools/downloads/docker/* ~/apps/bin/
 
 # Download docker-rootless-extras
@@ -16,6 +21,7 @@ wget -P ~/tools/downloads https://download.docker.com/linux/static/stable/x86_64
 tar -xzvf ~/tools/downloads/docker-rootless-extras-27.5.1.tgz -C ~/tools/downloads/
 
 # Move to bin
+rm ~/apps/bin/rootless*
 mv ~/tools/downloads/docker-rootless-extras/* ~/apps/bin/
 
 # Config
