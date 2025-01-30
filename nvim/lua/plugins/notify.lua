@@ -14,10 +14,10 @@ return {
   end,
   keys = {
     {
-      "<leader>cn",
+      "<leader>nc",
       function()
         require("notify").dismiss()
       end
-    }
+    },
   }
 }
