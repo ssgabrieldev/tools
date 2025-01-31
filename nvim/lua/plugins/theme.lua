@@ -43,6 +43,7 @@ return {
   opts = {
     style = "darker",
     transparent = true,
+  ending_tildes = true,
     lualine = {
       transparent = true
     }

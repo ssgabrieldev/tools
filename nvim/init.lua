@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",
     lazypath,
   })
 end
@@ -168,8 +168,7 @@ vim.keymap.set({ 'n' }, '<A-k>', ':resize +2<CR>', { silent = true, desc = "Incr
 vim.keymap.set({ "i", "n" }, '<leader><leader>', '<esc>', { silent = true, desc = "Nomal mode" })
 vim.keymap.set({ 't', }, '<leader><leader>', '<c-\\><c-n>', { silent = true, desc = "Exit terminal mode" })
 vim.keymap.set({ 'n' }, '<leader><S-q><S-q>', ':q!<CR>', { silent = true, desc = "Close window without save buffer" })
-vim.keymap.set({ 'n' }, '<leader><S-q><S-a>', ':qa!<CR>',
-  { silent = true, desc = "Close all windows, without save buffers" })
+vim.keymap.set({ 'n' }, '<leader><S-q><S-a>', ':qa!<CR>', { silent = true, desc = "Close all windows, without save buffers" })
 vim.keymap.set({ 'n' }, '<leader>qq', ':q<CR>', { silent = true, desc = "Close window" })
 vim.keymap.set({ 'n' }, '<leader>qa', ':qa<CR>', { silent = true, desc = "Close all windows" })
 vim.keymap.set({ 'n' }, '<leader>ww', ':w<CR>', { silent = true, desc = "Write buffer" })
