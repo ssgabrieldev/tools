@@ -17,6 +17,7 @@ local M = {
     "nvim-telescope/telescope.nvim",
     "nvim-telescope/telescope-dap.nvim",
     "rcarriga/nvim-notify",
+    "nvim-tree/nvim-tree.lua",
   },
   init = function()
     local dap = require("dap")
