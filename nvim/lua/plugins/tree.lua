@@ -4,20 +4,7 @@ local M = {
     "nvim-tree/nvim-web-devicons",
     "s1n7ax/nvim-window-picker",
   },
-  lazy = false,
-  keys = {
-    {
-      "<leader>ee",
-      function()
-        vim.cmd("NvimTreeToggle")
-      end,
-      desc = "Explorer"
-    }
-  }
-}
-
-function M.config()
-  require("nvim-tree").setup({
+  opts = {
     reload_on_bufenter = true,
     update_focused_file = {
       enable = true,
@@ -67,7 +54,30 @@ function M.config()
         },
       },
     },
-  })
-end
+  },
+  keys = {
+    {
+      "<leader>ee",
+      function()
+        require("nvim-tree.api").tree.toggle()
+      end,
+      desc = "Explorer toggle"
+    },
+    {
+      "<leader>ef",
+      function()
+        require("nvim-tree.api").tree.focus()
+      end,
+      desc = "Explorer focus"
+    },
+    {
+      "<leader>er",
+      function()
+        require("nvim-tree.api").tree.reload()
+      end,
+      desc = "Explorer reload"
+    },
+  }
+}
 
 return M
