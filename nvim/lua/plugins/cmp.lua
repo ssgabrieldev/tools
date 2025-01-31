@@ -34,12 +34,20 @@ function M.config()
       ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.abort(),
       ["<CR>"] = cmp.mapping.confirm({ select = true }),
-      ["<c-n>"] = cmp.mapping(function()
-        cmp.select_next_item()
-      end),
-      ["<c-p>"] = cmp.mapping(function()
-        cmp.select_prev_item()
-      end),
+      ["<tab>"] = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end,
+      ["<s-tab>"] = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end,
     }),
     formatting = {
       format = lspkind.cmp_format(),
