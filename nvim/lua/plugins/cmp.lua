@@ -48,6 +48,7 @@ function M.config()
           fallback()
         end
       end,
+      ['<c-h>'] = cmp.mapping.abort()
     }),
     formatting = {
       format = lspkind.cmp_format(),
