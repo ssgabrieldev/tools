@@ -42,9 +42,6 @@ local M = {
     dap.listeners.before.launch.dapui_config = function()
       vim.notify("Debugger launched", "info")
     end
-    dap.listeners.before.event_terminated.dapui_config = function()
-      vim.notify("Debugger teminated", "info")
-    end
     dap.listeners.before.event_exited.dapui_config = function()
       vim.notify("Debugger exited", "info")
     end
@@ -60,7 +57,11 @@ local M = {
     {
       "<leader>de",
       function()
-        require("dap").terminate()
+        require("dap").terminate({
+          on_done = function()
+            vim.notify("Debugger teminated", "info")
+          end
+        })
       end,
       desc = "Debugger terminate"
     },
