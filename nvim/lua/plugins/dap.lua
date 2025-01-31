@@ -15,6 +15,7 @@ local M = {
     },
     "nvim-neotest/nvim-nio",
     "nvim-telescope/telescope.nvim",
+    "nvim-telescope/telescope-dap.nvim",
     "rcarriga/nvim-notify",
   },
   init = function()
