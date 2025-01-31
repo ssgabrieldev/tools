@@ -22,18 +22,32 @@
 --   end
 -- }
 
-return {
-  'projekt0n/github-nvim-theme',
-  name = 'github-theme',
-  lazy = false,
-  priority = 1000,
-  config = function()
-    require('github-theme').setup({
-      options = {
-        transparent = true
-      }
-    })
+-- return {
+--   'projekt0n/github-nvim-theme',
+--   name = 'github-theme',
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     require('github-theme').setup({
+--       options = {
+--         transparent = true
+--       }
+--     })
+--
+--     vim.cmd('colorscheme github_dark_default')
+--   end,
+-- }
 
-    vim.cmd('colorscheme github_dark_default')
-  end,
+return {
+  "navarasu/onedark.nvim",
+  opts = {
+    style = "darker",
+    transparent = true,
+    lualine = {
+      transparent = true
+    }
+  },
+  init = function()
+    require('onedark').load()
+  end
 }

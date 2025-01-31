@@ -23,55 +23,6 @@ if vim.fn.executable("/usr/bin/fish") == 1 then
   vim.o.shell = "/usr/bin/fish"
 end
 
-vim.wo.wrap = false
-vim.wo.number = true
-vim.wo.relativenumber = true
-
-vim.opt.mouse = "a"
-vim.opt.cursorline = true
-vim.opt.clipboard = "unnamedplus"
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-vim.opt.swapfile = true
-vim.opt.directory = "/tmp//"
-vim.opt.splitright = true
-vim.opt.smartindent = true
-vim.opt.scrolloff = 5
-vim.opt.termsync = false
-vim.opt.colorcolumn = "80"
-vim.opt.timeout = false
-
-vim.keymap.set({ 'n' }, '<A-h>', ':vertical resize -2<CR>', { silent = true })
-vim.keymap.set({ 'n' }, '<A-l>', ':vertical resize +2<CR>', { silent = true })
-vim.keymap.set({ 'n' }, '<A-j>', ':resize -2<CR>', { silent = true })
-vim.keymap.set({ 'n' }, '<A-k>', ':resize +2<CR>', { silent = true })
-vim.keymap.set({ "i", "n" }, '<leader><leader>', '<esc>', { silent = true })
-vim.keymap.set({ 't', }, '<leader><leader>', '<c-\\><c-n>', { silent = true })
-vim.keymap.set({ 'n' }, '<leader><S-q><S-q>', ':q!<CR>', { silent = true })
-vim.keymap.set({ 'n' }, '<leader><S-q><S-a>', ':qa!<CR>', { silent = true })
-vim.keymap.set({ 'n' }, '<leader>qq', ':q<CR>', { silent = true })
-vim.keymap.set({ 'n' }, '<leader>qa', ':qa<CR>', { silent = true })
-vim.keymap.set({ 'n' }, '<leader>ww', ':w<CR>', { silent = true })
-vim.keymap.set({ 'n' }, '<leader>wq', ':wq<CR>', { silent = true })
-vim.keymap.set({ 'n' }, '<leader>wa', ':wa<CR>', { silent = true })
-vim.keymap.set({ "n" }, "<leader>rr", ":so ~/.config/nvim/init.lua<CR>", { silent = true })
-vim.keymap.set({ "v" }, "<leader>y", "\"+y", { silent = true })
-vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p", { silent = true })
-vim.keymap.set({ "v" }, "<leader>[", "di[]<esc><s-p>", { silent = true })
-vim.keymap.set({ "n" }, "<leader>[", "di[va[p", { silent = true })
-vim.keymap.set({ "v" }, "<leader>(", "di()<esc><s-p>", { silent = true })
-vim.keymap.set({ "n" }, "<leader>(", "di(va(p", { silent = true })
-vim.keymap.set({ "v" }, "<leader>{", "di{}<esc><s-p>", { silent = true })
-vim.keymap.set({ "n" }, "<leader>{", "di{va{p", { silent = true })
-vim.keymap.set({ "v" }, "<leader>`", "di``<esc><s-p>", { silent = true })
-vim.keymap.set({ "n" }, "<leader>`", "di`va`p", { silent = true })
-vim.keymap.set({ "v" }, "<leader>'", "di''<esc><s-p>", { silent = true })
-vim.keymap.set({ "n" }, "<leader>'", "di'va'p", { silent = true })
-vim.keymap.set({ "v" }, "<leader>\"", "di\"\"<esc><s-p>", { silent = true })
-vim.keymap.set({ "n" }, "<leader>\"", "di\"va\"p", { silent = true })
-
 if vim.env.SSH_TTY then
   local function paste()
     return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
@@ -189,3 +140,54 @@ vim.api.nvim_create_autocmd("WinClosed", {
     end
   end,
 })
+
+vim.wo.wrap = false
+vim.wo.number = true
+vim.wo.relativenumber = true
+
+vim.opt.mouse = "a"
+vim.opt.cursorline = true
+vim.opt.clipboard = "unnamedplus"
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.swapfile = true
+vim.opt.directory = "/tmp//"
+vim.opt.splitright = true
+vim.opt.smartindent = true
+vim.opt.scrolloff = 5
+vim.opt.termsync = false
+vim.opt.colorcolumn = "80"
+vim.opt.timeout = false
+
+vim.keymap.set({ 'n' }, '<A-h>', ':vertical resize -2<CR>', { silent = true })
+vim.keymap.set({ 'n' }, '<A-l>', ':vertical resize +2<CR>', { silent = true })
+vim.keymap.set({ 'n' }, '<A-j>', ':resize -2<CR>', { silent = true })
+vim.keymap.set({ 'n' }, '<A-k>', ':resize +2<CR>', { silent = true })
+vim.keymap.set({ "i", "n" }, '<leader><leader>', '<esc>', { silent = true })
+vim.keymap.set({ 't', }, '<leader><leader>', '<c-\\><c-n>', { silent = true })
+vim.keymap.set({ 'n' }, '<leader><S-q><S-q>', ':q!<CR>', { silent = true })
+vim.keymap.set({ 'n' }, '<leader><S-q><S-a>', ':qa!<CR>', { silent = true })
+vim.keymap.set({ 'n' }, '<leader>qq', ':q<CR>', { silent = true })
+vim.keymap.set({ 'n' }, '<leader>qa', ':qa<CR>', { silent = true })
+vim.keymap.set({ 'n' }, '<leader>ww', ':w<CR>', { silent = true })
+vim.keymap.set({ 'n' }, '<leader>wq', ':wq<CR>', { silent = true })
+vim.keymap.set({ 'n' }, '<leader>wa', ':wa<CR>', { silent = true })
+vim.keymap.set({ "n" }, "<leader>rr", ":so ~/.config/nvim/init.lua<CR>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>oc", ":e ~/.config/nvim/<CR>", { silent = true })
+vim.keymap.set({ "v" }, "<leader>y", "\"+y", { silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p", { silent = true })
+vim.keymap.set({ "v" }, "<leader>[", "di[]<esc><s-p>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>[", "di[va[p", { silent = true })
+vim.keymap.set({ "v" }, "<leader>(", "di()<esc><s-p>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>(", "di(va(p", { silent = true })
+vim.keymap.set({ "v" }, "<leader>{", "di{}<esc><s-p>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>{", "di{va{p", { silent = true })
+vim.keymap.set({ "v" }, "<leader>`", "di``<esc><s-p>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>`", "di`va`p", { silent = true })
+vim.keymap.set({ "v" }, "<leader>'", "di''<esc><s-p>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>'", "di'va'p", { silent = true })
+vim.keymap.set({ "v" }, "<leader>\"", "di\"\"<esc><s-p>", { silent = true })
+vim.keymap.set({ "n" }, "<leader>\"", "di\"va\"p", { silent = true })
+
