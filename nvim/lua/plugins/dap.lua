@@ -4,7 +4,7 @@ local float_opts = {
   border = vim.g.border_style
 }
 
-local M = {
+return {
   "mfussenegger/nvim-dap",
   dependencies = {
     {
@@ -18,22 +18,31 @@ local M = {
     "nvim-telescope/telescope-dap.nvim",
     "rcarriga/nvim-notify",
     "nvim-tree/nvim-tree.lua",
+    's1n7ax/nvim-window-picker',
   },
   init = function()
     local dap = require("dap")
 
     local js_debugger = { "pwa-chrome", "pwa-node" }
     for _, debugger in ipairs(js_debugger) do
-      dap.adapters[debugger] = {
-        type = "server",
-        host = "localhost",
-        port = "${port}",
-        protocol = "inspector",
-        executable = {
-          command = vim.fn.stdpath("data") .. "/mason/bin/js-debug-adapter",
-          args = { "${port}" },
+      dap.adapters[debugger] = function(cb, config)
+        if config.preLaunchTask then
+          vim.fn.system(config.preLaunchTask)
+        end
+
+        local adap = {
+          type = "server",
+          host = "localhost",
+          port = "${port}",
+          protocol = "inspector",
+          executable = {
+            command = vim.fn.stdpath("data") .. "/mason/bin/js-debug-adapter",
+            args = { "${port}" },
+          }
         }
-      }
+
+        cb(adap)
+      end
     end
 
     dap.listeners.before.attach.dapui_config = function()
@@ -115,7 +124,36 @@ local M = {
       end,
       desc = "Debugger list frames"
     },
+    {
+      "<leader>di",
+      function()
+        local win_id = require("window-picker").pick_window({
+          filter_rules = {
+            autoselect_one = true,
+            bo = {
+              filetype = {
+                "NvimTree",
+                "toggleterm",
+                "dapui_watches",
+                "dapui_stacks",
+                "dapui_breakpoints",
+                "dapui_scopes",
+                "dapui_console",
+                "dap-repl",
+                "notify"
+              }
+            }
+          }
+        })
+
+        if not win_id then
+          return
+        end
+
+        vim.api.nvim_set_current_win(win_id)
+        vim.cmd("e .vscode/launch.json")
+      end,
+      desc = "Debugger init"
+    }
   },
 }
-
-return M
