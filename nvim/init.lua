@@ -58,6 +58,31 @@ end
 
 local open_term_buffer = function(file_type)
   if file_type == "toggleterm" then
+    local win_id = vim.api.nvim_get_current_win()
+    local buf = vim.api.nvim_get_current_buf()
+
+    local au_id = vim.api.nvim_create_autocmd("BufWinEnter", {
+      group = augroup,
+      callback = function()
+        local id_win = vim.api.nvim_get_current_win()
+
+        if id_win == win_id then
+          vim.api.nvim_set_current_buf(buf)
+        end
+      end
+    })
+
+    vim.api.nvim_create_autocmd("WinClosed", {
+      once = true,
+      callback = function()
+        local id_win = vim.api.nvim_get_current_win()
+
+        if id_win == win_id then
+          vim.api.nvim_del_autocmd(au_id)
+        end
+      end
+    })
+
     vim.g.terminal_is_open = true
     require("dapui").close()
     vim.g.debugger_is_open = false
@@ -170,7 +195,8 @@ vim.keymap.set({ 'n' }, '<A-k>', ':resize +2<CR>', { silent = true, desc = "Incr
 vim.keymap.set({ "i", "n" }, '<leader><leader>', '<esc>', { silent = true, desc = "Nomal mode" })
 vim.keymap.set({ 't', }, '<leader><leader>', '<c-\\><c-n>', { silent = true, desc = "Exit terminal mode" })
 vim.keymap.set({ 'n' }, '<leader><S-q><S-q>', ':q!<CR>', { silent = true, desc = "Close window without save buffer" })
-vim.keymap.set({ 'n' }, '<leader><S-q><S-a>', ':qa!<CR>', { silent = true, desc = "Close all windows, without save buffers" })
+vim.keymap.set({ 'n' }, '<leader><S-q><S-a>', ':qa!<CR>',
+  { silent = true, desc = "Close all windows, without save buffers" })
 vim.keymap.set({ 'n' }, '<leader>qq', ':q<CR>', { silent = true, desc = "Close window" })
 vim.keymap.set({ 'n' }, '<leader>qa', ':qa<CR>', { silent = true, desc = "Close all windows" })
 vim.keymap.set({ 'n' }, '<leader>ww', ':w<CR>', { silent = true, desc = "Write buffer" })
