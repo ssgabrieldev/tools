@@ -45,6 +45,17 @@ return {
       end
     end
 
+    dap.adapters.firefox = function(cb, config)
+      if config.preLaunchTask then
+        vim.fn.system(config.preLaunchTask)
+      end
+
+      cb({
+        type = 'executable',
+        command = vim.fn.stdpath("data") .. "/mason/bin/firefox-debug-adapter",
+      })
+    end
+
     dap.listeners.before.attach.dapui_config = function()
       vim.notify("Debugger attatched", "info")
     end
