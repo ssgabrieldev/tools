@@ -36,7 +36,7 @@ return {
           port = "${port}",
           protocol = "inspector",
           executable = {
-            command = vim.fn.stdpath("data") .. "/mason/bin/js-debug-adapter",
+            command = "js-debug-adapter",
             args = { "${port}" },
           }
         }
@@ -52,7 +52,7 @@ return {
 
       cb({
         type = 'executable',
-        command = vim.fn.stdpath("data") .. "/mason/bin/firefox-debug-adapter",
+        command = "firefox-debug-adapter",
       })
     end
 
