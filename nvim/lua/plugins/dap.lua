@@ -102,7 +102,7 @@ return {
     {
       "<leader>dv",
       function()
-        require("dapui").eval()
+        require("dapui").eval(nil, {enter = true})
       end,
       mode = { "n", "v" },
       desc = "Debugger evaluate",
