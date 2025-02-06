@@ -42,8 +42,8 @@ if vim.env.SSH_TTY then
 end
 
 local open_buffer = function(handler)
-  local win_id = vim.api.nvim_get_current_win()      -- Get the current window ID
-  local config = vim.api.nvim_win_get_config(win_id) -- Get the window's configuration
+  local win_id = vim.api.nvim_get_current_win()
+  local config = vim.api.nvim_win_get_config(win_id)
 
   if config.relative ~= "" then
     return
@@ -192,7 +192,7 @@ vim.keymap.set({ 'n' }, '<A-h>', ':vertical resize -2<CR>', { silent = true, des
 vim.keymap.set({ 'n' }, '<A-l>', ':vertical resize +2<CR>', { silent = true, desc = "Increase window width" })
 vim.keymap.set({ 'n' }, '<A-j>', ':resize -2<CR>', { silent = true, desc = "Decrease window height" })
 vim.keymap.set({ 'n' }, '<A-k>', ':resize +2<CR>', { silent = true, desc = "Increase window height" })
-vim.keymap.set({ "i", "n" }, '<leader><leader>', '<esc>', { silent = true, desc = "Nomal mode" })
+vim.keymap.set({ "i", "n", "v" }, '<leader><leader>', '<esc>', { silent = true, desc = "Nomal mode" })
 vim.keymap.set({ 't', }, '<leader><leader>', '<c-\\><c-n>', { silent = true, desc = "Exit terminal mode" })
 vim.keymap.set({ 'n' }, '<leader><S-q><S-q>', ':q!<CR>', { silent = true, desc = "Close window without save buffer" })
 vim.keymap.set({ 'n' }, '<leader><S-q><S-a>', ':qa!<CR>',
