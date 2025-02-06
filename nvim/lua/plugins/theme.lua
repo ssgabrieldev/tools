@@ -1,3 +1,5 @@
+local transparent = true
+
 -- return {
 --   "Tsuzat/NeoSolarized.nvim",
 --     lazy = false,
@@ -42,11 +44,14 @@ return {
   "navarasu/onedark.nvim",
   opts = {
     style = "darker",
-    transparent = true,
-  ending_tildes = true,
+    transparent = transparent,
+    ending_tildes = true,
     lualine = {
-      transparent = true
-    }
+      transparent = transparent
+    },
+    diagnostics = {
+      background = false
+    },
   },
   init = function()
     require('onedark').load()
