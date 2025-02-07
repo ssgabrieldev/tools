@@ -42,9 +42,9 @@ local transparent = true
 return {
   "navarasu/onedark.nvim",
   opts = {
-    style = "darker",
+    style = "deep",
     transparent = transparent,
-    hide_ending_tildes = true,
+    ending_tildes = false,
     lualine = {
       transparent = transparent
     },
@@ -52,8 +52,8 @@ return {
       background = false
     },
     highlights = {
-      NormalFloat = {fg = "$fg", bg = "transparent"},
-      FloatBorder = {fg = "$fg", bg = "transparent"}
+      NormalFloat = { fg = "$fg", bg = "transparent" },
+      FloatBorder = { fg = "$fg", bg = "transparent" },
     }
   },
   init = function()
