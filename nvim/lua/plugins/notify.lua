@@ -3,7 +3,7 @@ return {
   opts = {
     background_colour = "#000000",
     timeout = 1000,
-    stages = "slide",
+    stages = "static",
     on_open = function(win)
       local buf = vim.api.nvim_win_get_buf(win)
       vim.api.nvim_buf_set_option(buf, "filetype", "notify")
