@@ -11,6 +11,11 @@ return {
     "nvim-telescope/telescope-ui-select.nvim",
   },
   opts = {
+    extensions = {
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown({})
+      }
+    },
     defaults = {
       preview = true,
       file_ignore_patterns = {
@@ -76,12 +81,10 @@ return {
         },
       },
     },
-    extensions = {
-      ["ui-select"] = {
-        require("telescope.themes").get_dropdown({})
-      }
-    }
   },
+  init = function()
+    require("telescope").load_extension("ui-select")
+  end,
   keys = {
     {
       "<leader>ff",
@@ -133,7 +136,4 @@ return {
       desc = "Find terminal"
     }
   },
-  init = function()
-    require("telescope").load_extension("ui-select")
-  end
 }
