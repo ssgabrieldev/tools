@@ -8,7 +8,6 @@ return {
     {
       "<leader>wp",
       function()
-        -- require("notify").dismiss()
         local win_id = require("window-picker").pick_window()
 
         if not win_id then
@@ -19,6 +18,19 @@ return {
       end,
       mode = { "n" },
       desc = "Pick window"
+    },
+    {
+      "<leader>wc",
+      function()
+        local win_id = require("window-picker").pick_window()
+
+        if not win_id then
+          return
+        end
+
+        vim.api.nvim_win_close(win_id, false)
+      end,
+      desc = "Pick window and close"
     }
   },
   config = function()
