@@ -98,6 +98,23 @@ local open_term_buffer = function(file_type)
   end
 end
 
+vim.api.nvim_create_user_command("ReloadConfig", function()
+  -- Limpa módulos carregados relacionados à configuração
+  for name, _ in pairs(package.loaded) do
+    if name:match("^config") or name:match("^plugins") then
+      package.loaded[name] = nil
+    end
+  end
+
+  -- Recarrega init.lua
+  dofile(vim.fn.stdpath("config") .. "/init.lua")
+
+  -- Recarrega Lazy.nvim e reinstala configurações dos plugins
+  require("lazy").sync()
+
+  vim.notify("LazyVim configuration and plugins reloaded!", vim.log.levels.INFO)
+end, {})
+
 vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
     open_buffer(function(file_type)
@@ -203,7 +220,6 @@ vim.keymap.set({ 'n' }, '<leader>qa', ':qa<CR>', { silent = true, desc = "Close 
 vim.keymap.set({ 'n' }, '<leader>ww', ':w<CR>', { silent = true, desc = "Write buffer" })
 vim.keymap.set({ 'n' }, '<leader>wq', ':wq<CR>', { silent = true, desc = "Write buffer and quit" })
 vim.keymap.set({ 'n' }, '<leader>wa', ':wa<CR>', { silent = true, desc = "Write all buffers" })
-vim.keymap.set({ "n" }, "<leader>rr", ":so ~/.config/nvim/init.lua<CR>", { silent = true, desc = "Reload configs" })
 vim.keymap.set({ "n" }, "<leader>co", ":e ~/.config/nvim/<CR>", { silent = true, desc = "Open configs" })
 vim.keymap.set({ "v" }, "<leader>y", "\"+y", { silent = true, desc = "Yank to clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p", { silent = true, desc = "Paste from clipboard" })

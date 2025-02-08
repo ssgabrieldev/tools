@@ -134,6 +134,14 @@ return {
       end,
       mode = { "t", "n" },
       desc = "Find terminal"
+    },
+    {
+      "<leader>rr",
+      function()
+        utils_telescope.reload_plugin()
+      end,
+      mode = { "n" },
+      desc = "Reload configuration"
     }
   },
 }

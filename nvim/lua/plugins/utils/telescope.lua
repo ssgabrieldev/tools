@@ -34,7 +34,6 @@ M.list_toggleterm = function()
       actions.select_default:replace(function()
         local selection = action_state.get_selected_entry()
         actions.close(prompt_bufnr)
-        -- Abrir o terminal selecionado
         if selection then
           vim.cmd(selection.value.id .. "ToggleTerm")
         end
@@ -88,6 +87,53 @@ M.get_propper_window = function(prompt_bufnr, picker)
     local col = entry.col
     vim.api.nvim_win_set_cursor(0, { line, col })
   end
+end
+
+M.reload_plugin = function()
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local sorters = require("telescope.config").values.generic_sorter
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+  local plugins = require("lazy.core.config").plugins
+  local plugin_list = {}
+
+  for _, plugin in pairs(plugins) do
+    table.insert(plugin_list, {
+      value = plugin.name,
+      display = plugin.name,
+      ordinal = plugin.name
+    })
+  end
+
+  local on_select = function(prompt_bufnr)
+    local selection = action_state.get_selected_entry()
+
+    actions.close(prompt_bufnr)
+    require("lazy").reload({
+      plugins = {selection.value}
+    })
+  end
+
+  pickers.new({}, {
+    prompt_title = "Lazy.nvim Plugins",
+    finder = finders.new_table({
+      results = plugin_list,
+      entry_maker = function(entry)
+        return {
+          value = entry.value,
+          display = entry.display,
+          ordinal = entry.ordinal,
+        }
+      end,
+    }),
+    sorter = sorters({}),
+    attach_mappings = function(_, map)
+      map("i", "<CR>", on_select)
+      map("n", "<CR>", on_select)
+      return true
+    end,
+  }):find()
 end
 
 
