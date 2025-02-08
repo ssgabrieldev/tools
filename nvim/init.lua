@@ -235,3 +235,4 @@ vim.keymap.set({ "v" }, "<leader>'", "di''<esc><s-p>", { silent = true, desc = "
 vim.keymap.set({ "n" }, "<leader>'", "di'va'p", { silent = true, desc = "Remove single quotes" })
 vim.keymap.set({ "v" }, "<leader>\"", "di\"\"<esc><s-p>", { silent = true, desc = "Sunround by quotes" })
 vim.keymap.set({ "n" }, "<leader>\"", "di\"va\"p", { silent = true, desc = "Remove quotes" })
+vim.keymap.set({ "n" }, "<leader>rr", "<cmd>source ~/.config/nvim/init.lua<cr>", { silent = true, desc = "Reload init.lua" })

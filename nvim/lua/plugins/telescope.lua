@@ -136,12 +136,12 @@ return {
       desc = "Find terminal"
     },
     {
-      "<leader>rr",
+      "<leader>RR",
       function()
         utils_telescope.reload_plugin()
       end,
       mode = { "n" },
-      desc = "Reload configuration"
+      desc = "Reload plugin"
     }
   },
 }

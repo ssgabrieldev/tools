@@ -2,6 +2,7 @@ return {
   "rcarriga/nvim-notify",
   opts = {
     background_colour = "#000000",
+    stages = "static",
     timeout = 1000,
     max_width = 45,
     on_open = function(win)
