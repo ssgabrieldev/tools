@@ -220,7 +220,6 @@ vim.keymap.set({ 'n' }, '<leader>qa', ':qa<CR>', { silent = true, desc = "Close 
 vim.keymap.set({ 'n' }, '<leader>ww', ':w<CR>', { silent = true, desc = "Write buffer" })
 vim.keymap.set({ 'n' }, '<leader>wq', ':wq<CR>', { silent = true, desc = "Write buffer and quit" })
 vim.keymap.set({ 'n' }, '<leader>wa', ':wa<CR>', { silent = true, desc = "Write all buffers" })
-vim.keymap.set({ "n" }, "<leader>co", ":e ~/.config/nvim/<CR>", { silent = true, desc = "Open configs" })
 vim.keymap.set({ "v" }, "<leader>y", "\"+y", { silent = true, desc = "Yank to clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p", { silent = true, desc = "Paste from clipboard" })
 vim.keymap.set({ "v" }, "<leader>[", "di[]<esc><s-p>", { silent = true, desc = "Sunround by brackets" })

@@ -123,7 +123,7 @@ return {
     {
       "<leader>fk",
       function()
-        vim.cmd("Telescope keymaps")
+        require('telescope.builtin').keymaps()
       end,
       desc = "Find keymap"
     },
@@ -134,6 +134,17 @@ return {
       end,
       mode = { "t", "n" },
       desc = "Find terminal"
+    },
+    {
+      "<leader>fc",
+      function()
+        require('telescope.builtin').find_files({
+          hidden = true,
+          no_ignore = true,
+          cwd = "~/.config/nvim"
+        })
+      end,
+      desc = "Find config files"
     },
     {
       "<leader>RR",
