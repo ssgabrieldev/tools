@@ -200,7 +200,7 @@ vim.opt.splitright = true
 vim.opt.smartindent = true
 vim.opt.scrolloff = 5
 vim.opt.termsync = false
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
 vim.opt.timeout = false
 vim.opt.undodir = vim.fn.stdpath('data') .. '/undo'
 vim.opt.undofile = true
@@ -235,3 +235,4 @@ vim.keymap.set({ "n" }, "<leader>'", "di'va'p", { silent = true, desc = "Remove 
 vim.keymap.set({ "v" }, "<leader>\"", "da\"\"<esc><s-p>", { silent = true, desc = "Sunround by quotes" })
 vim.keymap.set({ "n" }, "<leader>\"", "di\"va\"p", { silent = true, desc = "Remove quotes" })
 vim.keymap.set({ "n" }, "<leader>rr", "<cmd>source ~/.config/nvim/init.lua<cr>", { silent = true, desc = "Reload init.lua" })
+vim.keymap.set({ "n" }, "<leader>co", "<cmd>e ~/.config/nvim/<cr>", { silent = true, desc = "Open configurations" })
