@@ -1,62 +1,52 @@
-local transparent = false
-
--- return {
---   "Tsuzat/NeoSolarized.nvim",
---     lazy = false,
---     priority = 1000,
---     config = function()
---       require("NeoSolarized").setup({
---         transparent = true
---       })
---       vim.cmd [[ colorscheme NeoSolarized ]]
---     end
--- }
-
--- return {
---   "Mofiqul/adwaita.nvim",
---   lazy = false,
---   priority = 1000,
---   config = function()
---     vim.g.adwaita_darker = true
---     vim.g.adwaita_disable_cursorline = true
---     vim.g.adwaita_transparent = false
---     vim.cmd('colorscheme adwaita')
---   end
--- }
+local transparent = true
 
 return {
-  'projekt0n/github-nvim-theme',
-  name = 'github-theme',
-  lazy = false,
-  priority = 1000,
-  opts = {
-    options = {
-      transparent = transparent
+  {
+    "Tsuzat/NeoSolarized.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+        transparent = transparent
+    },
+  },
+  {
+    "Mofiqul/adwaita.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.g.adwaita_darker = true
+      vim.g.adwaita_disable_cursorline = true
+      vim.g.adwaita_transparent = transparent
+      -- vim.cmd('colorscheme adwaita')
+    end
+  },
+  {
+    'projekt0n/github-nvim-theme',
+    name = 'github-theme',
+    lazy = false,
+    priority = 1000,
+    opts = {
+      options = {
+        transparent = transparent
+      }
     }
   },
-  init = function ()
-    vim.cmd('colorscheme github_dark_default')
-  end
+  {
+    "navarasu/onedark.nvim",
+    opts = {
+      style = "deep",
+      transparent = transparent,
+      ending_tildes = false,
+      lualine = {
+        transparent = transparent
+      },
+      diagnostics = {
+        background = false
+      },
+      highlights = {
+        NormalFloat = { fg = "$fg", bg = "transparent" },
+        FloatBorder = { fg = "$fg", bg = "transparent" },
+      }
+    }
+  }
 }
-
--- return {
---   "navarasu/onedark.nvim",
---   opts = {
---     style = "deep",
---     transparent = transparent,
---     ending_tildes = false,
---     lualine = {
---       transparent = transparent
---     },
---     diagnostics = {
---       background = false
---     },
---     highlights = {
---       NormalFloat = { fg = "$fg", bg = "transparent" },
---       FloatBorder = { fg = "$fg", bg = "transparent" },
---     }
---   },
---   init = function()
---     require('onedark').load()
---   end
--- }

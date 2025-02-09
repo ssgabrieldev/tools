@@ -158,6 +158,14 @@ return {
       end,
       mode = { "n" },
       desc = "Reload plugin"
+    },
+    {
+      "<leader>fT",
+      function()
+        utils_telescope.list_themes()
+      end,
+      mode = { "n" },
+      desc = "Change theme"
     }
   },
 }

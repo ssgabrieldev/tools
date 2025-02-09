@@ -1,3 +1,5 @@
+local theme_utils = require("plugins.utils.theme")
+
 vim.g.border_style = "rounded"
 vim.g.mapleader = ";"
 vim.g.explore_is_open = false
@@ -167,6 +169,12 @@ vim.api.nvim_create_autocmd("WinClosed", {
     end
   end,
 })
+
+local theme = theme_utils.get_theme()
+
+if theme then
+  vim.cmd("color " .. theme)
+end
 
 vim.wo.wrap = false
 vim.wo.number = true

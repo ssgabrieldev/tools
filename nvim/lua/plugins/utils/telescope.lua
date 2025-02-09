@@ -111,7 +111,7 @@ M.reload_plugin = function()
 
     actions.close(prompt_bufnr)
     require("lazy").reload({
-      plugins = {selection.value}
+      plugins = { selection.value }
     })
   end
 
@@ -136,5 +136,56 @@ M.reload_plugin = function()
   }):find()
 end
 
+M.list_themes = function()
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local conf = require("telescope.config").values
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+  local available_colorschemes = vim.fn.getcompletion('', 'color')
+
+  local save_and_apply_theme = function(prompt_bufnr)
+    local selection = action_state.get_selected_entry(prompt_bufnr)
+
+    vim.cmd('colorscheme ' .. selection[1])
+
+    local config_path = vim.fn.stdpath('config')
+    local user_dir = config_path .. '/user'
+    local theme_file = user_dir .. '/theme.txt'
+
+    if vim.fn.isdirectory(user_dir) == 0 then
+      vim.fn.mkdir(user_dir, 'p')
+    end
+
+    local file = io.open(theme_file, 'w')
+
+    if file then
+      file:write(selection[1])
+      file:close()
+      print('Color scheme saved to ' .. theme_file)
+    else
+      print('Error: Could not save color scheme to ' .. theme_file)
+    end
+
+    actions.close(prompt_bufnr)
+  end
+
+  pickers.new(colorschemes, {
+    prompt_title = "Themes",
+    finder = finders.new_table({
+      results = available_colorschemes,
+    }),
+    sorter = conf.generic_sorter({}),
+    attach_mappings = function(prompt_bufnr, map)
+      map('n', '<CR>', function()
+        save_and_apply_theme(prompt_bufnr)
+      end)
+      map('i', '<CR>', function()
+        save_and_apply_theme(prompt_bufnr)
+      end)
+      return true
+    end,
+  }):find()
+end
 
 return M
