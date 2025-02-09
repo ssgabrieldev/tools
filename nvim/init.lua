@@ -98,25 +98,10 @@ local open_term_buffer = function(file_type)
   end
 end
 
-vim.api.nvim_create_user_command("ReloadConfig", function()
-  -- Limpa módulos carregados relacionados à configuração
-  for name, _ in pairs(package.loaded) do
-    if name:match("^config") or name:match("^plugins") then
-      package.loaded[name] = nil
-    end
-  end
-
-  -- Recarrega init.lua
-  dofile(vim.fn.stdpath("config") .. "/init.lua")
-
-  -- Recarrega Lazy.nvim e reinstala configurações dos plugins
-  require("lazy").sync()
-
-  vim.notify("LazyVim configuration and plugins reloaded!", vim.log.levels.INFO)
-end, {})
-
 vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
+    vim.cmd("ColorizerAttachToBuffer")
+
     open_buffer(function(file_type)
       if file_type == "NvimTree" then
         vim.g.explore_is_open = true
@@ -209,7 +194,7 @@ vim.keymap.set({ 'n' }, '<A-h>', ':vertical resize -2<CR>', { silent = true, des
 vim.keymap.set({ 'n' }, '<A-l>', ':vertical resize +2<CR>', { silent = true, desc = "Increase window width" })
 vim.keymap.set({ 'n' }, '<A-j>', ':resize -2<CR>', { silent = true, desc = "Decrease window height" })
 vim.keymap.set({ 'n' }, '<A-k>', ':resize +2<CR>', { silent = true, desc = "Increase window height" })
-vim.keymap.set({ "i", "n", "v" }, '<leader><leader>', '<esc>', { silent = true, desc = "Nomal mode" })
+vim.keymap.set({ "i", "n", "v", "c" }, '<leader><leader>', '<esc>', { silent = false, desc = "Nomal mode" })
 vim.keymap.set({ 't' }, '<leader><leader>', '<c-\\><c-n>', { silent = true, desc = "Exit terminal mode" })
 vim.keymap.set({ 'n' }, '<leader>wv', '<c-w>v', { silent = true, desc = "Split window vertical" })
 vim.keymap.set({ 'n' }, '<leader>ws', '<c-w>s', { silent = true, desc = "Split window horizontal" })
