@@ -1,4 +1,4 @@
-local transparent = true
+local transparent = false
 
 -- return {
 --   "Tsuzat/NeoSolarized.nvim",
@@ -24,39 +24,39 @@ local transparent = true
 --   end
 -- }
 
--- return {
---   'projekt0n/github-nvim-theme',
---   name = 'github-theme',
---   lazy = false,
---   priority = 1000,
---   opts = {
---     options = {
---       transparent = true
---     }
---   },
---   init = function ()
---     vim.cmd('colorscheme github_dark_default')
---   end
--- }
-
 return {
-  "navarasu/onedark.nvim",
+  'projekt0n/github-nvim-theme',
+  name = 'github-theme',
+  lazy = false,
+  priority = 1000,
   opts = {
-    style = "deep",
-    transparent = transparent,
-    ending_tildes = false,
-    lualine = {
+    options = {
       transparent = transparent
-    },
-    diagnostics = {
-      background = false
-    },
-    highlights = {
-      NormalFloat = { fg = "$fg", bg = "transparent" },
-      FloatBorder = { fg = "$fg", bg = "transparent" },
     }
   },
-  init = function()
-    require('onedark').load()
+  init = function ()
+    vim.cmd('colorscheme github_dark_default')
   end
 }
+
+-- return {
+--   "navarasu/onedark.nvim",
+--   opts = {
+--     style = "deep",
+--     transparent = transparent,
+--     ending_tildes = false,
+--     lualine = {
+--       transparent = transparent
+--     },
+--     diagnostics = {
+--       background = false
+--     },
+--     highlights = {
+--       NormalFloat = { fg = "$fg", bg = "transparent" },
+--       FloatBorder = { fg = "$fg", bg = "transparent" },
+--     }
+--   },
+--   init = function()
+--     require('onedark').load()
+--   end
+-- }
