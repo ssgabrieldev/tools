@@ -11,8 +11,8 @@ local M = {
     { "<leader>b<S-k>", "<cmd>BufferLineCloseRight<CR>",  desc = "Buffer line close all buffer on the right" },
     { "<leader>bj",     "<cmd>BufferLineMovePrev<CR>",    desc = "Buffer line close all buffer on the left" },
     { "<leader>bk",     "<cmd>BufferLineMoveNext<CR>",    desc = "Buffer line close all buffer on the right" },
-    { "<leader>bs",      "<cmd>botright new<CR>",   desc = "New buffer split vert" },
-    { "<leader>bv",      "<cmd>vsplit new<CR>",   desc = "New buffer split vert" },
+    { "<leader>bs",     "<cmd>botright new<CR>",          desc = "New buffer split vert" },
+    { "<leader>bv",     "<cmd>vsplit new<CR>",            desc = "New buffer split vert" },
     { "<leader>j",      "<cmd>BufferLineCyclePrev<CR>",   desc = "Buffer line prev buffer" },
     { "<leader>k",      "<cmd>BufferLineCycleNext<CR>",   desc = "Buffer line next buffer" },
   },
@@ -39,7 +39,8 @@ function M.config()
       },
       diagnostics = "nvim_lsp",
       indicator = {
-        style = "none"
+        icon = '▎',
+        style = 'icon',
       },
       sort_by = "insert_at_end"
     },
