@@ -99,6 +99,7 @@ return {
           no_ignore = true,
         })
       end,
+      mode = { "n", "t" },
       desc = "Find file"
     },
     {
@@ -109,20 +110,23 @@ return {
           no_ignore = true,
         })
       end,
+      mode = { "n", "t" },
       desc = "Find pattern"
     },
     {
       "<leader>fb",
       function()
-        vim.cmd("Telescope buffers")
+        require('telescope.builtin').buffers()
       end,
+      mode = { "n", "t" },
       desc = "Find buffer"
     },
     {
       "<leader>fg",
       function()
-        vim.cmd("Telescope git_status")
+        require('telescope.builtin').git_status()
       end,
+      mode = { "n", "t" },
       desc = "Find git change"
     },
     {
@@ -130,6 +134,7 @@ return {
       function()
         require('telescope.builtin').keymaps()
       end,
+      mode = { "n", "t" },
       desc = "Find keymap"
     },
     {
@@ -137,7 +142,7 @@ return {
       function()
         utils_telescope.list_toggleterm()
       end,
-      mode = { "t", "n" },
+      mode = { "n", "t" },
       desc = "Find terminal"
     },
     {
@@ -149,6 +154,7 @@ return {
           cwd = "~/.config/nvim"
         })
       end,
+      mode = { "n", "t" },
       desc = "Find config files"
     },
     {
@@ -156,7 +162,7 @@ return {
       function()
         utils_telescope.reload_plugin()
       end,
-      mode = { "n" },
+      mode = { "n", "t" },
       desc = "Reload plugin"
     },
     {
@@ -164,7 +170,7 @@ return {
       function()
         utils_telescope.list_themes()
       end,
-      mode = { "n" },
+      mode = { "n", "t" },
       desc = "Change theme"
     }
   },

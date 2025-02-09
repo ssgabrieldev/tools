@@ -40,7 +40,7 @@ M.on_attach = function(_, bufnr)
     bufopts
   )
   vim.keymap.set(
-    "n",
+    { "n", "i", "v" },
     "<LEADER>lf",
     function() vim.lsp.buf.format({ async = true }) end,
     bufopts

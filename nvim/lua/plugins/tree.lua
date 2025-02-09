@@ -61,6 +61,7 @@ local M = {
       function()
         require("nvim-tree.api").tree.toggle()
       end,
+      mode = {"n", "t"},
       desc = "Explorer toggle"
     },
     {
@@ -68,6 +69,7 @@ local M = {
       function()
         require("nvim-tree.api").tree.focus()
       end,
+      mode = {"n", "t"},
       desc = "Explorer focus"
     },
     {
@@ -75,6 +77,7 @@ local M = {
       function()
         require("nvim-tree.api").tree.reload()
       end,
+      mode = {"n", "t"},
       desc = "Explorer reload"
     },
   }

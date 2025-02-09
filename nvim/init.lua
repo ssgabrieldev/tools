@@ -195,24 +195,24 @@ vim.opt.scrolloff = 5
 vim.opt.termsync = false
 -- vim.opt.colorcolumn = "80"
 vim.opt.timeout = false
-vim.opt.undodir = vim.fn.stdpath('data') .. '/undo'
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.undofile = true
 
-vim.keymap.set({ 'n' }, '<A-h>', ':vertical resize -2<CR>', { silent = true, desc = "Decrease window width" })
-vim.keymap.set({ 'n' }, '<A-l>', ':vertical resize +2<CR>', { silent = true, desc = "Increase window width" })
-vim.keymap.set({ 'n' }, '<A-j>', ':resize -2<CR>', { silent = true, desc = "Decrease window height" })
-vim.keymap.set({ 'n' }, '<A-k>', ':resize +2<CR>', { silent = true, desc = "Increase window height" })
-vim.keymap.set({ "i", "n", "v", "c" }, '<leader><leader>', '<esc>', { silent = false, desc = "Nomal mode" })
-vim.keymap.set({ 't' }, '<leader><leader>', '<c-\\><c-n>', { silent = true, desc = "Exit terminal mode" })
-vim.keymap.set({ 'n' }, '<leader>wv', '<c-w>v', { silent = true, desc = "Split window vertical" })
-vim.keymap.set({ 'n' }, '<leader>ws', '<c-w>s', { silent = true, desc = "Split window horizontal" })
-vim.keymap.set({ 'n' }, '<leader><S-q><S-q>', ':q!<CR>', { silent = true, desc = "Close window without save buffer" })
-vim.keymap.set({ 'n' }, '<leader><S-q><S-a>', ':qa!<CR>', { silent = true, desc = "Close all windows, without save buffers" })
-vim.keymap.set({ 'n' }, '<leader>qq', ':q<CR>', { silent = true, desc = "Close window" })
-vim.keymap.set({ 'n' }, '<leader>qa', ':qa<CR>', { silent = true, desc = "Close all windows" })
-vim.keymap.set({ 'n' }, '<leader>ww', ':w<CR>', { silent = true, desc = "Write buffer" })
-vim.keymap.set({ 'n' }, '<leader>wq', ':wq<CR>', { silent = true, desc = "Write buffer and quit" })
-vim.keymap.set({ 'n' }, '<leader>wa', ':wa<CR>', { silent = true, desc = "Write all buffers" })
+vim.keymap.set({ "n" }, "<A-h>", ":vertical resize -2<CR>", { silent = true, desc = "Decrease window width" })
+vim.keymap.set({ "n" }, "<A-l>", ":vertical resize +2<CR>", { silent = true, desc = "Increase window width" })
+vim.keymap.set({ "n" }, "<A-j>", ":resize -2<CR>", { silent = true, desc = "Decrease window height" })
+vim.keymap.set({ "n" }, "<A-k>", ":resize +2<CR>", { silent = true, desc = "Increase window height" })
+vim.keymap.set({ "i", "n", "v", "c" }, "<leader><leader>", "<esc>", { silent = false, desc = "Nomal mode" })
+vim.keymap.set({ "t" }, "<leader><leader>", "<c-\\><c-n>", { silent = true, desc = "Exit terminal mode" })
+vim.keymap.set({ "n" }, "<leader>wv", "<c-w>v", { silent = true, desc = "Split window vertical" })
+vim.keymap.set({ "n" }, "<leader>ws", "<c-w>s", { silent = true, desc = "Split window horizontal" })
+vim.keymap.set({ "n" }, "<leader><S-q><S-q>", ":q!<CR>", { silent = true, desc = "Close window without save buffer" })
+vim.keymap.set({ "n" }, "<leader><S-q><S-a>", ":qa!<CR>", { silent = true, desc = "Close all windows, without save buffers" })
+vim.keymap.set({ "n" }, "<leader>qq", ":q<CR>", { silent = true, desc = "Close window" })
+vim.keymap.set({ "n" }, "<leader>qa", ":qa<CR>", { silent = true, desc = "Close all windows" })
+vim.keymap.set({ "n", "i" }, "<leader>ww", "<cmd>w<CR>", { silent = true, desc = "Write buffer" })
+vim.keymap.set({ "n" }, "<leader>wq", ":wq<CR>", { silent = true, desc = "Write buffer and quit" })
+vim.keymap.set({ "n" }, "<leader>wa", ":wa<CR>", { silent = true, desc = "Write all buffers" })
 vim.keymap.set({ "v" }, "<leader>y", "\"+y", { silent = true, desc = "Yank to clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p", { silent = true, desc = "Paste from clipboard" })
 vim.keymap.set({ "v" }, "<leader>[", "da[]<esc><s-p>", { silent = true, desc = "Sunround by brackets" })

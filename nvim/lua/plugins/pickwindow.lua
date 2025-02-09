@@ -16,7 +16,7 @@ return {
 
         vim.api.nvim_set_current_win(win_id)
       end,
-      mode = { "n" },
+      mode = {"n", "t"},
       desc = "Pick window"
     },
     {
@@ -30,6 +30,7 @@ return {
 
         vim.api.nvim_win_close(win_id, false)
       end,
+      mode = {"n", "t"},
       desc = "Pick window and close"
     }
   },
