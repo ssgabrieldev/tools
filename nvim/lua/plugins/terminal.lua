@@ -7,6 +7,7 @@ local M = {
   version = "*",
   opts = {
     direction = "float",
+    shade_terminals = false,
     float_opts = {
       border = vim.g.border_style,
       title_pos = "center",

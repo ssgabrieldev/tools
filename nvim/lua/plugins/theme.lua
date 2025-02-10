@@ -2,6 +2,15 @@ local ui_utils = require("plugins.utils.ui")
 
 return {
   {
+    "ficcdaf/ashen.nvim",
+    tag = "*",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = ui_utils.get_transparency()
+    },
+  },
+  {
     "tiagovla/tokyodark.nvim",
     opts = {
       transparent_background = ui_utils.get_transparency()

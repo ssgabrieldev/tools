@@ -40,7 +40,7 @@ function M.config()
       diagnostics = "nvim_lsp",
       indicator = {
         icon = '▎',
-        style = 'none',
+        style = 'icon',
       },
       sort_by = "insert_at_end"
     },
