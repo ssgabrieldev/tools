@@ -1,4 +1,5 @@
 local theme_utils = require("plugins.utils.theme")
+local ui_utils = require("plugins.utils.ui")
 
 vim.g.border_style = "rounded"
 vim.g.mapleader = ";"
@@ -177,6 +178,8 @@ vim.api.nvim_create_autocmd("WinClosed", {
     end
   end,
 })
+
+vim.api.nvim_create_user_command("ToggleTransparency", ui_utils.toggle_transparency, {})
 
 local theme = theme_utils.get_theme()
 
