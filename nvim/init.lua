@@ -21,6 +21,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
+
+local config_path = vim.fn.stdpath('config')
+local user_dir = config_path .. '/user'
+
+if vim.fn.isdirectory(user_dir) == 0 then
+  vim.fn.mkdir(user_dir, 'p')
+end
+
 if vim.fn.executable("/usr/bin/fish") == 1 then
   vim.o.shell = "/usr/bin/fish"
 end
@@ -207,7 +215,8 @@ vim.keymap.set({ "t" }, "<leader><leader>", "<c-\\><c-n>", { silent = true, desc
 vim.keymap.set({ "n" }, "<leader>wv", "<c-w>v", { silent = true, desc = "Split window vertical" })
 vim.keymap.set({ "n" }, "<leader>ws", "<c-w>s", { silent = true, desc = "Split window horizontal" })
 vim.keymap.set({ "n" }, "<leader><S-q><S-q>", ":q!<CR>", { silent = true, desc = "Close window without save buffer" })
-vim.keymap.set({ "n" }, "<leader><S-q><S-a>", ":qa!<CR>", { silent = true, desc = "Close all windows, without save buffers" })
+vim.keymap.set({ "n" }, "<leader><S-q><S-a>", ":qa!<CR>",
+  { silent = true, desc = "Close all windows, without save buffers" })
 vim.keymap.set({ "n" }, "<leader>qq", ":q<CR>", { silent = true, desc = "Close window" })
 vim.keymap.set({ "n" }, "<leader>qa", ":qa<CR>", { silent = true, desc = "Close all windows" })
 vim.keymap.set({ "n", "i" }, "<leader>ww", "<cmd>w<CR>", { silent = true, desc = "Write buffer" })
@@ -227,5 +236,6 @@ vim.keymap.set({ "v" }, "<leader>'", "da''<esc><s-p>", { silent = true, desc = "
 vim.keymap.set({ "n" }, "<leader>'", "di'va'p", { silent = true, desc = "Remove single quotes" })
 vim.keymap.set({ "v" }, "<leader>\"", "da\"\"<esc><s-p>", { silent = true, desc = "Sunround by quotes" })
 vim.keymap.set({ "n" }, "<leader>\"", "di\"va\"p", { silent = true, desc = "Remove quotes" })
-vim.keymap.set({ "n" }, "<leader>rr", "<cmd>source ~/.config/nvim/init.lua<cr>", { silent = true, desc = "Reload init.lua" })
+vim.keymap.set({ "n" }, "<leader>rr", "<cmd>source ~/.config/nvim/init.lua<cr>",
+  { silent = true, desc = "Reload init.lua" })
 vim.keymap.set({ "n" }, "<leader>co", "<cmd>e ~/.config/nvim/<cr>", { silent = true, desc = "Open configurations" })

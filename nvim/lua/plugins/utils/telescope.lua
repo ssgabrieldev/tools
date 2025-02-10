@@ -150,13 +150,7 @@ M.list_themes = function()
     vim.cmd('colorscheme ' .. selection[1])
 
     local config_path = vim.fn.stdpath('config')
-    local user_dir = config_path .. '/user'
-    local theme_file = user_dir .. '/theme.txt'
-
-    if vim.fn.isdirectory(user_dir) == 0 then
-      vim.fn.mkdir(user_dir, 'p')
-    end
-
+    local theme_file = config_path .. '/user/theme.txt'
     local file = io.open(theme_file, 'w')
 
     if file then

@@ -1,4 +1,4 @@
-local transparent = true
+local ui_utils = require("plugins.utils.ui")
 
 return {
   {
@@ -7,17 +7,17 @@ return {
     priority = 1000,
     opts = {
       tweak_background = {
-        normal = transparent and "none" or transparent and "none" or "default",
-        telescope = transparent and "none" or "default",
-        menu = transparent and "none" or "default",
-        popup = transparent and "none" or "default",
+        normal = ui_utils.get_transparency() and "none" or "default",
+        telescope = ui_utils.get_transparency() and "none" or "default",
+        menu = ui_utils.get_transparency() and "none" or "default",
+        popup = ui_utils.get_transparency() and "none" or "default",
       },
     }
   },
   {
     "tiagovla/tokyodark.nvim",
     opts = {
-      transparent_background = transparent
+      transparent_background = ui_utils.get_transparency()
     },
   },
   {
@@ -26,28 +26,10 @@ return {
     priority = 1000,
     opts = {
       transparent = {
-        bg = transparent,
-        float = transparent
+        bg = ui_utils.get_transparency(),
+        float = ui_utils.get_transparency()
       }
     }
-  },
-  {
-    "Tsuzat/NeoSolarized.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      transparent = transparent
-    },
-  },
-  {
-    "Mofiqul/adwaita.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.g.adwaita_darker = true
-      vim.g.adwaita_disable_cursorline = true
-      vim.g.adwaita_transparent = transparent
-    end
   },
   {
     "projekt0n/github-nvim-theme",
@@ -56,7 +38,7 @@ return {
     priority = 1000,
     opts = {
       options = {
-        transparent = transparent
+        transparent = ui_utils.get_transparency()
       }
     }
   },
@@ -64,7 +46,7 @@ return {
     "navarasu/onedark.nvim",
     opts = {
       style = "deep",
-      transparent = transparent,
+      transparent = ui_utils.get_transparency(),
       ending_tildes = false,
       lualine = {
         transparent = false
