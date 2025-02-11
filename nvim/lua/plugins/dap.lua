@@ -18,7 +18,8 @@ return {
     "nvim-telescope/telescope-dap.nvim",
     "rcarriga/nvim-notify",
     "nvim-tree/nvim-tree.lua",
-    's1n7ax/nvim-window-picker',
+    "s1n7ax/nvim-window-picker",
+    "akinsho/toggleterm.nvim",
   },
   init = function()
     local dap = require("dap")
@@ -27,7 +28,15 @@ return {
     for _, debugger in ipairs(js_debugger) do
       dap.adapters[debugger] = function(cb, config)
         if config.preLaunchTask then
-          vim.fn.system(config.preLaunchTask)
+          local Terminal = require("toggleterm.terminal").Terminal
+          local terminal = Terminal:new({
+            cmd = config.preLaunchTask,
+            hidden = false,
+            close_on_exit = false
+          })
+
+          terminal:toggle()
+          -- vim.fn.system(config.preLaunchTask)
         end
 
         local adap = {
@@ -51,7 +60,7 @@ return {
       end
 
       cb({
-        type = 'executable',
+        type = "executable",
         command = "firefox-debug-adapter",
       })
     end
@@ -102,7 +111,7 @@ return {
     {
       "<leader>dv",
       function()
-        require("dapui").eval(nil, {enter = true})
+        require("dapui").eval(nil, { enter = true })
       end,
       mode = { "n", "v" },
       desc = "Debugger evaluate",
