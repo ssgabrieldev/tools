@@ -1,7 +1,32 @@
-local M = {
+return {
   "akinsho/bufferline.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+  },
+  opts = {
+    options = {
+      mode = "buffer",
+      offsets = {
+        {
+          filetype = "NvimTree",
+          text = "File Explorer",
+          text_align = "center",
+          separator = false,
+        },
+        {
+          filetype = "dapui_watches",
+          text = "Debugger",
+          text_align = "center",
+          separator = false,
+        },
+      },
+      diagnostics = "nvim_lsp",
+      indicator = {
+        icon = '▎',
+        style = 'icon',
+      },
+      sort_by = "insert_at_end"
+    },
   },
   keys = {
     { "<leader>bp",     "<cmd>BufferLinePick<CR>",        desc = "Buffer line pick buffer" },
@@ -18,33 +43,3 @@ local M = {
   },
   lazy = false
 }
-
-function M.config()
-  require("bufferline").setup({
-    options = {
-      mode = "buffer",
-      offsets = {
-        {
-          filetype = "NvimTree",
-          text = "File Explorer",
-          text_align = "center",
-          separator = false,
-        },
-        {
-          filetype = "dapui_watches",
-          text = "Debugger",
-          text_align = "center",
-          separator = true,
-        },
-      },
-      diagnostics = "nvim_lsp",
-      indicator = {
-        icon = '▎',
-        style = 'icon',
-      },
-      sort_by = "insert_at_end"
-    },
-  })
-end
-
-return M

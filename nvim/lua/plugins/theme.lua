@@ -10,7 +10,7 @@ return {
         normal = ui_utils.get_transparency() and "none" or "default",
         telescope = ui_utils.get_transparency() and "none" or "default",
         menu = ui_utils.get_transparency() and "none" or "default",
-        popup = ui_utils.get_transparency() and "none" or "default",
+        popup = "none"
       },
       disable_plugin = {
         bufferline = true
@@ -18,27 +18,39 @@ return {
     }
   },
   {
-    "tiagovla/tokyodark.nvim",
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1000,
     opts = {
-      transparent_background = ui_utils.get_transparency()
-    },
-  },
-  {
-    "navarasu/onedark.nvim",
-    opts = {
-      style = "deep",
+      compile = true,
       transparent = ui_utils.get_transparency(),
-      ending_tildes = false,
-      lualine = {
-        transparent = false
-      },
-      diagnostics = {
-        background = false
-      },
-      highlights = {
-        NormalFloat = { fg = "$fg", bg = "transparent" },
-        FloatBorder = { fg = "$fg", bg = "transparent" },
+      dimInactive = false,
+      overrides = function(colors)
+        return {
+          NormalFloat = { bg = "none" },
+          FloatBorder = { bg = "none" },
+          FloatTitle = { bg = "none" },
+          TelescopePromptNormal = { bg = "none" },
+          TelescopePromptBorder = { bg = "none" },
+          TelescopeResultsNormal = { bg = "none" },
+          TelescopeResultsBorder = { bg = "none" },
+          TelescopePreviewNormal = { bg = "none" },
+          TelescopePreviewBorder = { bg = "none" },
+        }
+      end,
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = "none",
+              float = {
+                bg = "none",
+                bg_border = "none"
+              }
+            }
+          }
+        }
       }
     }
-  }
+  },
 }

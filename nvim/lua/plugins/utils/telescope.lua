@@ -144,7 +144,7 @@ M.list_themes = function()
   local action_state = require("telescope.actions.state")
   local available_colorschemes = vim.fn.getcompletion('', 'color')
 
-  local save_and_apply_theme = function(prompt_bufnr)
+  local on_select = function(prompt_bufnr)
     local selection = action_state.get_selected_entry(prompt_bufnr)
 
     vim.cmd('colorscheme ' .. selection[1])
@@ -154,8 +154,11 @@ M.list_themes = function()
     local file = io.open(theme_file, 'w')
 
     if file then
-      file:write(selection[1])
+      vim.g.theme = selection[1]
+
+      file:write(vim.g.theme)
       file:close()
+
       print('Color scheme saved to ' .. theme_file)
     else
       print('Error: Could not save color scheme to ' .. theme_file)
@@ -172,10 +175,10 @@ M.list_themes = function()
     sorter = conf.generic_sorter({}),
     attach_mappings = function(prompt_bufnr, map)
       map('n', '<CR>', function()
-        save_and_apply_theme(prompt_bufnr)
+        on_select(prompt_bufnr)
       end)
       map('i', '<CR>', function()
-        save_and_apply_theme(prompt_bufnr)
+        on_select(prompt_bufnr)
       end)
       return true
     end,

@@ -36,11 +36,11 @@ return {
   },
   config = function()
     require('window-picker').setup({
-      hint = "statusline-winbar",
+      hint = "floating-letter",
       show_prompt = false,
       picker_config = {
         statusline_winbar_picker = {
-          use_winbar = 'always',
+          use_winbar = 'never',
         },
       },
       filter_rules = {

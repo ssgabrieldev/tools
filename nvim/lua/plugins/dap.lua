@@ -36,7 +36,6 @@ return {
           })
 
           terminal:toggle()
-          -- vim.fn.system(config.preLaunchTask)
         end
 
         local adap = {
