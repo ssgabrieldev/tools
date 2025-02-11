@@ -1,5 +1,8 @@
 local theme_utils = require("plugins.utils.theme")
 local ui_utils = require("plugins.utils.ui")
+local config_path = vim.fn.stdpath('config')
+local user_dir = config_path .. '/user'
+local theme = theme_utils.get_theme()
 
 vim.g.border_style = "rounded"
 vim.g.mapleader = ";"
@@ -22,9 +25,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
-
-local config_path = vim.fn.stdpath('config')
-local user_dir = config_path .. '/user'
 
 if vim.fn.isdirectory(user_dir) == 0 then
   vim.fn.mkdir(user_dir, 'p')
@@ -181,12 +181,6 @@ vim.api.nvim_create_autocmd("WinClosed", {
 
 vim.api.nvim_create_user_command("ToggleTransparency", ui_utils.toggle_transparency, {})
 
-local theme = theme_utils.get_theme()
-
-if theme then
-  vim.cmd("color " .. theme)
-end
-
 vim.wo.wrap = false
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -204,7 +198,6 @@ vim.opt.splitright = true
 vim.opt.smartindent = true
 vim.opt.scrolloff = 5
 vim.opt.termsync = false
--- vim.opt.colorcolumn = "80"
 vim.opt.timeout = false
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.undofile = true
@@ -240,3 +233,7 @@ vim.keymap.set({ "v" }, "<leader>\"", "da\"\"<esc><s-p>", { silent = true, desc 
 vim.keymap.set({ "n" }, "<leader>\"", "di\"va\"p", { silent = true, desc = "Remove quotes" })
 vim.keymap.set({ "n" }, "<leader>rr", "<cmd>source ~/.config/nvim/init.lua<cr>", { silent = true, desc = "Reload init.lua" })
 vim.keymap.set({ "n" }, "<leader>co", "<cmd>e ~/.config/nvim/<cr>", { silent = true, desc = "Open configurations" })
+
+if theme then
+  vim.cmd("color " .. theme)
+end
