@@ -2,13 +2,20 @@ local ui_utils = require("plugins.utils.ui")
 
 return {
   {
-    "ficcdaf/ashen.nvim",
-    tag = "*",
+    "slugbyte/lackluster.nvim",
     lazy = false,
     priority = 1000,
     opts = {
-      transparent = ui_utils.get_transparency()
-    },
+      tweak_background = {
+        normal = ui_utils.get_transparency() and "none" or "default",
+        telescope = ui_utils.get_transparency() and "none" or "default",
+        menu = ui_utils.get_transparency() and "none" or "default",
+        popup = ui_utils.get_transparency() and "none" or "default",
+      },
+      disable_plugin = {
+        bufferline = true
+      }
+    }
   },
   {
     "tiagovla/tokyodark.nvim",
