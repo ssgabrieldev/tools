@@ -1,8 +1,8 @@
 return {
-  's1n7ax/nvim-window-picker',
-  name = 'window-picker',
-  event = 'VeryLazy',
-  version = '2.*',
+  "s1n7ax/nvim-window-picker",
+  name = "window-picker",
+  event = "VeryLazy",
+  version = "2.*",
   lazy = false,
   keys = {
     {
@@ -16,7 +16,7 @@ return {
 
         vim.api.nvim_set_current_win(win_id)
       end,
-      mode = {"n", "t"},
+      mode = { "n", "t" },
       desc = "Pick window"
     },
     {
@@ -30,17 +30,17 @@ return {
 
         vim.api.nvim_win_close(win_id, false)
       end,
-      mode = {"n", "t"},
+      mode = { "n", "t" },
       desc = "Pick window and close"
     }
   },
   config = function()
-    require('window-picker').setup({
-      hint = "statusline-winbar",
+    require("window-picker").setup({
+      hint = "floating-letter",
       show_prompt = false,
       picker_config = {
         statusline_winbar_picker = {
-          use_winbar = 'always',
+          use_winbar = "never",
         },
       },
       filter_rules = {
@@ -48,13 +48,16 @@ return {
         include_current_win = true,
         include_unfocusable_windows = true,
         bo = {
-          filetype = { 'notify' },
+          filetype = { "notify" },
           buftype = {},
         },
         wo = {},
         file_path_contains = {},
         file_name_contains = {},
       },
+      highlights = {
+        enabled = true,
+      }
     })
   end,
 }
