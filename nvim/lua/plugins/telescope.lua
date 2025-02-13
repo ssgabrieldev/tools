@@ -158,7 +158,7 @@ return {
       desc = "Find config files"
     },
     {
-      "<leader>RR",
+      "<leader>fp",
       function()
         utils_telescope.reload_plugin()
       end,
