@@ -29,11 +29,11 @@ function M.config()
       documentation = cmp.config.window.bordered({ border = border }),
     },
     mapping = cmp.mapping.preset.insert({
-      ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-d>"] = cmp.mapping.scroll_docs(4),
-      ["<C-Space>"] = cmp.mapping.complete(),
-      ["<C-e>"] = cmp.mapping.abort(),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      ['<c-e>'] = cmp.mapping.abort(),
+      ["<c-u>"] = cmp.mapping.scroll_docs(-4),
+      ["<c-d>"] = cmp.mapping.scroll_docs(4),
+      ["<c-Space>"] = cmp.mapping.complete(),
+      ["<cr>"] = cmp.mapping.confirm({ select = true }),
       ["<tab>"] = function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -48,7 +48,6 @@ function M.config()
           fallback()
         end
       end,
-      ['<c-h>'] = cmp.mapping.abort()
     }),
     formatting = {
       format = lspkind.cmp_format(),

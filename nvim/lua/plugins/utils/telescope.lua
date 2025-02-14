@@ -47,6 +47,8 @@ M.list_toggleterm = function()
         if selection then
           vim.api.nvim_buf_delete(selection.value.term.bufnr, { force = true })
         end
+
+        actions.close(prompt_bufnr)
       end)
       map({ "i", "n" }, "<leader>f", function()
         local selection = action_state.get_selected_entry()

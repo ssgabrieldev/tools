@@ -1,3 +1,5 @@
+local toggleterm_utils = require("plugins.utils.toggleterm")
+
 local lazysql_terminal = nil
 local lazygit_terminal = nil
 local vimongo_terminal = nil
@@ -24,7 +26,13 @@ local M = {
     {
       '<leader>tt',
       function()
-        vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
+        local terminals = require("toggleterm.terminal").get_all()
+
+        if #terminals > 0 then
+          vim.cmd(vim.v.count .. "ToggleTerm")
+        else
+          toggleterm_utils.open_new_terminal()
+        end
       end,
       mode = { "n", "t" },
       { desc = 'Toggle terminal horizontal' }
@@ -48,18 +56,7 @@ local M = {
     {
       '<leader>tn',
       function()
-        vim.ui.select(
-          { "float", "horizontal" },
-          {
-            prompt = "New terminal direction"
-          },
-          function(choise)
-            require('toggleterm.terminal').Terminal:new({
-              hidden = false,
-              direction = choise
-            }):open()
-          end
-        )
+        toggleterm_utils.open_new_terminal()
       end,
       mode = { "n", "t" },
       { desc = 'Set terminal name' }
