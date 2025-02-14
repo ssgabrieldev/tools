@@ -16,7 +16,7 @@ local M = {
     winbar = {
       enabled = true,
       name_formatter = function(term)
-        return term.name
+        return term.display_name or term.name
       end
     }
   },
@@ -24,7 +24,7 @@ local M = {
     {
       '<leader>tt',
       function()
-          vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
+        vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
       end,
       mode = { "n", "t" },
       { desc = 'Toggle terminal horizontal' }
@@ -32,7 +32,7 @@ local M = {
     {
       '<leader>ta',
       function()
-          vim.cmd("ToggleTermToggleAll")
+        vim.cmd("ToggleTermToggleAll")
       end,
       mode = { "n", "t" },
       { desc = 'Toggle all terminal' }
@@ -44,6 +44,34 @@ local M = {
       end,
       mode = { "n", "t" },
       { desc = 'Toggle terminal float' }
+    },
+    {
+      '<leader>tn',
+      function()
+        vim.ui.select(
+          { "float", "horizontal" },
+          {
+            prompt = "New terminal direction"
+          },
+          function(choise)
+            require('toggleterm.terminal').Terminal:new({
+              hidden = false,
+              direction = choise
+            }):open()
+          end
+        )
+      end,
+      mode = { "n", "t" },
+      { desc = 'Set terminal name' }
+
+    },
+    {
+      '<leader>tN',
+      function()
+        vim.cmd("ToggleTermSetName")
+      end,
+      mode = { "n", "t" },
+      { desc = 'Set terminal name' }
     },
     {
       "<leader>tm",

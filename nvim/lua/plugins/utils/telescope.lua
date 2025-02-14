@@ -13,31 +13,60 @@ M.list_toggleterm = function()
   for _, term in pairs(terminals) do
     table.insert(results, {
       id = term.id,
-      cmd = term.cmd or "Shell",
+      name = term.display_name or term.name,
+      term = term
     })
   end
 
   pickers.new({}, {
-    prompt_title = "ToggleTerm Terminals",
+    prompt_title = "Terminals",
     finder = finders.new_table {
       results = results,
       entry_maker = function(entry)
         return {
           value = entry,
-          display = string.format("ID: %d | Cmd: %s", entry.id, entry.cmd),
+          display = string.format("ID: %d | Cmd: %s", entry.id, entry.name),
           ordinal = tostring(entry.id),
         }
       end,
     },
     sorter = conf.generic_sorter({}),
-    attach_mappings = function(prompt_bufnr, _)
-      actions.select_default:replace(function()
+    attach_mappings = function(prompt_bufnr, map)
+      map({ "i", "n" }, "<cr>", function()
         local selection = action_state.get_selected_entry()
+
         actions.close(prompt_bufnr)
+
         if selection then
           vim.cmd(selection.value.id .. "ToggleTerm")
         end
       end)
+      map({ "i", "n" }, "<leader>x", function()
+        local selection = action_state.get_selected_entry()
+
+        if selection then
+          vim.api.nvim_buf_delete(selection.value.term.bufnr, { force = true })
+        end
+      end)
+      map({ "i", "n" }, "<leader>f", function()
+        local selection = action_state.get_selected_entry()
+
+        actions.close(prompt_bufnr)
+
+        if selection then
+          vim.cmd(selection.value.id .. "ToggleTerm direction=float")
+        end
+      end)
+      map({ "i", "n" }, "<leader>h", function()
+        local selection = action_state.get_selected_entry()
+
+        actions.close(prompt_bufnr)
+
+        if selection then
+          vim.cmd(selection.value.id .. "ToggleTerm direction=horizontal")
+        end
+      end)
+
       return true
     end,
   }):find()
