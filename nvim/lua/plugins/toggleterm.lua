@@ -13,7 +13,9 @@ local M = {
     float_opts = {
       border = vim.g.border_style,
       title_pos = "center",
-      winblend = 3
+      winblend = 3,
+      width = 1000,
+      height = 1000
     },
     winbar = {
       enabled = true,
