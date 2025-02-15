@@ -65,7 +65,7 @@ local M = {
 
     },
     {
-      '<leader>tN',
+      '<leader>tr',
       function()
         vim.cmd("ToggleTermSetName")
       end,
