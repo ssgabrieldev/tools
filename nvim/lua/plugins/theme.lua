@@ -52,5 +52,20 @@ return {
         }
       }
     }
+  },
+  {
+    "navarasu/onedark.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = "deep",
+      transparent = ui_utils.get_transparency(),
+      lualine = {
+        transparent = ui_utils.get_transparency(),
+      },
+      diagnostics = {
+        background = false,
+      }
+    }
   }
 }
