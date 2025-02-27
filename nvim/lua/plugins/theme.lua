@@ -65,6 +65,10 @@ return {
       },
       diagnostics = {
         background = false,
+      },
+      highlights = {
+        FloatBorder = {bg = "transparent" },
+        NormalFloat = {bg = "transparent" },
       }
     }
   }
