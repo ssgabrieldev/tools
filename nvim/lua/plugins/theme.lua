@@ -67,9 +67,14 @@ return {
         background = false,
       },
       highlights = {
-        FloatBorder = {bg = "transparent" },
-        NormalFloat = {bg = "transparent" },
+        FloatBorder = { bg = "transparent" },
+        NormalFloat = { bg = "transparent" },
       }
+    },
+    {
+      'bettervim/yugen.nvim',
+      lazy = false,
+      priority = 1000,
     }
   }
 }
