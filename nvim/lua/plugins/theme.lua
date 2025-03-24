@@ -71,10 +71,10 @@ return {
         NormalFloat = { bg = "transparent" },
       }
     },
-    {
-      'bettervim/yugen.nvim',
-      lazy = false,
-      priority = 1000,
-    }
+  },
+  {
+    'bettervim/yugen.nvim',
+    lazy = false,
+    priority = 1000,
   }
 }

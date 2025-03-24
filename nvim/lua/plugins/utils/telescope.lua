@@ -23,10 +23,12 @@ M.list_toggleterm = function()
     finder = finders.new_table {
       results = results,
       entry_maker = function(entry)
+        local label = string.format("ID: %d | Cmd: %s", entry.id, entry.name)
+
         return {
           value = entry,
-          display = string.format("ID: %d | Cmd: %s", entry.id, entry.name),
-          ordinal = tostring(entry.id),
+          display = label,
+          ordinal = label,
         }
       end,
     },
