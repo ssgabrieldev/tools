@@ -1,3 +1,5 @@
+local window_picker_utils = require("plugins.utils.window-picker")
+
 local M = {}
 
 M.list_toggleterm = function()
@@ -88,24 +90,22 @@ M.get_propper_window = function(prompt_bufnr, picker)
   local filepath = entry.path or entry[1]
   actions.close(prompt_bufnr)
 
-  local win_id = require("window-picker").pick_window({
-    filter_rules = {
-      autoselect_one = true,
-      bo = {
-        filetype = {
-          "NvimTree",
-          "toggleterm",
-          "dapui_watches",
-          "dapui_stacks",
-          "dapui_breakpoints",
-          "dapui_scopes",
-          "dapui_console",
-          "dap-repl",
-          "notify"
-        }
-      }
+  local win_id = window_picker_utils.pick_window_to_open_buf(
+    {
+      "NvimTree",
+      "toggleterm",
+      "dapui_watches",
+      "dapui_stacks",
+      "dapui_breakpoints",
+      "dapui_scopes",
+      "dapui_console",
+      "dap-repl",
+      "notify"
+    },
+    {
+      "NvimTree"
     }
-  })
+  )
 
   if not win_id then
     return

@@ -1,3 +1,5 @@
+local window_picker_utils = require("plugins.utils.window-picker")
+
 local M = {
   "nvim-tree/nvim-tree.lua",
   dependencies = {
@@ -32,24 +34,22 @@ local M = {
         window_picker = {
           enable = true,
           picker = function()
-            return require("window-picker").pick_window({
-              filter_rules = {
-                autoselect_one = true,
-                bo = {
-                  filetype = {
-                    "NvimTree",
-                    "toggleterm",
-                    "dapui_watches",
-                    "dapui_stacks",
-                    "dapui_breakpoints",
-                    "dapui_scopes",
-                    "dapui_console",
-                    "dap-repl",
-                    "notify"
-                  }
-                }
+            return window_picker_utils.pick_window_to_open_buf(
+              {
+                "toggleterm",
+                "dapui_watches",
+                "dapui_stacks",
+                "dapui_breakpoints",
+                "dapui_scopes",
+                "dapui_console",
+                "dap-repl",
+                "notify",
+                "NvimTree"
+              },
+              {
+                "NvimTree"
               }
-            })
+            )
           end,
         },
       },
@@ -61,7 +61,7 @@ local M = {
       function()
         require("nvim-tree.api").tree.toggle()
       end,
-      mode = {"n", "t"},
+      mode = { "n", "t" },
       desc = "Explorer toggle"
     },
     {
@@ -69,7 +69,7 @@ local M = {
       function()
         require("nvim-tree.api").tree.focus()
       end,
-      mode = {"n", "t"},
+      mode = { "n", "t" },
       desc = "Explorer focus"
     },
     {
@@ -77,7 +77,7 @@ local M = {
       function()
         require("nvim-tree.api").tree.reload()
       end,
-      mode = {"n", "t"},
+      mode = { "n", "t" },
       desc = "Explorer reload"
     },
   }
