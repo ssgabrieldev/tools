@@ -93,6 +93,16 @@ return {
             vim.notify("Debugger teminated", "info")
           end
         })
+        require("dap").terminate({
+          on_done = function()
+            vim.notify("Debugger teminated", "info")
+          end
+        })
+        require("dap").terminate({
+          on_done = function()
+            vim.notify("Debugger teminated", "info")
+          end
+        })
       end,
       desc = "Debugger terminate"
     },
