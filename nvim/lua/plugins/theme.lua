@@ -84,8 +84,8 @@ return {
     config = function()
       require("black-metal").setup({
         transparent = ui_utils.get_transparency(),
+        favor_treesitter_hl = true
       })
-      -- require("black-metal").load()
     end,
   }
 }
