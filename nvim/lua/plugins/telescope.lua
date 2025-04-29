@@ -18,6 +18,8 @@ return {
     },
     defaults = {
       preview = true,
+      layout_strategy = 'center',
+      sorting_strategy = "ascending",
       file_ignore_patterns = {
         "node_modules",
         ".git"
