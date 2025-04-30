@@ -4,10 +4,10 @@ return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    's1n7ax/nvim-window-picker',
+    "s1n7ax/nvim-window-picker",
     "mfussenegger/nvim-dap",
     "nvim-telescope/telescope-dap.nvim",
-    'akinsho/toggleterm.nvim',
+    "akinsho/toggleterm.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
   },
   opts = {
@@ -17,9 +17,16 @@ return {
       }
     },
     defaults = {
-      preview = true,
-      layout_strategy = 'center',
+      preview = false,
+      layout_strategy = "vertical",
       sorting_strategy = "ascending",
+      layout_config = {
+        vertical = {
+          prompt_position = "top",
+          height = 0.8,
+          width = 0.8
+        },
+      },
       file_ignore_patterns = {
         "node_modules",
         ".git"
@@ -96,7 +103,7 @@ return {
     {
       "<leader>ff",
       function()
-        require('telescope.builtin').find_files({
+        require("telescope.builtin").find_files({
           hidden = true,
           no_ignore = true,
         })
@@ -107,7 +114,7 @@ return {
     {
       "<leader>fw",
       function()
-        require('telescope.builtin').live_grep({
+        require("telescope.builtin").live_grep({
           hidden = true,
           no_ignore = true,
         })
@@ -118,7 +125,7 @@ return {
     {
       "<leader>fb",
       function()
-        require('telescope.builtin').buffers()
+        require("telescope.builtin").buffers()
       end,
       mode = { "n", "t" },
       desc = "Find buffer"
@@ -126,7 +133,7 @@ return {
     {
       "<leader>fg",
       function()
-        require('telescope.builtin').git_status()
+        require("telescope.builtin").git_status()
       end,
       mode = { "n", "t" },
       desc = "Find git change"
@@ -134,7 +141,7 @@ return {
     {
       "<leader>fk",
       function()
-        require('telescope.builtin').keymaps()
+        require("telescope.builtin").keymaps()
       end,
       mode = { "n", "t" },
       desc = "Find keymap"
@@ -150,7 +157,7 @@ return {
     {
       "<leader>fc",
       function()
-        require('telescope.builtin').find_files({
+        require("telescope.builtin").find_files({
           hidden = true,
           no_ignore = true,
           cwd = "~/.config/nvim"
