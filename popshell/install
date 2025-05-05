@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+# Download project
+cd ~/apps \
+  && git clone https://github.com/pop-os/shell popshell \
+  && cd popshell \
+  && git checkout master_noble
+
+# Configure project
+npm install typescript \
+  && export PATH=$PATH:~/apps/popshell/node_modules/typescript/bin/ \
+  && pwd \
+  && make local-install
+
