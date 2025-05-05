@@ -1,12 +1,17 @@
 #!/usr/bin/bash
 
+# Configure GIT
+sudo apt install git -y
+git config credential.helper 'cache --timeout=900' # 15min
+
+# Configure Git Delta
+sudo apt install git-delta -y
+
+# Configure LazyGit
 mkdir -p ~/apps/bin
 mkdir -p ~/tools/downloads
 wget -P ~/tools/downloads https://github.com/jesseduffield/lazygit/releases/download/v0.44.1/lazygit_0.44.1_Linux_32-bit.tar.gz
 tar -xzf ~/tools/downloads/lazygit_0.44.1_Linux_32-bit.tar.gz -C ~/tools/downloads/
 cp ~/tools/downloads/lazygit ~/apps/bin/lg
 rm ~/tools/downloads -rf
-
-sudo apt install git-delta
-
 ln -s ~/tools/lazygit/config.yml ~/.config/lazygit/config.yml 
