@@ -9,6 +9,10 @@ return {
     "nvim-telescope/telescope-dap.nvim",
     "akinsho/toggleterm.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
+    {
+      "nvim-telescope/telescope-live-grep-args.nvim",
+      version = "^1.0.0",
+    },
   },
   opts = {
     extensions = {
@@ -98,6 +102,7 @@ return {
   },
   init = function()
     require("telescope").load_extension("ui-select")
+    require("telescope").load_extension("live_grep_args")
   end,
   keys = {
     {
@@ -181,6 +186,14 @@ return {
       end,
       mode = { "n", "t" },
       desc = "Change theme"
+    },
+    {
+      "<leader>fW",
+      function()
+        require("telescope").extensions.live_grep_args.live_grep_args()
+      end,
+      mode = { "n", "t" },
+      desc = "Find pattern with args"
     }
   },
 }
