@@ -21,8 +21,8 @@ return {
       }
     },
     defaults = {
-      preview = false,
-      layout_strategy = "vertical",
+      preview = true,
+      layout_strategy = "horizontal",
       sorting_strategy = "ascending",
       layout_config = {
         vertical = {
@@ -33,7 +33,7 @@ return {
       },
       file_ignore_patterns = {
         "node_modules",
-        ".git"
+        ".git/"
       },
       mappings = {
         n = {
