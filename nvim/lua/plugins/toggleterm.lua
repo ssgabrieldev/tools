@@ -37,7 +37,7 @@ local M = {
         end
       end,
       mode = { "n", "t" },
-      { desc = 'Toggle terminal horizontal' }
+      { desc = 'Toggle terminal' }
     },
     {
       '<leader>ta',
@@ -46,6 +46,14 @@ local M = {
       end,
       mode = { "n", "t" },
       { desc = 'Toggle all terminal' }
+    },
+    {
+      '<leader>th',
+      function()
+        vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
+      end,
+      mode = { "n", "t" },
+      { desc = 'Toggle terminal horizontal' }
     },
     {
       '<leader>tf',
@@ -61,7 +69,7 @@ local M = {
         toggleterm_utils.open_new_terminal()
       end,
       mode = { "n", "t" },
-      { desc = 'Set terminal name' }
+      { desc = 'Open new terminal' }
 
     },
     {
