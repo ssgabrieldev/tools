@@ -25,7 +25,7 @@ return {
       layout_strategy = "horizontal",
       sorting_strategy = "ascending",
       layout_config = {
-        vertical = {
+        horizontal = {
           prompt_position = "top",
           height = 0.8,
           width = 0.8
