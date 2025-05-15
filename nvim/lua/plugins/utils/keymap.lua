@@ -4,6 +4,7 @@ vim.keymap.set({ "n", "t" }, "<A-j>", "<cmd>resize -2<CR>", { silent = true, des
 vim.keymap.set({ "n", "t" }, "<A-k>", "<cmd>resize +2<CR>", { silent = true, desc = "Increase window height" })
 vim.keymap.set({ "i", "n", "v", "c" }, "<leader><leader>", "<esc>", { silent = false, desc = "Nomal mode" })
 vim.keymap.set({ "t" }, "<leader><leader>", "<c-\\><c-n>", { silent = true, desc = "Exit terminal mode" })
+vim.keymap.set({ "n" }, "<leader>wo", "<c-w>o", { silent = true, desc = "Close others windows" })
 vim.keymap.set({ "n" }, "<leader>wv", "<c-w>v", { silent = true, desc = "Split window vertical" })
 vim.keymap.set({ "n" }, "<leader>ws", "<c-w>s", { silent = true, desc = "Split window horizontal" })
 vim.keymap.set({ "i", "n", "t" }, "<leader>wh", "<cmd>wincmd h<cr>", { silent = true, desc = "Go left" })
