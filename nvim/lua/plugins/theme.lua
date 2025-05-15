@@ -18,66 +18,6 @@ return {
     }
   },
   {
-    "rebelot/kanagawa.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      compile = true,
-      transparent = ui_utils.get_transparency(),
-      dimInactive = false,
-      overrides = function(colors)
-        return {
-          NormalFloat = { bg = "none" },
-          FloatBorder = { bg = "none" },
-          FloatTitle = { bg = "none" },
-          TelescopePromptNormal = { bg = "none" },
-          TelescopePromptBorder = { bg = "none" },
-          TelescopeResultsNormal = { bg = "none" },
-          TelescopeResultsBorder = { bg = "none" },
-          TelescopePreviewNormal = { bg = "none" },
-          TelescopePreviewBorder = { bg = "none" },
-        }
-      end,
-      colors = {
-        theme = {
-          all = {
-            ui = {
-              bg_gutter = "none",
-              float = {
-                bg = "none",
-                bg_border = "none"
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  {
-    "navarasu/onedark.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      style = "deep",
-      transparent = ui_utils.get_transparency(),
-      lualine = {
-        transparent = ui_utils.get_transparency(),
-      },
-      diagnostics = {
-        background = false,
-      },
-      highlights = {
-        FloatBorder = { bg = "transparent" },
-        NormalFloat = { bg = "transparent" },
-      }
-    },
-  },
-  {
-    'bettervim/yugen.nvim',
-    lazy = false,
-    priority = 1000,
-  },
-  {
     "metalelf0/black-metal-theme-neovim",
     lazy = false,
     priority = 1000,
@@ -87,5 +27,16 @@ return {
         favor_treesitter_hl = true
       })
     end,
+  },
+  {
+    'projekt0n/github-nvim-theme',
+    name = 'github-theme',
+    lazy = false,
+    priority = 1000,
+    opts = {
+      options = {
+        transparent = ui_utils.get_transparency()
+      }
+    }
   }
 }
