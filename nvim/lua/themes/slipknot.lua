@@ -75,7 +75,7 @@ local theme = lush(function(injected_functions)
     -- TreeSitter Identifier
     sym("@variable") { fg = colors.fg },
     sym("@variable.parameter") { fg = colors.parameter },
-    -- sym("@function") { fg = colors.keyword },
+    sym("@function") { fg = colors.keyword },
     sym("@function.method") { fg = colors.keyword },
     sym("@function.builtin") { fg = colors.keyword },
     sym("@method") { fg = colors.keyword },
