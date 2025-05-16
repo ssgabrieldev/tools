@@ -2,84 +2,101 @@ local lush = require('lush')
 local hsl = lush.hsl
 local utils_ui = require("plugins.utils.ui")
 
-local palette = {
+local M = {}
+
+M.palette = {
   black = hsl(utils_ui.get_transparency() and "#000000" or "#080808"),
   red = hsl("#F2000B"),
   white = hsl("#F3F1EE"),
   gray = hsl("#5B5B5B"),
   yellow = hsl("#BC9909"),
 }
-local colors = {
-  bg = palette.black,
-  bg_light = palette.black.li(2),
-  bg_dark = palette.black.da(70),
-  fg = palette.gray,
-  fg_dark = palette.gray.da(60),
-  keyword = palette.red,
-  string = palette.red.da(60),
-  number = palette.white,
-  boolean = palette.white,
-  parameter = palette.yellow,
-  delimiter = palette.white,
+M.colors = {
+  -- Editor
+  bg = M.palette.black,
+  bg_light = M.palette.black.li(2),
+  bg_dark = M.palette.black.da(70),
+  fg = M.palette.gray,
+  fg_dark = M.palette.gray.da(60),
+  keyword = M.palette.red,
+  string = M.palette.red.da(60),
+  number = M.palette.white,
+  boolean = M.palette.white,
+  parameter = M.palette.yellow,
+  delimiter = M.palette.white,
+
+  -- Lualine
+  lualine_normal_bg = M.palette.black.li(2),
+  lualine_normal_fg = M.palette.red,
+  lualine_insert_bg = M.palette.red,
+  lualine_insert_fg = M.palette.black.li(2),
+  lualine_visual_bg = M.palette.yellow,
+  lualine_visual_fg = M.palette.black.li(2),
+  lualine_replace_bg = M.palette.yellow,
+  lualine_replace_fg = M.palette.black.li(2),
+  lualine_command_bg = M.palette.yellow,
+  lualine_command_fg = M.palette.black.li(2),
+  lualine_inactive_bg = M.palette.black,
+  lualine_inactive_fg = M.palette.gray,
 }
 
-colors.folder_name = colors.fg
+M.colors.folder_name = M.colors.fg
 
-local theme = lush(function(injected_functions)
+M.theme = lush(function(injected_functions)
   local sym = injected_functions.sym
 
   return {
     -- Common
-    Normal { fg = colors.fg, bg = colors.bg },
-    EndOfBuffer { fg = colors.bg, bg = colors.bg },
-    Visual { fg = colors.bg, bg = colors.fg },
-    CursorLine { bg = colors.bg_light },
-    Directory { fg = colors.folder_name },
+    Normal { fg = M.colors.fg, bg = M.colors.bg },
+    EndOfBuffer { fg = M.colors.bg, bg = M.colors.bg },
+    Visual { fg = M.colors.bg, bg = M.colors.fg },
+    CursorLine { bg = M.colors.bg_light },
+    Directory { fg = M.colors.folder_name },
 
     -- Types
-    String { fg = colors.string },
-    Number { fg = colors.number },
-    Boolean { fg = colors.boolean },
+    String { fg = M.colors.string },
+    Number { fg = M.colors.number },
+    Boolean { fg = M.colors.boolean },
 
     -- Identifier
-    Identifier { fg = colors.fg },
-    keyword { fg = colors.keyword },
-    Function { fg = colors.delimiter },
-    Comment { fg = colors.fg_dark },
-    Statement { fg = colors.keyword },
+    Identifier { fg = M.colors.fg },
+    keyword { fg = M.colors.keyword },
+    Function { fg = M.colors.delimiter },
+    Comment { fg = M.colors.fg_dark },
+    Statement { fg = M.colors.keyword },
 
     -- Delimiter
-    Delimiter { fg = colors.delimiter },
-    Special { fg = colors.delimiter },
+    Delimiter { fg = M.colors.delimiter },
+    Special { fg = M.colors.delimiter },
 
     -- NvimTree
-    NvimTreeNormal { bg = colors.bg_dark },
-    NvimTreeNormalNC { bg = colors.bg_dark },
-    NvimTreeEndOfBuffer { bg = colors.bg_dark, fg = colors.bg_dark },
-    NvimTreeVertSplit { bg = colors.bg_dark, fg = colors.bg_dar },
-    NvimTreeWinSeparator { bg = colors.bg_dark, fg = colors.bg_dark },
-    NvimTreeFolderName { fg = colors.folder_name },
-    NvimTreeOpenedFolderName { fg = colors.folder_name },
+    NvimTreeNormal { bg = M.colors.bg_dark },
+    NvimTreeNormalNC { bg = M.colors.bg_dark },
+    NvimTreeEndOfBuffer { bg = M.colors.bg_dark, fg = M.colors.bg_dark },
+    NvimTreeVertSplit { bg = M.colors.bg_dark, fg = M.colors.bg_dar },
+    NvimTreeWinSeparator { bg = M.colors.bg_dark, fg = M.colors.bg_dark },
+    NvimTreeFolderName { fg = M.colors.folder_name },
+    NvimTreeOpenedFolderName { fg = M.colors.folder_name },
 
     -- Terminal
-    TerminalBuffer { bg = colors.bg_dark, fg = colors.fg },
+    TerminalBuffer { bg = M.colors.bg_dark, fg = M.colors.fg },
 
     -- TreeSitter Comon
-    sym("@keyword") { fg = colors.keyword },
+    sym("@keyword") { fg = M.colors.keyword },
 
     -- TreeSitter Types
-    sym("@string") { fg = colors.string },
-    sym("@number") { fg = colors.number },
-    sym("@boolean") { fg = colors.boolean },
+    sym("@string") { fg = M.colors.string },
+    sym("@number") { fg = M.colors.number },
+    sym("@boolean") { fg = M.colors.boolean },
 
     -- TreeSitter Identifier
-    sym("@variable") { fg = colors.fg },
-    sym("@variable.parameter") { fg = colors.parameter },
-    sym("@function") { fg = colors.keyword },
-    sym("@function.method") { fg = colors.keyword },
-    sym("@function.builtin") { fg = colors.keyword },
-    sym("@method") { fg = colors.keyword },
+    sym("@variable") { fg = M.colors.fg },
+    sym("@variable.parameter") { fg = M.colors.parameter },
+    sym("@function") { fg = M.colors.keyword },
+    sym("@function.method") { fg = M.colors.keyword },
+    sym("@function.builtin") { fg = M.colors.keyword },
+    sym("@method") { fg = M.colors.keyword },
   }
 end)
 
-return theme
+return M

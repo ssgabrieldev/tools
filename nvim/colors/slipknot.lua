@@ -11,8 +11,8 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
     vim.schedule(function()
       -- Registra a highlight group no Neovim (global)
       vim.api.nvim_set_hl(0, "TerminalBuffer", {
-        fg = theme.TerminalBuffer.fg.hex,
-        bg = theme.TerminalBuffer.bg.hex,
+        fg = theme.theme.TerminalBuffer.fg.hex,
+        bg = theme.theme.TerminalBuffer.bg.hex,
       })
 
       -- Aplica o highlight APENAS na janela atual, substituindo "Normal"
@@ -21,4 +21,4 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
   end,
 })
 
-lush(theme)
+lush(theme.theme)
