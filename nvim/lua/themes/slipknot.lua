@@ -24,7 +24,6 @@ M.colors = {
   boolean = M.palette.white,
   parameter = M.palette.yellow,
   delimiter = M.palette.white,
-
 }
 
 -- Lualine
@@ -56,6 +55,7 @@ M.theme = lush(function(injected_functions)
     Directory { fg = M.colors.folder_name },
 
     -- Types
+    Type { fg = M.colors.keyword },
     String { fg = M.colors.string },
     Number { fg = M.colors.number },
     Boolean { fg = M.colors.boolean },
