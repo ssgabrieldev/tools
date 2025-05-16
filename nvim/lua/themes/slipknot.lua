@@ -25,21 +25,23 @@ M.colors = {
   parameter = M.palette.yellow,
   delimiter = M.palette.white,
 
-  -- Lualine
-  lualine_normal_bg = M.palette.black.li(2),
-  lualine_normal_fg = M.palette.red,
-  lualine_insert_bg = M.palette.red,
-  lualine_insert_fg = M.palette.black.li(2),
-  lualine_visual_bg = M.palette.yellow,
-  lualine_visual_fg = M.palette.black.li(2),
-  lualine_replace_bg = M.palette.yellow,
-  lualine_replace_fg = M.palette.black.li(2),
-  lualine_command_bg = M.palette.yellow,
-  lualine_command_fg = M.palette.black.li(2),
-  lualine_inactive_bg = M.palette.black,
-  lualine_inactive_fg = M.palette.gray,
 }
 
+-- Lualine
+M.colors.lualine_normal_bg = M.colors.bg_light
+M.colors.lualine_normal_fg = M.palette.red
+M.colors.lualine_insert_bg = M.palette.red
+M.colors.lualine_insert_fg = M.colors.bg_light
+M.colors.lualine_visual_bg = M.palette.yellow
+M.colors.lualine_visual_fg = M.colors.bg_light
+M.colors.lualine_replace_bg = M.palette.yellow
+M.colors.lualine_replace_fg = M.colors.bg_light
+M.colors.lualine_command_bg = M.palette.yellow
+M.colors.lualine_command_fg = M.colors.bg_light
+M.colors.lualine_inactive_bg = M.colors.bg_light
+M.colors.lualine_inactive_fg = M.palette.white
+
+-- NvimTree
 M.colors.folder_name = M.colors.fg
 
 M.theme = lush(function(injected_functions)
