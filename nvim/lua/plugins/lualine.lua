@@ -6,7 +6,8 @@ local M = {
   config = function()
     require("lualine").setup({
       options = {
-        theme = 'auto'
+        theme = 'auto',
+        globalstatus = false
       }
     })
   end
