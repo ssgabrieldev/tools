@@ -1,8 +1,9 @@
 local lush = require('lush')
 local hsl = lush.hsl
+local utils_ui = require("plugins.utils.ui")
 
 local palette = {
-  black = hsl("#080808"),
+  black = hsl(utils_ui.get_transparency() and "#000000" or "#080808"),
   red = hsl("#F2000B"),
   white = hsl("#F3F1EE"),
   gray = hsl("#5B5B5B"),
@@ -59,6 +60,9 @@ local theme = lush(function(injected_functions)
     NvimTreeWinSeparator { bg = colors.bg_dark, fg = colors.bg_dark },
     NvimTreeFolderName { fg = colors.folder_name },
     NvimTreeOpenedFolderName { fg = colors.folder_name },
+
+    -- Terminal
+    TerminalBuffer { bg = colors.bg_dark, fg = colors.fg },
 
     -- TreeSitter Comon
     sym("@keyword") { fg = colors.keyword },
