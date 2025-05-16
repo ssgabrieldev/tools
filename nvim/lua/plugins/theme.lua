@@ -1,5 +1,3 @@
-local ui_utils = require("plugins.utils.ui")
-
 return {
   {
     "rktjmp/lush.nvim",
