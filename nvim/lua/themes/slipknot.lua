@@ -25,6 +25,7 @@ M.colors = {
   boolean = M.palette.white,
   parameter = M.palette.yellow,
   delimiter = M.palette.gray.li(60),
+  cmd_fg = M.palette.blue,
 }
 
 -- Lualine
@@ -82,6 +83,15 @@ M.theme = lush(function(injected_functions)
     NvimTreeWinSeparator { bg = M.colors.bg_dark, fg = M.colors.bg_dark },
     NvimTreeFolderName { fg = M.colors.folder_name },
     NvimTreeOpenedFolderName { fg = M.colors.folder_name },
+
+    -- Noice
+    NoiceCmdline { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
+    NoiceCmdlineIcon { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
+    NoiceCmdlinePopup { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
+    NoiceCmdlinePopupBorderCmdline { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
+    NoiceCmdlineIconLua { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
+    NoiceCmdlinePopupBorderLua { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
+    NoiceCmdlinePopupBorderInput { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
 
     -- Terminal
     TerminalBuffer { bg = M.colors.bg_dark, fg = M.colors.fg },
