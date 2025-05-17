@@ -10,6 +10,7 @@ M.palette = {
   white = hsl("#F3F1EE"),
   gray = hsl("#5B5B5B"),
   yellow = hsl("#BC9909"),
+  blue = hsl("#17699A"),
 }
 M.colors = {
   -- Editor
@@ -37,7 +38,7 @@ M.colors.lualine_visual_bg = M.palette.yellow
 M.colors.lualine_visual_fg = M.colors.bg_light
 M.colors.lualine_replace_bg = M.palette.yellow
 M.colors.lualine_replace_fg = M.colors.bg_light
-M.colors.lualine_command_bg = M.palette.yellow
+M.colors.lualine_command_bg = M.palette.blue
 M.colors.lualine_command_fg = M.colors.bg_light
 M.colors.lualine_inactive_bg = M.colors.bg_light
 M.colors.lualine_inactive_fg = M.palette.white
