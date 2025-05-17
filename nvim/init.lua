@@ -76,6 +76,8 @@ vim.opt.timeout = false
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.undofile = true
 
+vim.o.confirm = true
+
 require("plugins.utils.keymap")
 
 if vim.g.theme then
