@@ -31,6 +31,8 @@ M.colors.lualine_normal_bg = M.colors.bg_light
 M.colors.lualine_normal_fg = M.palette.red
 M.colors.lualine_insert_bg = M.palette.red
 M.colors.lualine_insert_fg = M.colors.bg_light
+M.colors.lualine_terminal_bg = M.palette.red
+M.colors.lualine_terminal_fg = M.colors.bg_light
 M.colors.lualine_visual_bg = M.palette.yellow
 M.colors.lualine_visual_fg = M.colors.bg_light
 M.colors.lualine_replace_bg = M.palette.yellow
@@ -61,7 +63,7 @@ M.theme = lush(function(injected_functions)
     Boolean { fg = M.colors.boolean },
 
     -- Identifier
-    Identifier { fg = M.colors.fg },
+    Identifier { fg = M.colors.keyword },
     keyword { fg = M.colors.keyword },
     Function { fg = M.colors.delimiter },
     Comment { fg = M.colors.fg_dark },
@@ -98,6 +100,12 @@ M.theme = lush(function(injected_functions)
     sym("@function.method") { fg = M.colors.keyword },
     sym("@function.builtin") { fg = M.colors.keyword },
     sym("@method") { fg = M.colors.keyword },
+
+    -- Lsp
+    sym("@lsp.type.property") { fg = M.colors.fg },
+
+    -- Typescript
+    typescriptParens { fg = M.colors.delimiter }
   }
 end)
 

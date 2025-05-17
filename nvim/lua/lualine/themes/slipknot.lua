@@ -17,6 +17,14 @@ return {
     y = { bg = theme.colors.lualine_insert_bg.hex, fg = theme.colors.lualine_insert_fg.hex },
     z = { bg = theme.colors.lualine_insert_bg.hex, fg = theme.colors.lualine_insert_fg.hex },
   },
+  terminal = {
+    a = { bg = theme.colors.lualine_terminal_bg.hex, fg = theme.colors.lualine_terminal_fg.hex },
+    b = { bg = theme.colors.lualine_terminal_bg.hex, fg = theme.colors.lualine_terminal_fg.hex },
+    c = { bg = theme.colors.lualine_terminal_bg.hex, fg = theme.colors.lualine_terminal_fg.hex },
+    x = { bg = theme.colors.lualine_terminal_bg.hex, fg = theme.colors.lualine_terminal_fg.hex },
+    y = { bg = theme.colors.lualine_terminal_bg.hex, fg = theme.colors.lualine_terminal_fg.hex },
+    z = { bg = theme.colors.lualine_terminal_bg.hex, fg = theme.colors.lualine_terminal_fg.hex },
+  },
   visual = {
     a = { bg = theme.colors.lualine_visual_bg.hex, fg = theme.colors.lualine_visual_fg.hex },
     b = { bg = theme.colors.lualine_visual_bg.hex, fg = theme.colors.lualine_visual_fg.hex },
