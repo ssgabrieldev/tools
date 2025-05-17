@@ -58,6 +58,7 @@ vim.wo.wrap = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+vim.opt.termguicolors = true
 vim.opt.mouse = "a"
 vim.opt.cursorline = true
 vim.opt.clipboard = "unnamedplus"

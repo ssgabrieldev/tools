@@ -6,7 +6,7 @@ local M = {}
 
 M.palette = {
   black = hsl(utils_ui.get_transparency() and "#000000" or "#080808"),
-  red = hsl("#F2000B"),
+  red = hsl("#910c1a"),
   white = hsl("#F3F1EE"),
   gray = hsl("#5B5B5B"),
   yellow = hsl("#BC9909"),
@@ -19,11 +19,11 @@ M.colors = {
   fg = M.palette.gray,
   fg_dark = M.palette.gray.da(60),
   keyword = M.palette.red,
-  string = M.palette.red.da(60),
+  string = M.palette.red,
   number = M.palette.white,
   boolean = M.palette.white,
   parameter = M.palette.yellow,
-  delimiter = M.palette.white,
+  delimiter = M.palette.gray.li(60),
 }
 
 -- Lualine
