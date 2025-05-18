@@ -86,6 +86,7 @@ M.theme = lush(function(injected_functions)
     Function { fg = M.colors.delimiter },
     Comment { fg = M.colors.fg_dark },
     Statement { fg = M.colors.keyword },
+    htmlTagName { fg = M.colors.fg },
 
     -- Delimiter
     Delimiter { fg = M.colors.delimiter },
