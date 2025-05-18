@@ -6,7 +6,7 @@ vim.g.mapleader = ";"
 vim.g.explore_is_open = false
 vim.g.debugger_is_open = false
 vim.g.terminal_is_open = false
-vim.g.border_style = "rounded"
+vim.g.border_style = "single"
 vim.g.theme = ui_utils.get_theme()
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
