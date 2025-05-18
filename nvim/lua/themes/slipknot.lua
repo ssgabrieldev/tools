@@ -57,6 +57,8 @@ M.theme = lush(function(injected_functions)
     Visual { fg = M.colors.bg, bg = M.colors.fg },
     CursorLine { bg = M.colors.bg_light },
     Directory { fg = M.colors.folder_name },
+    NormalFloat { fg = M.colors.fg, bg = M.colors.bg_dark }, -- Normal text in floating windows.
+    FloatBorder { fg = M.colors.fg, bg = M.colors.bg_dark },
 
     -- Types
     Type { fg = M.colors.keyword },
