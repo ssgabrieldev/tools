@@ -28,6 +28,16 @@ M.colors = {
   cmd_fg = M.palette.blue,
 }
 
+-- Diagnostic
+M.colors.diagnostic_info_fg = M.palette.blue
+M.colors.diagnostic_info_bg = M.colors.diagnostic_info_fg.da(80)
+M.colors.diagnostic_warn_fg = M.palette.yellow
+M.colors.diagnostic_warn_bg = M.colors.diagnostic_warn_fg.da(80)
+M.colors.diagnostic_error_fg = M.palette.red
+M.colors.diagnostic_error_bg = M.colors.diagnostic_error_fg.da(80)
+M.colors.diagnostic_hint_fg = M.palette.blue
+M.colors.diagnostic_hint_bg = M.colors.diagnostic_hint_fg.da(80)
+
 -- FloatBorder
 M.colors.float_border_fg = utils_ui.get_transparency() and M.colors.fg or M.colors.bg_dark
 M.colors.float_border_bg = M.colors.bg_dark
@@ -80,6 +90,16 @@ M.theme = lush(function(injected_functions)
     -- Delimiter
     Delimiter { fg = M.colors.delimiter },
     Special { fg = M.colors.delimiter },
+
+    -- Diagnostic
+    DiagnosticInfo { fg = M.colors.diagnostic_info_fg },
+    DiagnosticWarn { fg = M.colors.diagnostic_warn_fg },
+    DiagnosticError { fg = M.colors.diagnostic_error_fg },
+    DiagnosticHint { fg = M.colors.diagnostic_info_fg },
+    DiagnosticVirtualTextInfo { DiagnosticInfo, bg = M.colors.diagnostic_info_bg },
+    DiagnosticVirtualTextWarn { DiagnosticWarn, bg = M.colors.diagnostic_warn_bg },
+    DiagnosticVirtualTextError { DiagnosticError, bg = M.colors.diagnostic_error_bg },
+    DiagnosticVirtualTextHint { DiagnosticHint, bg = M.colors.diagnostic_info_bg },
 
     -- NvimTree
     NvimTreeNormal { bg = M.colors.bg_dark },
