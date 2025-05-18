@@ -100,6 +100,12 @@ M.theme = lush(function(injected_functions)
     DiagnosticVirtualTextWarn { DiagnosticWarn, bg = M.colors.diagnostic_warn_bg },
     DiagnosticVirtualTextError { DiagnosticError, bg = M.colors.diagnostic_error_bg },
     DiagnosticVirtualTextHint { DiagnosticHint, bg = M.colors.diagnostic_info_bg },
+    DiagnosticUnderlineInfo { gui = "undercurl", sp = M.colors.diagnostic_info_fg },
+    DiagnosticUnderlineWarn { gui = "undercurl", sp = M.colors.diagnostic_warn_fg },
+    DiagnosticUnderlineError { gui = "undercurl", sp = M.colors.diagnostic_error_fg },
+    DiagnosticUnderlineHint { gui = "undercurl", sp = M.colors.diagnostic_hint_fg },
+    ErrorMsg { DiagnosticError },
+    WarningMsg { DiagnosticWarn },
 
     -- NvimTree
     NvimTreeNormal { bg = M.colors.bg_dark },
