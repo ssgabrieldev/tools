@@ -18,7 +18,7 @@ M.colors = {
   bg_light = M.palette.black.li(2),
   bg_dark = M.palette.black.da(70),
   fg = M.palette.gray,
-  fg_dark = M.palette.gray.da(60),
+  fg_dark = M.palette.gray.da(30),
   keyword = M.palette.red,
   string = M.palette.red,
   number = M.palette.white,
@@ -27,6 +27,10 @@ M.colors = {
   delimiter = M.palette.gray.li(60),
   cmd_fg = M.palette.blue,
 }
+
+-- FloatBorder
+M.colors.float_border_fg = utils_ui.get_transparency() and M.colors.fg or M.colors.bg_dark
+M.colors.float_border_bg = M.colors.bg_dark
 
 -- Lualine
 M.colors.lualine_normal_bg = M.colors.bg_light
@@ -58,7 +62,7 @@ M.theme = lush(function(injected_functions)
     CursorLine { bg = M.colors.bg_light },
     Directory { fg = M.colors.folder_name },
     NormalFloat { fg = M.colors.fg, bg = M.colors.bg_dark }, -- Normal text in floating windows.
-    FloatBorder { fg = M.colors.fg, bg = M.colors.bg_dark },
+    FloatBorder { fg = M.colors.float_border_fg, bg = M.colors.float_border_bg },
 
     -- Types
     Type { fg = M.colors.keyword },
@@ -90,10 +94,15 @@ M.theme = lush(function(injected_functions)
     NoiceCmdline { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
     NoiceCmdlineIcon { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
     NoiceCmdlinePopup { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
-    NoiceCmdlinePopupBorderCmdline { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
     NoiceCmdlineIconLua { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
-    NoiceCmdlinePopupBorderLua { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
-    NoiceCmdlinePopupBorderInput { fg = M.colors.cmd_fg, bg = M.colors.bg_dark },
+    NoiceCmdlinePopupBorderLua { FloatBorder },
+    NoiceCmdlinePopupBorderInput { FloatBorder },
+    NoiceCmdlinePopupBorderSearch { FloatBorder },
+    NoiceCmdlinePopupBorderCmdline { FloatBorder },
+
+    -- Telescope
+    TelescopeNormal { NormalFloat },
+    TelescopeBorder { FloatBorder },
 
     -- Terminal
     TerminalBuffer { bg = M.colors.bg_dark, fg = M.colors.fg },
