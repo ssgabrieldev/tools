@@ -25,8 +25,14 @@ function M.config()
       end,
     },
     window = {
-      completion = cmp.config.window.bordered({ border = border }),
-      documentation = cmp.config.window.bordered({ border = border }),
+      completion = cmp.config.window.bordered({
+        border = border,
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,Search:None"
+      }),
+      documentation = cmp.config.window.bordered({
+        border = border,
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,Search:None"
+      }),
     },
     mapping = cmp.mapping.preset.insert({
       ['<c-e>'] = cmp.mapping.abort(),
