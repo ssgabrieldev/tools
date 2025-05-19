@@ -18,7 +18,7 @@ local M = {
       height = 1000
     },
     winbar = {
-      enabled = true,
+      enabled = false,
       name_formatter = function(term)
         return term.display_name or term.name
       end
