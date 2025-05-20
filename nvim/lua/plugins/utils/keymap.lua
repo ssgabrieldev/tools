@@ -8,6 +8,8 @@ vim.keymap.set({ "n" }, "<leader>wo", "<c-w>o", { silent = true, desc = "Close o
 vim.keymap.set({ "n" }, "<leader>wx", "<c-w>c", { silent = true, desc = "Close others windows" })
 vim.keymap.set({ "n" }, "<leader>wv", "<c-w>v", { silent = true, desc = "Split window vertical" })
 vim.keymap.set({ "n" }, "<leader>ws", "<c-w>s", { silent = true, desc = "Split window horizontal" })
+vim.keymap.set({ "i", "n", "t" }, "<leader>w_", "<cmd>wincmd _<cr>", { silent = true, desc = "Maximize vertical" })
+vim.keymap.set({ "i", "n", "t" }, "<leader>w|", "<cmd>wincmd |<cr>", { silent = true, desc = "Maximize vertical" })
 vim.keymap.set({ "i", "n", "t" }, "<leader>wh", "<cmd>wincmd h<cr>", { silent = true, desc = "Go left" })
 vim.keymap.set({ "i", "n", "t" }, "<leader>wj", "<cmd>wincmd j<cr>", { silent = true, desc = "Go down" })
 vim.keymap.set({ "i", "n", "t" }, "<leader>wk", "<cmd>wincmd k<cr>", { silent = true, desc = "Go up" })
