@@ -39,8 +39,8 @@ M.colors.diagnostic_hint_fg = M.palette.blue
 M.colors.diagnostic_hint_bg = M.colors.diagnostic_hint_fg.da(80)
 
 -- FloatBorder
-M.colors.float_border_fg = utils_ui.get_transparency() and M.colors.fg or M.colors.bg_dark
-M.colors.float_border_bg = M.colors.bg_dark
+M.colors.border_fg = M.colors.fg
+M.colors.float_border_bg = M.colors.bg
 
 -- Lualine
 M.colors.lualine_normal_bg = M.colors.bg_light
@@ -72,8 +72,8 @@ M.theme = lush(function(injected_functions)
     CursorLine { bg = M.colors.bg_light },
     Directory { fg = M.colors.folder_name },
     NormalFloat { fg = M.colors.fg, bg = M.colors.bg_dark }, -- Normal text in floating windows.
-    FloatBorder { fg = M.colors.float_border_fg, bg = M.colors.float_border_bg },
-    WinSeparator { bg = M.colors.bg_dark, fg = M.colors.bg_dark },
+    FloatBorder { fg = M.colors.border_fg, bg = M.colors.float_border_bg },
+    WinSeparator { bg = M.colors.float_border_bg, fg = M.colors.border_fg },
     StatusLine { bg = M.colors.lualine_inactive_bg },
     StatusLineNC { bg = M.colors.lualine_inactive_bg },
 
