@@ -39,7 +39,7 @@ M.colors.diagnostic_hint_fg = M.palette.blue
 M.colors.diagnostic_hint_bg = M.colors.diagnostic_hint_fg.da(80)
 
 -- FloatBorder
-M.colors.border_fg = M.colors.fg
+M.colors.border_fg = M.colors.fg_dark
 M.colors.float_border_bg = M.colors.bg
 
 -- Lualine
@@ -115,7 +115,7 @@ M.theme = lush(function(injected_functions)
     NvimTreeNormal { bg = M.colors.bg_dark },
     NvimTreeNormalNC { bg = M.colors.bg_dark },
     NvimTreeEndOfBuffer { bg = M.colors.bg_dark, fg = M.colors.bg_dark },
-    NvimTreeVertSplit { bg = M.colors.bg_dark, fg = M.colors.bg_dar },
+    NvimTreeVertSplit { WinSeparator },
     NvimTreeWinSeparator { WinSeparator },
     NvimTreeFolderName { fg = M.colors.folder_name },
     NvimTreeOpenedFolderName { fg = M.colors.folder_name },
@@ -129,6 +129,10 @@ M.theme = lush(function(injected_functions)
     NoiceCmdlinePopupBorderInput { FloatBorder },
     NoiceCmdlinePopupBorderSearch { FloatBorder },
     NoiceCmdlinePopupBorderCmdline { FloatBorder },
+
+    -- BufferLine
+    BufferLineOffsetSeparator { NvimTreeWinSeparator },
+    BufferLineFill { NvimTreeWinSeparator },
 
     -- Telescope
     TelescopeNormal { NormalFloat },
@@ -160,5 +164,28 @@ M.theme = lush(function(injected_functions)
     typescriptParens { fg = M.colors.delimiter }
   }
 end)
+
+vim.api.nvim_create_autocmd("WinNew", {
+  callback = function()
+    vim.defer_fn(function()
+      local win = vim.api.nvim_get_current_win()
+      local buf = vim.api.nvim_win_get_buf(win)
+      local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+
+      if ft == "toggleterm" then
+        vim.api.nvim_set_hl(
+          0,
+          "TerminalBuffer",
+          {
+            fg = M.theme.TerminalBuffer.fg.hex,
+            bg = M.theme.TerminalBuffer.bg.hex
+          }
+        )
+
+        vim.api.nvim_set_option_value("winhighlight", "Normal:TerminalBuffer", { scope = "local" })
+      end
+    end, 10)
+  end,
+})
 
 return M

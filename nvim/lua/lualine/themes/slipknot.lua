@@ -1,7 +1,7 @@
 local theme = require("themes.slipknot")
 
 local function update_statusline_bg()
-  if vim.g.colors_name == target_colorscheme then
+  if vim.g.colors_name == "slipknot" then
     local mode = vim.fn.mode()
     local bg_color = theme.colors.lualine_normal_bg.hex
     local fg_color = theme.colors.lualine_normal_fg.hex
