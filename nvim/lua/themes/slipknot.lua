@@ -5,7 +5,7 @@ local utils_ui = require("plugins.utils.ui")
 local M = {}
 
 M.palette = {
-  black = hsl(utils_ui.get_transparency() and "#000000" or "#101010"),
+  black = hsl(utils_ui.get_transparency() and "#000000" or "#080808"),
   red = hsl("#910c1a"),
   white = hsl("#F3F1EE"),
   gray = hsl("#5B5B5B"),
@@ -40,7 +40,7 @@ M.colors.diagnostic_hint_bg = M.colors.diagnostic_hint_fg.da(80)
 
 -- FloatBorder
 M.colors.border_fg = M.colors.fg_dark
-M.colors.float_border_bg = M.colors.bg
+M.colors.float_border_bg = M.colors.bg_dark
 
 -- Lualine
 M.colors.lualine_normal_bg = M.colors.bg_light
