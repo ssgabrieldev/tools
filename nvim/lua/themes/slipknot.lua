@@ -73,6 +73,7 @@ M.theme = lush(function(injected_functions)
     Directory { fg = M.colors.folder_name },
     NormalFloat { fg = M.colors.fg, bg = M.colors.bg_dark }, -- Normal text in floating windows.
     FloatBorder { fg = M.colors.float_border_fg, bg = M.colors.float_border_bg },
+    WinSeparator { bg = M.colors.bg_dark, fg = M.colors.bg_dark },
 
     -- Types
     Type { fg = M.colors.keyword },
@@ -113,7 +114,7 @@ M.theme = lush(function(injected_functions)
     NvimTreeNormalNC { bg = M.colors.bg_dark },
     NvimTreeEndOfBuffer { bg = M.colors.bg_dark, fg = M.colors.bg_dark },
     NvimTreeVertSplit { bg = M.colors.bg_dark, fg = M.colors.bg_dar },
-    NvimTreeWinSeparator { bg = M.colors.bg_dark, fg = M.colors.bg_dark },
+    NvimTreeWinSeparator { WinSeparator },
     NvimTreeFolderName { fg = M.colors.folder_name },
     NvimTreeOpenedFolderName { fg = M.colors.folder_name },
 
