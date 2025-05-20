@@ -28,4 +28,25 @@ vim.api.nvim_create_autocmd("WinNew", {
   end,
 })
 
+local function update_statusline_bg()
+  local mode = vim.fn.mode()
+  local color = theme.colors.lualine_normal_bg.hex
+
+  if mode:find('i') then
+    color = theme.colors.lualine_insert_bg.hex
+  elseif mode:find('v') or mode:find('V') or mode == '' then
+    color = theme.colors.lualine_visual_bg.hex
+  elseif mode:find('R') then
+    color = theme.colors.lualine_replace_bg.hex
+  elseif mode:find('c') then
+    color = theme.colors.lualine_command_bg.hex
+  end
+
+  vim.api.nvim_set_hl(0, 'StatusLine', { bg = color, fg = '#1e1e2e' })
+end
+update_statusline_bg()
+vim.api.nvim_create_autocmd('ModeChanged', {
+  callback = update_statusline_bg,
+})
+
 lush(theme.theme)

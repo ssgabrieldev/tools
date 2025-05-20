@@ -1,5 +1,6 @@
 local M = {
   "nvim-lualine/lualine.nvim",
+  enabled = true,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
@@ -7,7 +8,7 @@ local M = {
     require("lualine").setup({
       options = {
         theme = 'auto',
-        globalstatus = true
+        globalstatus = false
       }
     })
   end

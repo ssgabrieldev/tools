@@ -74,6 +74,8 @@ M.theme = lush(function(injected_functions)
     NormalFloat { fg = M.colors.fg, bg = M.colors.bg_dark }, -- Normal text in floating windows.
     FloatBorder { fg = M.colors.float_border_fg, bg = M.colors.float_border_bg },
     WinSeparator { bg = M.colors.bg_dark, fg = M.colors.bg_dark },
+    StatusLine { bg = M.colors.lualine_inactive_bg },
+    StatusLineNC { bg = M.colors.lualine_inactive_bg },
 
     -- Types
     Type { fg = M.colors.keyword },
