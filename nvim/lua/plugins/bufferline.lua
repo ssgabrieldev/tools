@@ -23,7 +23,7 @@ return {
       },
       diagnostics = "nvim_lsp",
       indicator = {
-        icon = '▎',
+        icon = ' ',
         style = 'icon',
       },
       sort_by = "insert_at_end"
