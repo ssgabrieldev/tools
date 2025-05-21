@@ -42,6 +42,9 @@ M.colors.diagnostic_hint_bg = M.colors.diagnostic_hint_fg.da(80)
 M.colors.border_fg = M.colors.fg_dark
 M.colors.float_border_bg = M.colors.bg_dark
 
+-- BufferLine
+M.colors.buffer_selected = M.palette.white
+
 -- Lualine
 M.colors.lualine_normal_bg = M.colors.bg_light
 M.colors.lualine_normal_fg = M.palette.red
@@ -133,6 +136,7 @@ M.theme = lush(function(injected_functions)
     -- BufferLine
     BufferLineOffsetSeparator { NvimTreeWinSeparator },
     BufferLineFill { NvimTreeWinSeparator },
+    BufferLineBufferSelected { fg = M.colors.buffer_selected },
 
     -- Telescope
     TelescopeNormal { NormalFloat },
