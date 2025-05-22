@@ -19,7 +19,7 @@ return {
       dashboard.button("<leader>ee", "  Explorer", ":NvimTreeToggle<CR>"),
       dashboard.button("<leader>ff", "  Find File", ":Telescope find_files<CR>"),
       dashboard.button("<leader>fw", "  Find Word", ":Telescope live_grep<CR>"),
-      dashboard.button("<leader>QQ", "x  Exit", ":qa<CR>"),
+      dashboard.button("<leader>qa", "x  Exit", ":qa<CR>"),
     }
 
     dashboard.section.footer.val = {
