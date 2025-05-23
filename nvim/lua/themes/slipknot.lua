@@ -11,6 +11,7 @@ M.palette = {
   gray = hsl("#5B5B5B"),
   yellow = hsl("#BC9909"),
   blue = hsl("#17699A"),
+  green = hsl("#5A715E")
 }
 M.colors = {
   -- Editor
@@ -64,6 +65,15 @@ M.colors.lualine_inactive_fg = M.palette.white
 -- NvimTree
 M.colors.folder_name = M.colors.fg
 
+-- Diff
+local diff_da = 80
+M.colors.diff_add_fg = M.palette.green
+M.colors.diff_delete_fg = M.palette.red
+M.colors.diff_change_fg = M.palette.blue
+M.colors.diff_add_bg = M.palette.green.da(diff_da)
+M.colors.diff_delete_bg = M.palette.red.da(diff_da)
+M.colors.diff_change_bg = M.palette.blue.da(diff_da)
+
 M.theme = lush(function(injected_functions)
   local sym = injected_functions.sym
 
@@ -79,6 +89,12 @@ M.theme = lush(function(injected_functions)
     WinSeparator { bg = M.colors.float_border_bg, fg = M.colors.border_fg },
     StatusLine { bg = M.colors.lualine_inactive_bg },
     StatusLineNC { bg = M.colors.lualine_inactive_bg },
+    DiffAdd { fg = M.colors.diff_add_fg, bg = M.colors.diff_add_bg },
+    DiffDelete { fg = M.colors.diff_delete_fg, bg = M.colors.diff_delete_bg },
+    DiffChange { fg = M.colors.diff_change_fg, bg = M.colors.diff_change_bg },
+    Added { fg = M.colors.diff_add_fg, bg = M.colors.diff_add_bg },
+    Removed { fg = M.colors.diff_delete_fg, bg = M.colors.diff_delete_bg },
+    Changed { fg = M.colors.diff_change_fg, bg = M.colors.diff_change_bg },
 
     -- Types
     Type { fg = M.colors.keyword },
@@ -97,6 +113,11 @@ M.theme = lush(function(injected_functions)
     -- Delimiter
     Delimiter { fg = M.colors.delimiter },
     Special { fg = M.colors.delimiter },
+
+    -- Gitsigns
+    GitSignsAdd { DiffAdd, bg = "" },
+    GitSignsDelete { DiffDelete, bg = "" },
+    GitSignsChange { DiffChange, bg = "" },
 
     -- Diagnostic
     DiagnosticInfo { fg = M.colors.diagnostic_info_fg },
