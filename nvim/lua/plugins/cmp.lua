@@ -40,14 +40,14 @@ function M.config()
       ["<c-d>"] = cmp.mapping.scroll_docs(4),
       ["<c-Space>"] = cmp.mapping.complete(),
       ["<cr>"] = cmp.mapping.confirm({ select = true }),
-      ["<c-j>"] = function(fallback)
+      ["<tab>"] = function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         else
           fallback()
         end
       end,
-      ["<c-k>"] = function(fallback)
+      ["<s-tab>"] = function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         else

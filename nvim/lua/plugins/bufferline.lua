@@ -39,7 +39,7 @@ return {
     { "<leader>b<s-k>", "<cmd>BufferLineCloseRight<CR>",  desc = "Buffer line close all buffer on the right" },
     { "<leader>bs",     "<cmd>botright new<CR>",          desc = "New buffer split vert" },
     { "<leader>bv",     "<cmd>vsplit new<CR>",            desc = "New buffer split vert" },
-    { "<leader>j",      "<cmd>BufferLineCyclePrev<CR>",   desc = "Buffer line prev buffer" },
-    { "<leader>k",      "<cmd>BufferLineCycleNext<CR>",   desc = "Buffer line next buffer" },
+    { "<tab>",      "<cmd>BufferLineCyclePrev<CR>",   desc = "Buffer line prev buffer" },
+    { "<s-tab>",      "<cmd>BufferLineCycleNext<CR>",   desc = "Buffer line next buffer" },
   },
 }
