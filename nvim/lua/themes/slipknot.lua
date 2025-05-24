@@ -24,7 +24,7 @@ M.colors = {
   string = M.palette.red,
   number = M.palette.white,
   boolean = M.palette.white,
-  parameter = M.palette.yellow,
+  parameter = M.palette.gray,
   delimiter = M.palette.gray.li(60),
   cmd_fg = M.palette.blue,
 }
