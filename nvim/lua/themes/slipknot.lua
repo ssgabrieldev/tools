@@ -40,7 +40,7 @@ M.colors.diagnostic_hint_fg = M.palette.blue
 M.colors.diagnostic_hint_bg = M.colors.diagnostic_hint_fg.da(80)
 
 -- FloatBorder
-M.colors.border_fg = M.colors.fg_dark
+M.colors.border_fg = M.colors.bg
 M.colors.float_border_bg = M.colors.bg_dark
 
 -- BufferLine
