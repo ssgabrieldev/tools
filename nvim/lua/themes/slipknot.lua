@@ -74,6 +74,9 @@ M.colors.diff_add_bg = M.palette.green.da(diff_da)
 M.colors.diff_delete_bg = M.palette.red.da(diff_da)
 M.colors.diff_change_bg = M.palette.blue.da(diff_da)
 
+-- Markdown
+M.colors.markdown_code_block_bg = M.colors.bg_dark
+
 M.theme = lush(function(injected_functions)
   local sym = injected_functions.sym
 
@@ -165,6 +168,9 @@ M.theme = lush(function(injected_functions)
 
     -- Terminal
     TerminalBuffer { bg = M.colors.bg_dark, fg = M.colors.fg },
+
+    -- Markdown
+    RenderMarkdownCode { bg = M.colors.markdown_code_block_bg },
 
     -- TreeSitter Comon
     sym("@keyword") { fg = M.colors.keyword },
