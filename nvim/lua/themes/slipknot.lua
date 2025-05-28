@@ -77,6 +77,10 @@ M.colors.diff_change_bg = M.palette.blue.da(diff_da)
 -- Markdown
 M.colors.markdown_code_block_bg = M.colors.bg_dark
 
+-- Dap
+M.colors.dap_stopped_line_bg = M.palette.red.da(60)
+M.colors.dap_stopped_icon_fg = M.palette.red
+
 M.theme = lush(function(injected_functions)
   local sym = injected_functions.sym
 
@@ -137,6 +141,10 @@ M.theme = lush(function(injected_functions)
     DiagnosticUnderlineHint { gui = "undercurl", sp = M.colors.diagnostic_hint_fg },
     ErrorMsg { DiagnosticError },
     WarningMsg { DiagnosticWarn },
+
+    -- Dap
+    debugPC { bg = M.colors.dap_stopped_line_bg },
+    SignColumn { fg = M.colors.dap_stopped_icon_fg },
 
     -- NvimTree
     NvimTreeNormal { bg = M.colors.bg_dark },
