@@ -8,7 +8,7 @@ local M = {
     "saadparwaiz1/cmp_luasnip",
     "onsails/lspkind.nvim",
     "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-cmdline"
+    "hrsh7th/cmp-cmdline",
   },
   lazy = false
 }
@@ -65,6 +65,11 @@ function M.config()
     }, {
       { name = "buffer" },
     }),
+    experimental = {
+      ghost_text = {
+        hl_group = "Comment", -- grupo de highlight (opcional)
+      }
+    }
   })
 
   cmp.setup.cmdline({ '/', '?' }, {
