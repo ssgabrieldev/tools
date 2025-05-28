@@ -17,10 +17,24 @@ M.handlers = {
 M.capabilities = vim.lsp.protocol.make_client_capabilities({})
 
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+local signs = {
+  Error = "", -- mais discreto
+  Warn  = "",
+  Hint  = "󰌶",
+  Info  = "󰋽",
+}
+
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 vim.diagnostic.config({
   float = {
     border = border
-  }
+  },
+  signs = true
 })
 
 require("lspconfig.ui.windows").default_options = {

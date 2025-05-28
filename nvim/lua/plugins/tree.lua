@@ -24,7 +24,13 @@ local M = {
       },
     },
     diagnostics = {
-      enable = true
+      enable = true,
+      icons = {
+        hint = "󰌶",
+        info = "󰋽",
+        warning = "",
+        error = "",
+      },
     },
     git = {
       ignore = false
