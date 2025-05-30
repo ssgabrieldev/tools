@@ -1,0 +1,58 @@
+#!/bin/bash
+
+IMAGE_NAME=ubuntu_dev
+REBUILD=false
+CURRENT_DIR=$(pwd)
+CONFIG_FILE="container.conf"
+SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
+SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
+
+# Check if container.conf exists
+if [[ ! -f "$CONFIG_FILE" ]]; then
+  echo "Config file '$CONFIG_FILE' not found!"
+  exit 1
+fi
+
+source "$CONFIG_FILE"
+
+if [[ "$1" == "-b" ]]; then
+  REBUILD=true
+fi
+
+# Build container
+if $REBUILD; then
+  if [ -n "$(~/apps/bin/docker ps -a -q -f name="^${CONTAINER_NAME}$")" ]; then
+    ~/apps/bin/docker stop $CONTAINER_NAME
+    ~/apps/bin/docker rm $CONTAINER_NAME
+  fi
+
+  if [ -n "$(~/apps/bin/docker images -q $IMAGE_NAME)" ]; then
+    ~/apps/bin/docker rmi $IMAGE_NAME
+  fi
+
+  ~/apps/bin/docker build -t $IMAGE_NAME $SCRIPT_DIR
+fi
+
+# Start container if exists
+if [ -n "$(~/apps/bin/docker ps -aq -f name="^${CONTAINER_NAME}$")" ]; then
+  ~/apps/bin/docker start $CONTAINER_NAME -i
+else # Create container if not exists
+  # Build docker args
+  DOCKER_ARGS="-it --name $CONTAINER_NAME"
+
+  # Build ports args
+  IFS=',' read -ra PORT_ARRAY <<< "$PORTS"
+  for port in "${PORT_ARRAY[@]}"; do
+    DOCKER_ARGS+=" -p $port"
+  done
+
+  # Build volumes
+  IFS=',' read -ra VOLUMES_ARRAY <<< "$VOLUMES"
+  for mount in "${VOLUMES_ARRAY[@]}"; do
+    IFS=':' read -r src_rel dst <<< "$mount"
+    src="$CURRENT_DIR/$src_rel"
+    DOCKER_ARGS+=" --mount type=bind,src=$src,dst=$dst"
+  done
+
+  ~/apps/bin/docker run $DOCKER_ARGS $IMAGE_NAME
+fi

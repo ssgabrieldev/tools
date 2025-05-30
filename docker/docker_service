@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# start docker service
+sudo sysctl kernel.apparmor_restrict_unprivileged_userns=0
+systemctl --user start docker

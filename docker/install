@@ -32,3 +32,8 @@ sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
 
 # Clear
 rm ~/tools/downloads/ -rf
+
+# Setup utils
+ln -s /home/gabriel/tools/docker/docker_ubuntu /home/gabriel/apps/bin/docker_ubuntu
+ln -s /home/gabriel/tools/docker/docker_service /home/gabriel/apps/bin/docker_service
+ln -s /home/gabriel/tools/docker/docker_clear /home/gabriel/apps/bin/docker_clear

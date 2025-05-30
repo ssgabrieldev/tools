@@ -1,0 +1,4 @@
+#!/bin/bash
+
+~/apps/bin/docker rm $(~/apps/bin/docker ps -aq)
+~/apps/bin/docker rmi $(~/apps/bin/docker image ls -q)
