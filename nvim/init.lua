@@ -51,7 +51,6 @@ if vim.env.SSH_TTY then
   }
 end
 
-require("plugins.utils.aucmd")
 require("plugins.utils.commands")
 
 vim.wo.wrap = false
