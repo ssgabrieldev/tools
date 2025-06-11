@@ -1,13 +1,8 @@
-local ui_utils = require("plugins.utils.ui")
 local config_path = vim.fn.stdpath('config')
 local user_dir = config_path .. '/user'
 
 vim.g.mapleader = ";"
-vim.g.explore_is_open = false
-vim.g.debugger_is_open = false
-vim.g.terminal_is_open = false
 vim.g.border_style = "single"
-vim.g.theme = ui_utils.get_theme()
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -79,6 +74,4 @@ vim.o.confirm = true
 
 require("plugins.utils.keymap")
 
-if vim.g.theme then
-  vim.cmd("color " .. vim.g.theme)
-end
+vim.cmd("color slipknot")
