@@ -1,11 +1,10 @@
 local lush = require('lush')
 local hsl = lush.hsl
-local utils_ui = require("plugins.utils.ui")
 
 local M = {}
 
 M.palette = {
-  black = hsl(utils_ui.get_transparency() and "#000000" or "#080808"),
+  black = hsl("#080808"),
   red = hsl("#910c1a"),
   white = hsl("#F3F1EE"),
   gray = hsl("#5B5B5B"),

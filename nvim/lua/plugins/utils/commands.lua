@@ -1,5 +1,3 @@
-local ui_utils = require("plugins.utils.ui")
-
 local commands = {
   ToggleTranparency = function ()
     ui_utils.toggle_transparency()

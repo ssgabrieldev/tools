@@ -28,6 +28,7 @@ return {
     bottom = {
       {
         ft = "toggleterm",
+        size = { height = 15 },
         filter = function(buf, win)
           return vim.api.nvim_win_get_config(win).relative == ""
         end
