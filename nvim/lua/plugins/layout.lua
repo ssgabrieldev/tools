@@ -27,6 +27,17 @@ return {
         end
       },
       {
+        ft = "dap-view-term",
+        size = { height = 15 },
+        wo= {
+          number = false
+        }
+      },
+      {
+        ft = "dap-repl",
+        size = { height = 15 },
+      },
+      {
         ft = "dap-view",
         size = { height = 15 },
       },

@@ -112,6 +112,7 @@ return {
                 "NvimTree",
                 "toggleterm",
                 "dap-view",
+                "dap-repl",
                 "dap-view-term",
                 "notify"
               }
