@@ -7,8 +7,8 @@ return {
   opts = {
     wo = {
       winbar = false,
-      winfixwidth = true,
-      winfixheight = true
+      winfixwidth = false,
+      winfixheight = false
     },
     animate = {
       enabled = false
@@ -49,6 +49,20 @@ return {
       ["<a-l>"] = function(win)
         win:resize("width", 2)
       end,
+      ["<leader>w="] = function(win)
+        win.view.edgebar:equalize()
+      end,
+      ["q"] = function() end,
+      ["<c-q>"] = function() end,
+      ["Q"] = function() end,
+      ["]w"] = function() end,
+      ["[w"] = function() end,
+      ["]W"] = function() end,
+      ["[W"] = function() end,
+      ["<c-w>>"] = function() end,
+      ["<c-w><lt>"] = function() end,
+      ["<c-w>+"] = function() end,
+      ["<c-w>-"] = function() end,
     }
   }
 }
