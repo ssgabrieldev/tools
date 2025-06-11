@@ -55,72 +55,72 @@ local open_term_buffer = function(file_type)
   end
 end
 
-vim.api.nvim_create_autocmd("BufWinEnter", {
-  callback = function()
-    vim.cmd("ColorizerAttachToBuffer")
+-- vim.api.nvim_create_autocmd("BufWinEnter", {
+--   callback = function()
+--     vim.cmd("ColorizerAttachToBuffer")
+--
+--     open_buffer(function(file_type)
+--       if file_type == "NvimTree" then
+--         vim.g.explore_is_open = true
+--         require("dapui").close()
+--         vim.g.debugger_is_open = false
+--       end
+--
+--       if file_type == "dapui_watches" then
+--         vim.g.debugger_is_open = true
+--         vim.cmd("NvimTreeClose")
+--         vim.g.explore_is_open = false
+--
+--         if vim.g.terminal_is_open then
+--           vim.cmd("ToggleTerm")
+--           vim.g.terminal_is_open = false
+--         end
+--       end
+--
+--       open_term_buffer(file_type)
+--     end)
+--   end
+-- })
 
-    open_buffer(function(file_type)
-      if file_type == "NvimTree" then
-        vim.g.explore_is_open = true
-        require("dapui").close()
-        vim.g.debugger_is_open = false
-      end
+-- vim.api.nvim_create_autocmd("TermOpen", {
+--   callback = function()
+--     open_buffer(open_term_buffer)
+--   end
+-- })
 
-      if file_type == "dapui_watches" then
-        vim.g.debugger_is_open = true
-        vim.cmd("NvimTreeClose")
-        vim.g.explore_is_open = false
-
-        if vim.g.terminal_is_open then
-          vim.cmd("ToggleTerm")
-          vim.g.terminal_is_open = false
-        end
-      end
-
-      open_term_buffer(file_type)
-    end)
-  end
-})
-
-vim.api.nvim_create_autocmd("TermOpen", {
-  callback = function()
-    open_buffer(open_term_buffer)
-  end
-})
-
-vim.api.nvim_create_autocmd("WinClosed", {
-  callback = function(args)
-    local win_id = tonumber(args.match)
-    if not win_id then
-      return
-    end
-
-    local config = vim.api.nvim_win_get_config(win_id)
-
-    if config.relative ~= "" then
-      return
-    end
-
-    local buf = vim.api.nvim_win_get_buf(win_id)
-    local file_type = vim.bo[buf].filetype
-
-    if file_type == "toggleterm" then
-      vim.g.terminal_is_open = false
-    end
-
-    if file_type == "NvimTree" then
-      vim.g.explore_is_open = false
-    end
-
-    if
-        file_type == "dapui_watches"
-        or file_type == "dapui_stacks"
-        or file_type == "dapui_breakpoints"
-        or file_type == "dapui_scopes"
-        or file_type == "dapui_console"
-        or file_type == "dap-repl"
-    then
-      vim.g.debugger_is_open = false
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd("WinClosed", {
+--   callback = function(args)
+--     local win_id = tonumber(args.match)
+--     if not win_id then
+--       return
+--     end
+--
+--     local config = vim.api.nvim_win_get_config(win_id)
+--
+--     if config.relative ~= "" then
+--       return
+--     end
+--
+--     local buf = vim.api.nvim_win_get_buf(win_id)
+--     local file_type = vim.bo[buf].filetype
+--
+--     if file_type == "toggleterm" then
+--       vim.g.terminal_is_open = false
+--     end
+--
+--     if file_type == "NvimTree" then
+--       vim.g.explore_is_open = false
+--     end
+--
+--     if
+--         file_type == "dapui_watches"
+--         or file_type == "dapui_stacks"
+--         or file_type == "dapui_breakpoints"
+--         or file_type == "dapui_scopes"
+--         or file_type == "dapui_console"
+--         or file_type == "dap-repl"
+--     then
+--       vim.g.debugger_is_open = false
+--     end
+--   end,
+-- })
