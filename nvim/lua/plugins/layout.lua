@@ -18,11 +18,6 @@ return {
         ft = "NvimTree"
       }
     },
-    right = {
-      {
-        ft = "qf"
-      }
-    },
     bottom = {
       {
         ft = "toggleterm",
@@ -35,6 +30,9 @@ return {
         ft = "dap-view",
         size = { height = 15 },
       },
+      {
+        ft = "qf"
+      }
     },
     keys = {
       ["<a-j>"] = function(win)

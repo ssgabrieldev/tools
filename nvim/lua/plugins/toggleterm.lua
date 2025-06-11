@@ -55,6 +55,7 @@ local M = {
   'akinsho/toggleterm.nvim',
   version = "*",
   opts = {
+    persist_size = false,
     shade_terminals = false,
     shading_factor = "-70",
     shading_ratio = "-0.5", -- the ratio of shading factor for light/dark terminal background, default: -3
