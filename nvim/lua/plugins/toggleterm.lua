@@ -1,6 +1,22 @@
+local utils = require("plugins.utils.utils")
+
 local lazysql_terminal = nil
 local lazygit_terminal = nil
 local vimongo_terminal = nil
+
+local close_other_panels = function()
+  utils.close_buffers({
+    "dap-view"
+  })
+end
+
+local close_all_terms = function()
+  local terms = require("toggleterm.terminal").get_all()
+
+  for _, term in ipairs(terms) do
+    term:close()
+  end
+end
 
 local open_new_terminal = function()
   vim.ui.select(
@@ -18,10 +34,14 @@ local open_new_terminal = function()
             if input == nil or input == "" then
               input = string.char(math.random(97, 122))
             end
+
+            close_all_terms()
+
             require('toggleterm.terminal').Terminal:new({
               hidden = false,
               display_name = input,
-              direction = choise
+              direction = choise,
+              on_open = close_other_panels
             }):open()
           end
         )
@@ -68,6 +88,7 @@ local M = {
         if #terms == 0 then
           open_new_terminal()
         else
+          close_other_panels()
           vim.cmd("ToggleTerm")
         end
       end,
@@ -105,9 +126,8 @@ local M = {
           },
           function(term_choice)
             if (term_choice) then
-              -- for _, term in ipairs(terms) do
-              --   term:close()
-              -- end
+              close_all_terms()
+              close_other_panels()
 
               term_choice:open()
             end
