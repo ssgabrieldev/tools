@@ -164,22 +164,6 @@ return {
       desc = "Find config files"
     },
     {
-      "<leader>fp",
-      function()
-        utils_telescope.reload_plugin()
-      end,
-      mode = { "n", "t" },
-      desc = "Reload plugin"
-    },
-    {
-      "<leader>fT",
-      function()
-        utils_telescope.list_themes()
-      end,
-      mode = { "n", "t" },
-      desc = "Change theme"
-    },
-    {
       "<leader>fW",
       function()
         require("telescope").extensions.live_grep_args.live_grep_args()
