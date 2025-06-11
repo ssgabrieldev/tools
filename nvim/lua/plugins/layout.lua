@@ -5,6 +5,11 @@ return {
     vim.opt.splitkeep = "screen"
   end,
   opts = {
+    wo = {
+      winbar = false,
+      winfixwidth = true,
+      winfixheight = true
+    },
     animate = {
       enabled = false
     },
@@ -25,6 +30,11 @@ return {
         ft = "dapui_scopes"
       }
     },
+    right = {
+      {
+        ft = "qf"
+      }
+    },
     bottom = {
       {
         ft = "toggleterm",
@@ -40,5 +50,19 @@ return {
         ft = "dap-repl"
       }
     },
+    keys = {
+      ["<a-j>"] = function(win)
+        win:resize("height", -2)
+      end,
+      ["<a-k>"] = function(win)
+        win:resize("height", 2)
+      end,
+      ["<a-h>"] = function(win)
+        win:resize("width", -2)
+      end,
+      ["<a-l>"] = function(win)
+        win:resize("width", 2)
+      end,
+    }
   }
 }

@@ -100,14 +100,14 @@ local M = {
           {
             prompt = "Search Terminal",
             format_item = function(term)
-              return "" .. term.display_name or term.name
+              return "" .. term.id .. " " .. term.display_name or term.name
             end
           },
           function(term_choice)
             if (term_choice) then
-              for _, term in ipairs(terms) do
-                term:close()
-              end
+              -- for _, term in ipairs(terms) do
+              --   term:close()
+              -- end
 
               term_choice:open()
             end
