@@ -56,12 +56,36 @@ local M = {
       { desc = 'Toggle terminal horizontal' }
     },
     {
+      '<leader>tH',
+      function()
+        require('toggleterm.terminal').Terminal:new({
+          hidden = false,
+          direction = "horizontal"
+        }):open()
+      end,
+      mode = { "n", "t" },
+      { desc = 'Open new terminal' }
+
+    },
+    {
       '<leader>tf',
       function()
         vim.cmd(vim.v.count .. "ToggleTerm direction=float")
       end,
       mode = { "n", "t" },
       { desc = 'Toggle terminal float' }
+    },
+    {
+      '<leader>tF',
+      function()
+        require('toggleterm.terminal').Terminal:new({
+          hidden = false,
+          direction = "float"
+        }):open()
+      end,
+      mode = { "n", "t" },
+      { desc = 'Open new terminal' }
+
     },
     {
       '<leader>tn',
