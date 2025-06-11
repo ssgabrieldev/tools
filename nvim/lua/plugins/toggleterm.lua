@@ -1,17 +1,39 @@
-local toggleterm_utils = require("plugins.utils.toggleterm")
-
 local lazysql_terminal = nil
 local lazygit_terminal = nil
 local vimongo_terminal = nil
+
+local open_new_terminal = function()
+  vim.ui.select(
+    { "horizontal", "float" },
+    {
+      prompt = "New terminal direction"
+    },
+    function(choise)
+      if choise then
+        vim.ui.input(
+          {
+            prompt = "Terminal name: "
+          },
+          function(input)
+            require('toggleterm.terminal').Terminal:new({
+              hidden = false,
+              display_name = input,
+              direction = choise
+            }):open()
+          end
+        )
+      end
+    end
+  )
+end
 
 local M = {
   'akinsho/toggleterm.nvim',
   version = "*",
   opts = {
-    direction = "float",
     shade_terminals = false,
     shading_factor = "-70",
-    shading_ratio = "-0.5",   -- the ratio of shading factor for light/dark terminal background, default: -3
+    shading_ratio = "-0.5", -- the ratio of shading factor for light/dark terminal background, default: -3
     float_opts = {
       border = vim.g.border_style,
       title_pos = "center",
@@ -38,81 +60,51 @@ local M = {
     {
       '<leader>tt',
       function()
-        local terminals = require("toggleterm.terminal").get_all()
+        local terms = require("toggleterm.terminal").get_all()
 
-        if #terminals > 0 then
-          vim.cmd(vim.v.count .. "ToggleTerm")
+        if #terms == 0 then
+          open_new_terminal()
         else
-          toggleterm_utils.open_new_terminal()
+          vim.cmd("ToggleTerm")
         end
       end,
-      mode = { "n", "t" },
+      mode = { "n", "t", "i" },
       { desc = 'Toggle terminal' }
-    },
-    {
-      '<leader>ta',
-      function()
-        vim.cmd("ToggleTermToggleAll")
-      end,
-      mode = { "n", "t" },
-      { desc = 'Toggle all terminal' }
-    },
-    {
-      '<leader>th',
-      function()
-        vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
-      end,
-      mode = { "n", "t" },
-      { desc = 'Toggle terminal horizontal' }
-    },
-    {
-      '<leader>tH',
-      function()
-        require('toggleterm.terminal').Terminal:new({
-          hidden = false,
-          direction = "horizontal"
-        }):open()
-      end,
-      mode = { "n", "t" },
-      { desc = 'Open new terminal' }
-
-    },
-    {
-      '<leader>tf',
-      function()
-        vim.cmd(vim.v.count .. "ToggleTerm direction=float")
-      end,
-      mode = { "n", "t" },
-      { desc = 'Toggle terminal float' }
-    },
-    {
-      '<leader>tF',
-      function()
-        require('toggleterm.terminal').Terminal:new({
-          hidden = false,
-          direction = "float"
-        }):open()
-      end,
-      mode = { "n", "t" },
-      { desc = 'Open new terminal' }
-
     },
     {
       '<leader>tn',
       function()
-        toggleterm_utils.open_new_terminal()
+        open_new_terminal()
       end,
-      mode = { "n", "t" },
-      { desc = 'Open new terminal' }
-
+      mode = { "n", "t", "i" },
+      { desc = 'Toggle terminal' }
     },
     {
-      '<leader>t<s-n>',
+      "<leader>ft",
       function()
-        vim.cmd("ToggleTermSetName")
+        local terms = require("toggleterm.terminal").get_all()
+
+        vim.ui.select(
+          terms,
+          {
+            prompt = "Search Terminal",
+            format_item = function(term)
+              return "" .. term.display_name or term.name
+            end
+          },
+          function(term_choice)
+            if (term_choice) then
+              for _, term in ipairs(terms) do
+                term:close()
+              end
+
+              term_choice:open()
+            end
+          end
+        )
       end,
-      mode = { "n", "t" },
-      { desc = 'Set terminal name' }
+      mode = { "n", "t", "i" },
+      { desc = "Find terminals" }
     },
     {
       "<leader>tm",
@@ -121,6 +113,7 @@ local M = {
           local Terminal = require('toggleterm.terminal').Terminal
           vimongo_terminal = Terminal:new({
             cmd = "vmd",
+            direction = "float",
             hidden = true,
             count = 1000,
             on_exit = function()
@@ -141,6 +134,7 @@ local M = {
           local Terminal = require('toggleterm.terminal').Terminal
           lazysql_terminal = Terminal:new({
             cmd = "lsql",
+            direction = "float",
             hidden = true,
             count = 1001,
             on_exit = function()
@@ -161,6 +155,7 @@ local M = {
           local Terminal = require('toggleterm.terminal').Terminal
           lazygit_terminal = Terminal:new({
             cmd = "lg",
+            direction = "float",
             hidden = true,
             count = 1002,
             on_exit = function()

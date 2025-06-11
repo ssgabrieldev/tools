@@ -27,7 +27,10 @@ return {
     },
     bottom = {
       {
-        ft = "toggleterm"
+        ft = "toggleterm",
+        filter = function(buf, win)
+          return vim.api.nvim_win_get_config(win).relative == ""
+        end
       },
       {
         ft = "dapui_console"
@@ -38,4 +41,3 @@ return {
     },
   }
 }
-

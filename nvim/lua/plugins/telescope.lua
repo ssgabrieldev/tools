@@ -7,7 +7,6 @@ return {
     "s1n7ax/nvim-window-picker",
     "mfussenegger/nvim-dap",
     "nvim-telescope/telescope-dap.nvim",
-    "akinsho/toggleterm.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
     {
       "nvim-telescope/telescope-live-grep-args.nvim",
@@ -151,14 +150,6 @@ return {
       end,
       mode = { "n", "t" },
       desc = "Find keymap"
-    },
-    {
-      "<leader>ft",
-      function()
-        utils_telescope.list_toggleterm()
-      end,
-      mode = { "n", "t" },
-      desc = "Find terminal"
     },
     {
       "<leader>fc",
