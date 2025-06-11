@@ -40,8 +40,8 @@ M.colors.diagnostic_hint_fg = M.palette.blue
 M.colors.diagnostic_hint_bg = M.colors.diagnostic_hint_fg.da(80)
 
 -- FloatBorder
-M.colors.border_fg = M.colors.bg_dark.li(20)
-M.colors.border_bg = M.colors.bg
+M.colors.border_fg = M.colors.bg
+M.colors.border_bg = M.colors.bg_dark
 
 -- BufferLine
 M.colors.buffer_selected = M.palette.white
@@ -207,28 +207,5 @@ M.theme = lush(function(injected_functions)
     typescriptParens { fg = M.colors.delimiter }
   }
 end)
-
-vim.api.nvim_create_autocmd("WinNew", {
-  callback = function()
-    vim.defer_fn(function()
-      local win = vim.api.nvim_get_current_win()
-      local buf = vim.api.nvim_win_get_buf(win)
-      local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-
-      if ft == "toggleterm" then
-        vim.api.nvim_set_hl(
-          0,
-          "TerminalBuffer",
-          {
-            fg = M.theme.TerminalBuffer.fg.hex,
-            bg = M.theme.TerminalBuffer.bg.hex
-          }
-        )
-
-        vim.api.nvim_set_option_value("winhighlight", "Normal:TerminalBuffer", { scope = "local" })
-      end
-    end, 10)
-  end,
-})
 
 return M

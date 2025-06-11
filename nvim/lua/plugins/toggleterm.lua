@@ -10,6 +10,8 @@ local M = {
   opts = {
     direction = "float",
     shade_terminals = false,
+    shading_factor = "-70",
+    shading_ratio = "-0.5",   -- the ratio of shading factor for light/dark terminal background, default: -3
     float_opts = {
       border = vim.g.border_style,
       title_pos = "center",
@@ -22,6 +24,14 @@ local M = {
       name_formatter = function(term)
         return term.display_name or term.name
       end
+    },
+    highlights = {
+      Normal = {
+        link = "NormalFloat"
+      },
+      NormalFloat = {
+        link = "NormalFloat"
+      }
     }
   },
   keys = {
