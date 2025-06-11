@@ -18,12 +18,7 @@ M.get_propper_window = function(prompt_bufnr, picker)
     {
       "NvimTree",
       "toggleterm",
-      "dapui_watches",
-      "dapui_stacks",
-      "dapui_breakpoints",
-      "dapui_scopes",
-      "dapui_console",
-      "dap-repl",
+      "dap-view",
       "notify"
     },
     {

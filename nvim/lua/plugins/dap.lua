@@ -8,9 +8,11 @@ return {
   "mfussenegger/nvim-dap",
   dependencies = {
     {
-      "rcarriga/nvim-dap-ui",
+      "igorlfs/nvim-dap-view",
       opts = {
-        expand_lines = false
+        winbar = {
+          sections = { "watches", "scopes", "exceptions", "breakpoints", "threads", "repl", "console" }
+        }
       }
     },
     "nvim-neotest/nvim-nio",
@@ -93,16 +95,6 @@ return {
             vim.notify("Debugger teminated", "info")
           end
         })
-        require("dap").terminate({
-          on_done = function()
-            vim.notify("Debugger teminated", "info")
-          end
-        })
-        require("dap").terminate({
-          on_done = function()
-            vim.notify("Debugger teminated", "info")
-          end
-        })
       end,
       desc = "Debugger terminate"
     },
@@ -114,49 +106,6 @@ return {
       desc = "Debugger continue"
     },
     {
-      "<leader>du",
-      function()
-        require("dapui").toggle({ reset = true })
-      end,
-      desc = "Debugger ui"
-    },
-    {
-      "<leader>dv",
-      function()
-        require("dapui").eval(nil, { enter = true })
-      end,
-      mode = { "n", "v" },
-      desc = "Debugger evaluate",
-    },
-    {
-      "<leader>dc",
-      function()
-        require("dapui").float_element("console", float_opts)
-      end,
-      desc = "Debugger console"
-    },
-    {
-      "<leader>dw",
-      function()
-        require("dapui").float_element("watches", float_opts)
-      end,
-      desc = "Debugger watches"
-    },
-    {
-      "<leader>dd",
-      function()
-        require("dapui").float_element("breakpoints", float_opts)
-      end,
-      desc = "Debugger breakpoints"
-    },
-    {
-      "<leader>dl",
-      function()
-        require("dapui").float_element(nil, float_opts)
-      end,
-      desc = "Debugger list frames"
-    },
-    {
       "<leader>di",
       function()
         local win_id = require("window-picker").pick_window({
@@ -166,11 +115,7 @@ return {
               filetype = {
                 "NvimTree",
                 "toggleterm",
-                "dapui_watches",
-                "dapui_stacks",
-                "dapui_breakpoints",
-                "dapui_scopes",
-                "dapui_console",
+                "dap-view",
                 "dap-repl",
                 "notify"
               }
@@ -186,6 +131,13 @@ return {
         vim.cmd("e .vscode/launch.json")
       end,
       desc = "Debugger init"
-    }
+    },
+    {
+      "<leader>du",
+      function()
+        require("dap-view").toggle()
+      end,
+      desc = "Debugger continue"
+    },
   },
 }

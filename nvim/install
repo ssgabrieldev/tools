@@ -2,11 +2,11 @@
 
 mkdir ~/apps/bin -p
 
-wget -O ~/apps/nvim.tar.gz https://github.com/neovim/neovim/releases/download/v0.10.3/nvim-linux64.tar.gz
+wget -O ~/apps/nvim.tar.gz https://github.com/neovim/neovim/releases/download/v0.11.2/nvim-linux-x86_64.tar.gz
 
 rm -rf ~/apps/nvim
 tar -xzf ~/apps/nvim.tar.gz -C ~/apps/
-mv ~/apps/nvim-linux64 ~/apps/nvim
+mv ~/apps/nvim-linux-x86_64 ~/apps/nvim
 rm ~/apps/nvim.tar.gz
 
 rm ~/apps/bin/nvim

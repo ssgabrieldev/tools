@@ -43,12 +43,7 @@ local M = {
             return window_picker_utils.pick_window_to_open_buf(
               {
                 "toggleterm",
-                "dapui_watches",
-                "dapui_stacks",
-                "dapui_breakpoints",
-                "dapui_scopes",
-                "dapui_console",
-                "dap-repl",
+                "dap-view",
                 "notify",
                 "NvimTree"
               },

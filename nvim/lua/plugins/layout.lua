@@ -16,18 +16,6 @@ return {
     left = {
       {
         ft = "NvimTree"
-      },
-      {
-        ft = "dapui_watches"
-      },
-      {
-        ft = "dapui_stacks"
-      },
-      {
-        ft = "dapui_breakpoints"
-      },
-      {
-        ft = "dapui_scopes"
       }
     },
     right = {
@@ -44,11 +32,9 @@ return {
         end
       },
       {
-        ft = "dapui_console"
+        ft = "dap-view",
+        size = { height = 15 },
       },
-      {
-        ft = "dap-repl"
-      }
     },
     keys = {
       ["<a-j>"] = function(win)

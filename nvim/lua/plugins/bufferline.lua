@@ -14,12 +14,6 @@ return {
           text_align = "center",
           separator = "│",
         },
-        {
-          filetype = "dapui_watches",
-          text = "Debugger",
-          text_align = "center",
-          separator = "│",
-        },
       },
       diagnostics = "nvim_lsp",
       indicator = {
