@@ -1,8 +1,4 @@
-local float_opts = {
-  enter = true,
-  position = "center",
-  border = vim.g.border_style
-}
+local utils = require("plugins.utils.utils")
 
 return {
   "mfussenegger/nvim-dap",
@@ -135,6 +131,9 @@ return {
     {
       "<leader>du",
       function()
+        utils.close_buffers({
+          "toggleterm"
+        })
         require("dap-view").toggle()
       end,
       desc = "Debugger continue"
