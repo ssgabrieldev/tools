@@ -19,6 +19,7 @@ M.get_propper_window = function(prompt_bufnr, picker)
       "NvimTree",
       "toggleterm",
       "dap-view",
+      "dap-view-term",
       "notify"
     },
     {

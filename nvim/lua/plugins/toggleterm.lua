@@ -6,7 +6,8 @@ local vimongo_terminal = nil
 
 local close_other_panels = function()
   utils.close_buffers({
-    "dap-view"
+    "dap-view",
+    "dap-view-term",
   })
 end
 

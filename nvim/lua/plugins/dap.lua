@@ -112,7 +112,7 @@ return {
                 "NvimTree",
                 "toggleterm",
                 "dap-view",
-                "dap-repl",
+                "dap-view-term",
                 "notify"
               }
             }
@@ -127,6 +127,17 @@ return {
         vim.cmd("e .vscode/launch.json")
       end,
       desc = "Debugger init"
+    },
+    {
+      "<leader>dw",
+      function()
+        utils.close_buffers({
+          "toggleterm"
+        })
+        require("dap-view").add_expr()
+      end,
+      mode = { "v", "n" },
+      desc = "Debugger continue"
     },
     {
       "<leader>du",
