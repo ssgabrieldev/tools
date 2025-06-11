@@ -5,8 +5,8 @@ return {
     vim.opt.splitkeep = "screen"
   end,
   opts = {
-    wo = {
-      winfixwidth = false
+    animate = {
+      enabled = false
     },
     left = {
       {

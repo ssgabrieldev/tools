@@ -12,9 +12,12 @@ local open_new_terminal = function()
       if choise then
         vim.ui.input(
           {
-            prompt = "Terminal name: "
+            prompt = "Terminal name: ",
           },
           function(input)
+            if input == nil or input == "" then
+              input = string.char(math.random(97, 122))
+            end
             require('toggleterm.terminal').Terminal:new({
               hidden = false,
               display_name = input,
@@ -77,7 +80,15 @@ local M = {
         open_new_terminal()
       end,
       mode = { "n", "t", "i" },
-      { desc = 'Toggle terminal' }
+      { desc = 'Create terminal' }
+    },
+    {
+      '<leader>tr',
+      function()
+        vim.cmd("ToggleTermSetName")
+      end,
+      mode = { "n", "t", "i" },
+      { desc = 'Rename terminal' }
     },
     {
       "<leader>ft",
