@@ -148,6 +148,9 @@ M.theme = lush(function(injected_functions)
     -- Dap
     debugPC { bg = M.colors.dap_stopped_line_bg },
     SignColumn { fg = M.colors.dap_stopped_icon_fg },
+    DapNormal { NormalFloat },
+    DapEndOfBuffer { NormalFloat, fg = NormalFloat.bg },
+    NvimDapViewTab { NormalFloat },
 
     -- NvimTree
     NvimTreeNormal { bg = M.colors.bg_dark },
@@ -206,5 +209,13 @@ M.theme = lush(function(injected_functions)
     typescriptParens { fg = M.colors.delimiter }
   }
 end)
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "dap-view", "dap-repl", "dap-view-term" },
+  callback = function()
+    vim.api.nvim_buf_set_option(0, "winhighlight", "Normal:DapNormal")
+    vim.api.nvim_buf_set_option(0, "winhighlight", "EndOfBuffer:DapEndOfBuffer")
+  end,
+})
 
 return M
