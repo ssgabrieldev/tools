@@ -41,7 +41,7 @@ return {
 
     local opts = { noremap = true, silent = true }
 
-    vim.lsp.config("*", {
+    local lsp_config = {
       handlers = {
         ["textDocument/hover"] = vim.lsp.with(
           vim.lsp.handlers.hover,
@@ -56,6 +56,7 @@ return {
       capabilities = vim.lsp.protocol.make_client_capabilities(),
 
       on_attach = function(client, bufnr)
+        print("LSP attached to: " .. vim.api.nvim_buf_get_name(bufnr))
         local bufopts = {
           noremap = true,
           silent = true,
@@ -73,6 +74,9 @@ return {
           vim.diagnostic.open_float()
         end, opts)
       end,
-    })
+    }
+
+    vim.lsp.config("*", lsp_config)
+    vim.lsp.config("ts_ls", lsp_config)
   end
 }

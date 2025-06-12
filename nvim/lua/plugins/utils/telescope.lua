@@ -1,4 +1,4 @@
-local window_picker_utils = require("plugins.utils.window-picker")
+local utils = require("plugins.utils.utils")
 
 local M = {}
 
@@ -14,7 +14,7 @@ M.get_propper_window = function(prompt_bufnr, picker)
   local filepath = entry.path or entry[1]
   actions.close(prompt_bufnr)
 
-  local win_id = window_picker_utils.pick_window_to_open_buf(
+  local win_id = utils.pick_window_to_open_buf(
     {
       "NvimTree",
       "toggleterm",

@@ -46,8 +46,6 @@ if vim.env.SSH_TTY then
   }
 end
 
-require("plugins.utils.commands")
-
 vim.wo.wrap = false
 vim.wo.number = true
 vim.wo.relativenumber = true

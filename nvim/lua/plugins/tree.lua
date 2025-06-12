@@ -1,4 +1,4 @@
-local window_picker_utils = require("plugins.utils.window-picker")
+local utils = require("plugins.utils.utils")
 
 local M = {
   "nvim-tree/nvim-tree.lua",
@@ -40,7 +40,7 @@ local M = {
         window_picker = {
           enable = true,
           picker = function()
-            return window_picker_utils.pick_window_to_open_buf(
+            return utils.pick_window_to_open_buf(
               {
                 "toggleterm",
                 "dap-view",
