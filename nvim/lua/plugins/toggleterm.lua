@@ -29,25 +29,12 @@ local open_new_terminal = function()
     },
     function(choise)
       if choise then
-        vim.ui.input(
-          {
-            prompt = "Terminal name: ",
-          },
-          function(input)
-            if input == nil or input == "" then
-              input = string.char(math.random(97, 122))
-            end
-
-            close_all_terms()
-
-            require('toggleterm.terminal').Terminal:new({
-              hidden = false,
-              display_name = input,
-              direction = choise,
-              on_open = close_other_panels
-            }):open()
-          end
-        )
+        close_all_terms()
+        require('toggleterm.terminal').Terminal:new({
+          hidden = false,
+          direction = choise,
+          on_open = close_other_panels
+        }):open()
       end
     end
   )
@@ -125,7 +112,7 @@ local M = {
           {
             prompt = "Search Terminal",
             format_item = function(term)
-              return "" .. term.id .. " " .. term.display_name or term.name
+              return "id: " .. term.id .. " - name: " .. (term.display_name or term.name)
             end
           },
           function(term_choice)

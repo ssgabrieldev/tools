@@ -148,6 +148,7 @@ return {
         })
         require("dap-view").toggle()
       end,
+      mode = { "v", "n", "i", "t" },
       desc = "Debugger continue"
     },
   },
