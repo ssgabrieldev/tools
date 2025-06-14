@@ -35,5 +35,6 @@ vim.keymap.set({ "v" }, "<leader>sQ", "c''<esc><s-p>", { silent = true, desc = "
 vim.keymap.set({ "n" }, "<leader>sQ", "di'va'p", { silent = true, desc = "Remove single quotes" })
 vim.keymap.set({ "v" }, "<leader>sq", "c\"\"<esc><s-p>", { silent = true, desc = "Sunround by quotes" })
 vim.keymap.set({ "n" }, "<leader>sq", "di\"va\"p", { silent = true, desc = "Remove quotes" })
+vim.keymap.set({ "n" }, "<leader>so", "<cmd>source %<cr>", { silent = true, desc = "Source current file" })
 vim.keymap.set({ "n" }, "<leader>rr", "<cmd>source ~/.config/nvim/init.lua<cr>", { silent = true, desc = "Reload init.lua" })
 vim.keymap.set({ "n" }, "<leader>co", "<cmd>e ~/.config/nvim/<cr>", { silent = true, desc = "Open configurations" })
