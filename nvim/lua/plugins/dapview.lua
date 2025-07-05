@@ -11,7 +11,7 @@ return {
         "repl",
         "console"
       },
-      default_section = "console",
+      default_section = "repl",
       controls = {
         enabled = true
       },
