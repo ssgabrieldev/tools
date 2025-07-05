@@ -9,16 +9,14 @@ return {
     dashboard.opts.layout[1].val = 8
 
     dashboard.section.header.val = {
-      "   ⠀⠀⠀⢀⣤⣶⣾⣿⣿⣿⣷⣶⣤⡀",
-      "   ⠀⠀⣼⣿⡿⠛⠉⠙⠛⠻⣿⣿⣿⣿⡄",
-      "   ⠀⠸⠿⠋⠀⠀NEOVIM⠀⠀⠙⠻⠿⠇",
+      "NEOVIM",
     }
 
     dashboard.section.buttons.val = {
       dashboard.button("<leader>nn", "  New File", ":ene <BAR> startinsert <CR>"),
       dashboard.button("<leader>ee", "  Explorer", ":NvimTreeToggle<CR>"),
       dashboard.button("<leader>ff", "  Find File", ":Telescope find_files<CR>"),
-      dashboard.button("<leader>fw", "  Find Word", ":Telescope live_grep<CR>"),
+      dashboard.button("<leader>fw", "  Find Word", ":Telescope live_grep_args<CR>"),
       dashboard.button("<leader>qa", "x  Exit", ":qa<CR>"),
     }
 

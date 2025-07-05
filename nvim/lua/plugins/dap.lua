@@ -1,27 +1,12 @@
-local utils = require("plugins.utils.utils")
-
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
-    {
-      "igorlfs/nvim-dap-view",
-      opts = {
-        winbar = {
-          sections = { "watches", "scopes", "exceptions", "breakpoints", "threads", "repl", "console" },
-          default_section = "console",
-          controls = {
-            enabled = true
-          },
-        }
-      }
-    },
+    { "igorlfs/nvim-dap-view" },
     "nvim-neotest/nvim-nio",
     "nvim-telescope/telescope.nvim",
     "nvim-telescope/telescope-dap.nvim",
     "rcarriga/nvim-notify",
     "nvim-tree/nvim-tree.lua",
-    "s1n7ax/nvim-window-picker",
-    "akinsho/toggleterm.nvim",
   },
   init = function()
     local dap = require("dap")
@@ -31,18 +16,7 @@ return {
 
     local js_debugger = { "pwa-chrome", "pwa-node" }
     for _, debugger in ipairs(js_debugger) do
-      dap.adapters[debugger] = function(cb, config)
-        if config.preLaunchTask then
-          local Terminal = require("toggleterm.terminal").Terminal
-          local terminal = Terminal:new({
-            cmd = config.preLaunchTask,
-            hidden = false,
-            close_on_exit = false
-          })
-
-          terminal:toggle()
-        end
-
+      dap.adapters[debugger] = function(cb)
         local adap = {
           type = "server",
           host = "localhost",
@@ -106,54 +80,20 @@ return {
       desc = "Debugger continue"
     },
     {
-      "<leader>di",
-      function()
-        local win_id = require("window-picker").pick_window({
-          filter_rules = {
-            autoselect_one = true,
-            bo = {
-              filetype = {
-                "NvimTree",
-                "toggleterm",
-                "dap-view",
-                "dap-repl",
-                "dap-view-term",
-                "notify"
-              }
-            }
-          }
-        })
-
-        if not win_id then
-          return
-        end
-
-        vim.api.nvim_set_current_win(win_id)
-        vim.cmd("e .vscode/launch.json")
-      end,
-      desc = "Debugger init"
-    },
-    {
       "<leader>dw",
       function()
-        utils.close_buffers({
-          "toggleterm"
-        })
         require("dap-view").add_expr()
       end,
       mode = { "v", "n" },
-      desc = "Debugger continue"
+      desc = "Debugger add expression"
     },
     {
       "<leader>du",
       function()
-        utils.close_buffers({
-          "toggleterm"
-        })
         require("dap-view").toggle()
       end,
-      mode = { "v", "n", "i", "t" },
-      desc = "Debugger continue"
+      mode = { "n" },
+      desc = "Debugger toggle ui"
     },
   },
 }

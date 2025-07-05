@@ -5,6 +5,7 @@ return {
     local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
     ts_update()
   end,
+  config = true,
   opts = {
     highlight = {
       enable = true,
@@ -16,7 +17,5 @@ return {
     fold = {
       enable = true
     }
-  },
-  init = function()
-  end
+  }
 }

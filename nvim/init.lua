@@ -1,6 +1,3 @@
-local config_path = vim.fn.stdpath('config')
-local user_dir = config_path .. '/user'
-
 vim.g.mapleader = ";"
 vim.g.border_style = "single"
 
@@ -19,10 +16,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
-
-if vim.fn.isdirectory(user_dir) == 0 then
-  vim.fn.mkdir(user_dir, 'p')
-end
 
 if vim.fn.executable("/usr/bin/fish") == 1 then
   vim.o.shell = "/usr/bin/fish"
@@ -51,9 +44,8 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 
 vim.opt.termguicolors = true
-vim.opt.mouse = "a"
+vim.opt.mouse = ""
 vim.opt.cursorline = true
--- vim.opt.clipboard = "unnamedplus"
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
@@ -70,6 +62,4 @@ vim.opt.undofile = true
 
 vim.o.confirm = true
 
-require("plugins.utils.keymap")
-
-vim.cmd("color slipknot")
+require("keymaps")
