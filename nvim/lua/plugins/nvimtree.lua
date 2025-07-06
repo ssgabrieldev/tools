@@ -28,6 +28,9 @@ local M = {
           enable = false
         }
       }
+    },
+    update_focused_file = {
+      enable = true
     }
   },
   keys = {
