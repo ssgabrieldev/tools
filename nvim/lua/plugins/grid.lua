@@ -8,8 +8,8 @@ return {
         {
           name = "Tree",
           type = "col",
-          filters = { "NvimTree" },
           width = 35,
+          filters = { "NvimTree" },
           bufferline = {
             events = {
               render = function(bufferline)
@@ -20,7 +20,7 @@ return {
 
                 if current_buffer.filetype == "NvimTree" then
                   local win_width = api.nvim_win_get_width(node.window_id)
-                  local text = "Explorer"
+                  local text = "%#TabLineSel#Explorer%*"
                   local plain_text = text:gsub("%%#.-#", ""):gsub("%%*", "")
                   local text_width = fn.strdisplaywidth(plain_text)
                   local padding = math.floor((win_width - text_width) / 2)
@@ -74,6 +74,7 @@ return {
             {
               name = "Terminal",
               type = "row",
+              height = 15,
               filters = {
                 "terminal",
                 "toggleterm",
@@ -82,10 +83,9 @@ return {
                 "dap-repl",
                 "qf"
               },
-              height = 20,
               bufferline = {
                 enabled = false
-              }
+              },
             },
           },
         },
