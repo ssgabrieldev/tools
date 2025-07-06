@@ -16,12 +16,13 @@ local M = {
       enabled = true,
       name_formatter = function(term)
         local window_id = term.window
+        local name = " " .. (term.display_name or ("terminal " .. term.id))
 
         if api.nvim_win_is_valid(window_id) then
           local window_buf = api.nvim_win_get_buf(term.window)
-          return (term.bufnr == window_buf and "%#TabLineSel# " or "%#TabLine# ") .. (term.display_name or term.name) .. " %*"
+          return (term.bufnr == window_buf and "%#TabLineSel# " or "%#TabLine# ") .. name .. " %*"
         else
-          return "%#TabLine# " .. (term.display_name or term.name) .. " %*"
+          return "%#TabLine# " .. name .. " %*"
         end
       end
     }
