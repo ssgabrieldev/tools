@@ -57,7 +57,6 @@ return {
       },
 
       capabilities = lsp.protocol.make_client_capabilities(),
-
       on_attach = function(client, bufnr)
         print("LSP attached to: " .. api.nvim_buf_get_name(bufnr))
         local bufopts = {
@@ -71,7 +70,11 @@ return {
           lsp.buf.format({ async = true })
         end, bufopts)
         keymap.set("n", "<leader>lh", function()
-          lsp.buf.hover({ border = border})
+          lsp.buf.hover({
+            border = border,
+            max_width = 45,
+            max_height = 35
+          })
         end, bufopts)
         keymap.set("n", "<leader>lr", lsp.buf.rename, bufopts)
         keymap.set("n", "<leader>la", lsp.buf.code_action, opts)
