@@ -3,6 +3,9 @@ return {
   -- dir = "~/Documentos/projects/nvim/grid.nvim",
   enabled = true,
   lazy = false,
+  dependecies = {
+    "nvim-tree/nvim-web-devicons"
+  },
   config = function()
     require("grid").setup({
       layout = {
