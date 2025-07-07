@@ -1,14 +1,13 @@
-local M = {
+local border = vim.g.border_style
+
+return {
   "williamboman/mason.nvim",
-  event = "BufEnter"
+  event = "BufEnter",
+  config = function()
+    require("mason").setup({
+      ui = {
+        border = border
+      }
+    })
+  end
 }
-
-function M.config()
-  require("mason").setup({
-    ui = {
-      border = vim.g.border_style
-    }
-  })
-end
-
-return M

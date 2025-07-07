@@ -1,3 +1,10 @@
+local g = vim.g
+local diagnostic = vim.diagnostic
+local lsp = vim.lsp
+local api = vim.api
+local fn = vim.fn
+local keymap = vim.keymap
+
 return {
   "williamboman/mason-lspconfig.nvim",
   lazy = false,
@@ -16,7 +23,7 @@ return {
     automatic_enable = true
   },
   init = function()
-    local border = vim.g.border_style or "rounded"
+    local border = g.border_style or "rounded"
 
     local signs = {
       Error = "",
@@ -27,10 +34,10 @@ return {
 
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
     end
 
-    vim.diagnostic.config({
+    diagnostic.config({
       float = { border = border },
       signs = true,
     })
@@ -43,40 +50,38 @@ return {
 
     local lsp_config = {
       handlers = {
-        ["textDocument/hover"] = vim.lsp.with(
-          vim.lsp.handlers.hover,
-          { border = border, max_width = 80, max_height = 40 }
-        ),
-        ["textDocument/signatureHelp"] = vim.lsp.with(
-          vim.lsp.handlers.signature_help,
+        ["textDocument/signatureHelp"] = lsp.with(
+          lsp.handlers.signature_help,
           { border = border }
         ),
       },
 
-      capabilities = vim.lsp.protocol.make_client_capabilities(),
+      capabilities = lsp.protocol.make_client_capabilities(),
 
       on_attach = function(client, bufnr)
-        print("LSP attached to: " .. vim.api.nvim_buf_get_name(bufnr))
+        print("LSP attached to: " .. api.nvim_buf_get_name(bufnr))
         local bufopts = {
           noremap = true,
           silent = true,
           buffer = bufnr,
         }
 
-        vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, bufopts)
-        vim.keymap.set({ "n", "i", "v" }, "<leader>lf", function()
-          vim.lsp.buf.format({ async = true })
+        keymap.set("n", "<leader>ld", lsp.buf.definition, bufopts)
+        keymap.set({ "n", "v" }, "<leader>lf", function()
+          lsp.buf.format({ async = true })
         end, bufopts)
-        vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, bufopts)
-        vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, bufopts)
-        vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "<leader>le", function()
-          vim.diagnostic.open_float()
+        keymap.set("n", "<leader>lh", function()
+          lsp.buf.hover({ border = border})
+        end, bufopts)
+        keymap.set("n", "<leader>lr", lsp.buf.rename, bufopts)
+        keymap.set("n", "<leader>la", lsp.buf.code_action, opts)
+        keymap.set("n", "<leader>le", function()
+          diagnostic.open_float()
         end, opts)
       end,
     }
 
-    vim.lsp.config("*", lsp_config)
-    vim.lsp.config("ts_ls", lsp_config)
+    lsp.config("*", lsp_config)
+    lsp.config("ts_ls", lsp_config)
   end
 }
