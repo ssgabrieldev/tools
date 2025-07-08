@@ -20,9 +20,9 @@ local M = {
 
         if api.nvim_win_is_valid(window_id) then
           local window_buf = api.nvim_win_get_buf(term.window)
-          return (term.bufnr == window_buf and "%#TabLineSel# " or "%#TabLine# ") .. name .. " %*"
+          return (term.bufnr == window_buf and "%#WinBarSelected# " or "%#WinBarNotSelected# ") .. name .. " %*"
         else
-          return "%#TabLine# " .. name .. " %*"
+          return "%#WinBarNotSelected# " .. name .. " %*"
         end
       end
     }

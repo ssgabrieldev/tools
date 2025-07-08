@@ -24,7 +24,7 @@ return {
 
                 if current_buffer.filetype == "NvimTree" then
                   local win_width = api.nvim_win_get_width(node.window_id)
-                  local text = "%#TabLineSel#Explorer%*"
+                  local text = "Explorer"
                   local plain_text = text:gsub("%%#.-#", ""):gsub("%%*", "")
                   local text_width = fn.strdisplaywidth(plain_text)
                   local padding = math.floor((win_width - text_width) / 2)
@@ -34,7 +34,7 @@ return {
                   end
 
                   local left_padding = string.rep(" ", padding)
-                  local winbar_text = left_padding .. text
+                  local winbar_text = "%#WinBarSelected#" .. left_padding .. text
 
                   vim.defer_fn(function()
                     api.nvim_set_option_value(
