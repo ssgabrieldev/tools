@@ -1,6 +1,5 @@
 return {
   "ssgabrieldev/grid.nvim",
-  -- dir = "~/Documentos/projects/nvim/grid.nvim",
   enabled = true,
   lazy = false,
   dependecies = {
@@ -13,16 +12,20 @@ return {
           name = "Tree",
           type = "col",
           width = 35,
-          filters = { "NvimTree" },
-          bufferline = {
+          buffer_match = function(buffer)
+            local filetypes = { "NvimTree" }
+
+            return vim.tbl_contains(filetypes, buffer:filetype())
+          end,
+          winbar = {
             events = {
-              render = function(bufferline)
+              render = function(winbar)
                 local api = vim.api
                 local fn = vim.fn
-                local node = bufferline.node
+                local node = winbar.node
                 local current_buffer = node.current_buffer
 
-                if current_buffer.filetype == "NvimTree" then
+                if current_buffer:filetype() == "NvimTree" then
                   local win_width = api.nvim_win_get_width(node.window_id)
                   local text = "Explorer"
                   local plain_text = text:gsub("%%#.-#", ""):gsub("%%*", "")
@@ -57,19 +60,32 @@ return {
             {
               name = "Editor",
               type = "row",
-              filters = { "*" },
-              bufferline = {
+              buffer_match = function(buffer)
+                local node = buffer:get_node()
+                local match = not node
+                    and (
+                      buffer:is_listed()
+                      or buffer:filetype() ~= ""
+                    )
+
+                if match then
+                  return true
+                end
+
+                return false
+              end,
+              winbar = {
                 maps = {
                   ["<tab>"] = {
                     modes = { "n" },
-                    fn = function(bufferline)
-                      bufferline:next()
+                    fn = function(winbar)
+                      winbar:next()
                     end
                   },
                   ["<s-tab>"] = {
                     modes = { "n" },
-                    fn = function(bufferline)
-                      bufferline:prev()
+                    fn = function(winbar)
+                      winbar:prev()
                     end
                   }
                 }
@@ -79,15 +95,21 @@ return {
               name = "Terminal",
               type = "row",
               height = 15,
-              filters = {
-                "terminal",
-                "toggleterm",
-                "dap-view://main",
-                "dap-view-term",
-                "dap-repl",
-                "qf"
-              },
-              bufferline = {
+              buffer_match = function(buffer)
+                local filetype = vim.bo[buffer.id].filetype
+                local filetypes = {
+                  "terminal",
+                  "toggleterm",
+                  "dap-view://main",
+                  "dap-view-term",
+                  "dap-view",
+                  "dap-repl",
+                  "qf"
+                }
+
+                return vim.tbl_contains(filetypes, filetype)
+              end,
+              winbar = {
                 enabled = false
               },
             },

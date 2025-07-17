@@ -85,6 +85,5 @@ return {
     }
 
     lsp.config("*", lsp_config)
-    lsp.config("ts_ls", lsp_config)
   end
 }
