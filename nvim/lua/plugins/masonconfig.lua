@@ -9,9 +9,7 @@ return {
   "williamboman/mason-lspconfig.nvim",
   lazy = false,
   dependencies = {
-    {
-      "neovim/nvim-lspconfig",
-    }
+    "neovim/nvim-lspconfig",
   },
   opts = {
     ensure_installed = {
@@ -47,42 +45,26 @@ return {
     }
 
     local opts = { noremap = true, silent = true }
-
     local lsp_config = {
-      handlers = {
-        ["textDocument/signatureHelp"] = lsp.with(
-          lsp.handlers.signature_help,
-          { border = border }
-        ),
-      },
-
       capabilities = lsp.protocol.make_client_capabilities(),
-      on_attach = function(client, bufnr)
-        print("LSP attached to: " .. api.nvim_buf_get_name(bufnr))
-        local bufopts = {
-          noremap = true,
-          silent = true,
-          buffer = bufnr,
-        }
-
-        keymap.set("n", "<leader>ld", lsp.buf.definition, bufopts)
-        keymap.set({ "n", "v" }, "<leader>lf", function()
-          lsp.buf.format({ async = true })
-        end, bufopts)
-        keymap.set("n", "<leader>lh", function()
-          lsp.buf.hover({
-            border = border,
-            max_width = 45,
-            max_height = 35
-          })
-        end, bufopts)
-        keymap.set("n", "<leader>lr", lsp.buf.rename, bufopts)
-        keymap.set("n", "<leader>la", lsp.buf.code_action, opts)
-        keymap.set("n", "<leader>le", function()
-          diagnostic.open_float()
-        end, opts)
-      end,
     }
+
+    keymap.set("n", "<leader>ld", lsp.buf.definition, opts)
+    keymap.set("n", "<leader>lr", lsp.buf.rename, opts)
+    keymap.set("n", "<leader>la", lsp.buf.code_action, opts)
+    keymap.set({ "n", "v" }, "<leader>lf", function()
+      lsp.buf.format({ async = true })
+    end, opts)
+    keymap.set("n", "<leader>lh", function()
+      lsp.buf.hover({
+        border = border,
+        max_width = 45,
+        max_height = 35
+      })
+    end, opts)
+    keymap.set("n", "<leader>le", function()
+      diagnostic.open_float()
+    end, opts)
 
     lsp.config("*", lsp_config)
   end
