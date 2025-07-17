@@ -1,3 +1,5 @@
+local vim = vim
+
 return {
   "ssgabrieldev/grid.nvim",
   enabled = true,
