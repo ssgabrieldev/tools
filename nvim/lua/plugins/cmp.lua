@@ -27,7 +27,7 @@ local M = {
       window = {
         completion = cmp.config.window.bordered({
           border = border,
-          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,Search:None"
+          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None"
         }),
         documentation = cmp.config.window.bordered({
           border = border,
