@@ -70,6 +70,14 @@ return {
       desc = "Find buffer"
     },
     {
+      "<leader>fr",
+      function()
+        require("telescope.builtin").resume()
+      end,
+      mode = { "n", "t" },
+      desc = "Resume last picker"
+    },
+    {
       "<leader>fc",
       function()
         require("telescope.builtin").find_files({
