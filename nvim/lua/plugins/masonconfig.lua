@@ -38,6 +38,10 @@ return {
     diagnostic.config({
       float = { border = border },
       signs = true,
+      virtual_text = {
+        prefix = '●',
+        spacing = 1,
+      }
     })
 
     require("lspconfig.ui.windows").default_options = {
