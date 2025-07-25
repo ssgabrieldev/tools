@@ -23,7 +23,7 @@ local M = {
     {
       '<leader>tt',
       function()
-        vim.cmd(vim.v.count .. "ToggleTerm")
+        vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
       end,
       mode = { "n", "t" },
       { desc = 'Toggle terminal' }
