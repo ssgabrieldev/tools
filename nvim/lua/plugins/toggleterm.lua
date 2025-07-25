@@ -27,6 +27,14 @@ local M = {
       end,
       mode = { "n", "t" },
       { desc = 'Toggle terminal' }
+    },
+    {
+      '<leader>tf',
+      function()
+        vim.cmd(vim.v.count .. "ToggleTerm direction=float")
+      end,
+      mode = { "n", "t" },
+      { desc = 'Toggle terminal' }
     }
   }
 }
