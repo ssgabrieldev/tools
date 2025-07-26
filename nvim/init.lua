@@ -45,12 +45,13 @@ vim.wo.wrap = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+local tab_len = 4
 vim.opt.termguicolors = true
 vim.opt.mouse = ""
 vim.opt.cursorline = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = tab_len
+vim.opt.softtabstop = tab_len
+vim.opt.shiftwidth = tab_len
 vim.opt.expandtab = true
 vim.opt.swapfile = true
 vim.opt.directory = "/tmp//"
