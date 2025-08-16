@@ -1,39 +1,48 @@
 #!/usr/bin/bash
 
-# Crete folders
-mkdir -p ~/apps/bin
+# # Crete folders
+# mkdir -p ~/apps/bin
+# mkdir -p ~/tools/downloads
+#
+# # Download docker
+# wget -P ~/tools/downloads https://download.docker.com/linux/static/stable/x86_64/docker-27.5.1.tgz
+# tar -xzvf ~/tools/downloads/docker-27.5.1.tgz -C ~/tools/downloads/
+#
+# # Move to bin
+# rm ~/apps/bin/containerd*
+# rm ~/apps/bin/docker*
+# rm ~/apps/bin/ctr
+# rm ~/apps/bin/runc
+# rm ~/apps/bin/vpnkit
+# mv ~/tools/downloads/docker/* ~/apps/bin/
+#
+# # Download docker-rootless-extras
+# wget -P ~/tools/downloads https://download.docker.com/linux/static/stable/x86_64/docker-rootless-extras-27.5.1.tgz
+# tar -xzvf ~/tools/downloads/docker-rootless-extras-27.5.1.tgz -C ~/tools/downloads/
+#
+# # Move to bin
+# rm ~/apps/bin/rootless*
+# mv ~/tools/downloads/docker-rootless-extras/* ~/apps/bin/
+#
+# # Config
+# sudo apt-get install -y uidmap
+# sudo sysctl -w kernel.apparmor_restrict_unprivileged_unconfined=0
+# sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+# ~/apps/bin/dockerd-rootless-setuptool.sh install
+#
+# # Clear
+# rm ~/tools/downloads/ -rf
+#
+# # Setup utils
+# ln -s /home/gabriel/tools/docker/docker_ubuntu /home/gabriel/apps/bin/docker_ubuntu
+# ln -s /home/gabriel/tools/docker/docker_service /home/gabriel/apps/bin/docker_service
+# ln -s /home/gabriel/tools/docker/docker_clear /home/gabriel/apps/bin/docker_clear
+
+# Install Docker Compose
+echo "Install docker-compose"
+FILE_NAME="docker-compose-$(uname -s)-$(uname -m)"
+
 mkdir -p ~/tools/downloads
-
-# Download docker
-wget -P ~/tools/downloads https://download.docker.com/linux/static/stable/x86_64/docker-27.5.1.tgz
-tar -xzvf ~/tools/downloads/docker-27.5.1.tgz -C ~/tools/downloads/
-
-# Move to bin
-rm ~/apps/bin/containerd*
-rm ~/apps/bin/docker*
-rm ~/apps/bin/ctr
-rm ~/apps/bin/runc
-rm ~/apps/bin/vpnkit
-mv ~/tools/downloads/docker/* ~/apps/bin/
-
-# Download docker-rootless-extras
-wget -P ~/tools/downloads https://download.docker.com/linux/static/stable/x86_64/docker-rootless-extras-27.5.1.tgz
-tar -xzvf ~/tools/downloads/docker-rootless-extras-27.5.1.tgz -C ~/tools/downloads/
-
-# Move to bin
-rm ~/apps/bin/rootless*
-mv ~/tools/downloads/docker-rootless-extras/* ~/apps/bin/
-
-# Config
-sudo apt-get install -y uidmap
-sudo sysctl -w kernel.apparmor_restrict_unprivileged_unconfined=0
-sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
-~/apps/bin/dockerd-rootless-setuptool.sh install
-
-# Clear
-rm ~/tools/downloads/ -rf
-
-# Setup utils
-ln -s /home/gabriel/tools/docker/docker_ubuntu /home/gabriel/apps/bin/docker_ubuntu
-ln -s /home/gabriel/tools/docker/docker_service /home/gabriel/apps/bin/docker_service
-ln -s /home/gabriel/tools/docker/docker_clear /home/gabriel/apps/bin/docker_clear
+wget -P ~/tools/downloads https://github.com/docker/compose/releases/download/v2.29.2/$FILE_NAME
+mv ~/tools/downloads/$FILE_NAME ~/apps/bin/docker-compose
+chmod +x ~/apps/bin/docker-compose
