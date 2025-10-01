@@ -62,7 +62,7 @@ return {
     keymap.set("n", "<leader>lh", function()
       lsp.buf.hover({
         border = border,
-        max_width = 45,
+        max_width = 100,
         max_height = 35
       })
     end, opts)
