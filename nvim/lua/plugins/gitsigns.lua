@@ -10,7 +10,7 @@ return {
   end,
   keys = {
     {
-      "<leader>tg",
+      "<leader>gt",
       function()
         vim.cmd("Gitsigns toggle_linehl")
         vim.cmd("Gitsigns toggle_deleted")
