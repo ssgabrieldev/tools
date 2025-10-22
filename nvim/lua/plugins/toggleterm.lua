@@ -1,4 +1,3 @@
-local api = vim.api
 local lazygit_terminal = nil
 
 local M = {

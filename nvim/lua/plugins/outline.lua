@@ -11,6 +11,14 @@ return {
       end,
       mode = { "n" },
       { desc = "Outline" }
+    },
+    {
+      "<leader>of",
+      function()
+        vim.cmd("OutlineFocus")
+      end,
+      mode = { "n" },
+      { desc = "Outline" }
     }
   }
 }
