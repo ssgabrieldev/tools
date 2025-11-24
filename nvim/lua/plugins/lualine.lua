@@ -8,7 +8,7 @@ local M = {
     require("lualine").setup({
       options = {
         theme = 'auto',
-        globalstatus = true
+        globalstatus = false
       }
     })
   end

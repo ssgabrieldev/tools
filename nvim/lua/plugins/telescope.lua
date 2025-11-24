@@ -54,6 +54,14 @@ return {
       desc = "Find file"
     },
     {
+      "<leader>fg",
+      function()
+        require("telescope").extensions.live_grep_args.live_grep_args()
+      end,
+      mode = { "n", "t" },
+      desc = "Find pattern with args"
+    },
+    {
       "<leader>fw",
       function()
         require("telescope").extensions.live_grep_args.live_grep_args()
