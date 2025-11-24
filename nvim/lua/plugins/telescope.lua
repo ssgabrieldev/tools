@@ -23,11 +23,11 @@ return {
     defaults = {
       preview = true,
       layout_strategy = "horizontal",
-      sorting_strategy = "descending",
+      sorting_strategy = "ascending",
       borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
       layout_config = {
         horizontal = {
-          prompt_position = "bottom",
+          prompt_position = "top",
         },
       },
       file_ignore_patterns = {
