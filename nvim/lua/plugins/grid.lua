@@ -75,6 +75,18 @@ return {
                         end,
                     },
                 },
+            },
+            {
+                type = "col",
+                width = 35,
+                buffer_match = function(buffer)
+                    local filetype = vim.bo[buffer.id].filetype
+                    local filetypes = {
+                        "codecompanion"
+                    }
+
+                    return vim.tbl_contains(filetypes, filetype)
+                end
             }
         }
     }

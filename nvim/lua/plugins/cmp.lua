@@ -61,13 +61,14 @@ local M = {
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
-        { name = "path" }
+        { name = "path" },
+        { name = "codecompanion" }
       }, {
         { name = "buffer" },
       }),
       experimental = {
         ghost_text = {
-          hl_group = "Comment", -- grupo de highlight (opcional)
+          hl_group = "Comment",
         }
       }
     })
