@@ -4,6 +4,6 @@ return {
   priority = 1000,
   dependencies = { 'rktjmp/lush.nvim' },
   config = function()
-    -- vim.cmd("color knot")
+    vim.cmd("color knot")
   end,
 }
