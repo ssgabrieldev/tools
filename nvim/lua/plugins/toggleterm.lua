@@ -9,9 +9,11 @@ local M = {
         shade_terminals = true,
         shading_factor = -45,
         float_opts = {
-            border = vim.g.border_style,
+            border = "none",
             title_pos = "center",
-            winblend = 3,
+            winblend = 0,
+            width = 1000,
+            height = 1000,
         },
         winbar = {
             enabled = true,

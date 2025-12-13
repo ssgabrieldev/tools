@@ -2,6 +2,7 @@ local vim = vim
 
 return {
     "ssgabrieldev/grid.nvim",
+    -- dir = "~/Documentos/projects/nvim/grid.nvim",
     enabled = true,
     lazy = false,
     dependecies = {
