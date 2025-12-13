@@ -41,14 +41,14 @@ return {
         }
     },
     keys = {
-        { "<TAB>",         "<Cmd>BufferLineCycleNext<CR>", desc = "Next Buffer" },
-        { "<S-TAB>",       "<Cmd>BufferLineCyclePrev<CR>", desc = "Previous Buffer" },
-        { "<leader>bh", "<Cmd>BufferLineMovePrev<CR>",  desc = "Move Buffer Left" },
-        { "<leader>bl", "<Cmd>BufferLineMoveNext<CR>",  desc = "Move Buffer Right" },
-        { "<leader>bp",    "<Cmd>BufferLinePick<CR>",        desc = "Buffer picker" },
-        { "<leader>bx",    "<Cmd>BufferLinePickClose<CR>",        desc = "Buffer picker" },
-        { "<leader>b<s-h>",    "<Cmd>BufferLineCloseLeft<CR>",        desc = "Buffer picker" },
-        { "<leader>b<s-l>",    "<Cmd>BufferLineCloseRight<CR>",        desc = "Buffer picker" },
-        { "<leader>b<s-o>",    "<Cmd>BufferLineCloseOthers<CR>",        desc = "Buffer picker" },
+        { "<TAB>",          "<Cmd>BufferLineCycleNext<CR>",   desc = "Next Buffer" },
+        { "<S-TAB>",        "<Cmd>BufferLineCyclePrev<CR>",   desc = "Previous Buffer" },
+        { "<leader>bh",     "<Cmd>BufferLineMovePrev<CR>",    desc = "Move Buffer Left" },
+        { "<leader>bl",     "<Cmd>BufferLineMoveNext<CR>",    desc = "Move Buffer Right" },
+        { "<leader>bp",     "<Cmd>BufferLinePick<CR>",        desc = "Buffer picker" },
+        { "<leader>bc",     "<Cmd>BufferLinePickClose<CR>",   desc = "Buffer picker" },
+        { "<leader>b<s-h>", "<Cmd>BufferLineCloseLeft<CR>",   desc = "Buffer picker" },
+        { "<leader>b<s-l>", "<Cmd>BufferLineCloseRight<CR>",  desc = "Buffer picker" },
+        { "<leader>b<s-o>", "<Cmd>BufferLineCloseOthers<CR>", desc = "Buffer picker" },
     },
 }
