@@ -56,7 +56,7 @@ return {
     {
       "<leader>fg",
       function()
-        require("telescope").extensions.live_grep_args.live_grep_args()
+        require("telescope.builtin").git_status()
       end,
       mode = { "n", "t" },
       desc = "Find pattern with args"
