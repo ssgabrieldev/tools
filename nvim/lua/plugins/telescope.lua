@@ -21,8 +21,8 @@ return {
       }
     },
     defaults = {
-      preview = true,
-      layout_strategy = "horizontal",
+      preview = false,
+      layout_strategy = "center",
       sorting_strategy = "ascending",
       borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
       layout_config = {
