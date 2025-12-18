@@ -7,7 +7,10 @@ return {
     opts = {
         highlights = {
             fill = {
-                link = "NvimTreeNormal"
+                bg = {
+                    attribute = "bg",
+                    highlight = "NvimTreeNormal"
+                }
             },
             background = {
                 bg = {
@@ -22,10 +25,10 @@ return {
                 }
             },
             tab = {
-                link = "NvimTreeNormal"
-            },
-            buffer_visible = {
-                link = "NvimTreeNormal"
+                bg = {
+                    attribute = "bg",
+                    highlight = "NvimTreeNormal"
+                }
             },
         },
         options = {
