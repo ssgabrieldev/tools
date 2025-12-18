@@ -40,6 +40,9 @@ local M = {
                 },
                 WinBarInactive = {
                     link = "NvimTreeNormal"
+                },
+                CursorLine = {
+                    link = "NvimTreeNormal"
                 }
             },
         })
