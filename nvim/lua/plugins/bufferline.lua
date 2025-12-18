@@ -1,8 +1,33 @@
+local nvim_tree_hl = vim.api.nvim_get_hl(0, { name = "NvimTreeNormal" })
+
 return {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
+        highlights = {
+            fill = {
+                link = "NvimTreeNormal"
+            },
+            background = {
+                bg = {
+                    attribute = "bg",
+                    highlight = "NvimTreeNormal"
+                }
+            },
+            separator = {
+                bg = {
+                    attribute = "bg",
+                    highlight = "NvimTreeNormal"
+                }
+            },
+            tab = {
+                link = "NvimTreeNormal"
+            },
+            buffer_visible = {
+                link = "NvimTreeNormal"
+            },
+        },
         options = {
             mode = "buffers",
             style_preset = "default",
@@ -20,12 +45,14 @@ return {
                     text = "",
                     text_align = "center",
                     separator = true,
+                    highlight = "NvimTreeNormal"
                 },
                 {
                     filetype = "Outline",
                     text = "",
                     text_align = "center",
                     separator = true,
+                    highlight = "NvimTreeNormal"
                 },
             },
             show_buffer_close_icons = true,

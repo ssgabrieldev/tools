@@ -1,48 +1,18 @@
-local function find_in_list(tab, val)
-    for index, value in ipairs(tab) do
-        if value == val then
-            return true
-        end
-    end
-    return false
-end
+local dark_ns = vim.api.nvim_create_namespace("DarkWindowStyles")
+local nvim_tree_hl = vim.api.nvim_get_hl(0, { name = "NvimTreeNormal" })
+
+vim.api.nvim_set_hl(dark_ns, "Normal", { link = "NvimTreeNormal" })
+vim.api.nvim_set_hl(dark_ns, "EndOfBuffer", { link = "NvimTreeEndOfBuffer" })
+vim.api.nvim_set_hl(dark_ns, "NvimDapViewTab", { link = "NvimTreeNormal" })
+vim.api.nvim_set_hl(dark_ns, "WinBar", { link = "NvimTreeNormal" })
+vim.api.nvim_set_hl(dark_ns, "NvimDapViewTabSelected", {
+    bold = true,
+    bg = nvim_tree_hl.bg
+})
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "*",
+    pattern = { "codecompanion", "dap-repl", "dap-view", "qf", "Outline" },
     callback = function(args)
-        local ft = args.match
-        local default_hl = ""
-        local ignore_fts = {
-            "toggleterm"
-        }
-        local fts = {
-            "codecompanion",
-            "dap-repl",
-            "dap-view"
-        }
-
-        if find_in_list(ignore_fts, ft) then
-            return
-        end
-
-        if find_in_list(fts, ft) then
-            default_hl = "Normal:NvimTreeNormal,EndOfBuffer:NvimTreeEndOfBuffer"
-
-            if ft ~= "codecompanion" and ft ~= "toggleterm" then
-                local nvim_tree_nromal_hl = vim.api.nvim_get_hl(0, { name = "NvimTreeNormal" })
-                default_hl = default_hl .. ",NvimDapViewTab:NvimTreeNormal,WinBar:NvimTreeNormal"
-
-                vim.api.nvim_set_hl(0, "NvimDapViewTabSelected", {
-                    bold = true,
-                    bg = nvim_tree_nromal_hl.bg
-                })
-            end
-        end
-
-        if vim.bo[args.buf].buftype == "" then
-            default_hl = ""
-        end
-
-        vim.wo.winhighlight = default_hl
+        vim.api.nvim_win_set_hl_ns(0, dark_ns)
     end,
 })
