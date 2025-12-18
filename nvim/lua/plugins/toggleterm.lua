@@ -3,25 +3,47 @@ local lazygit_terminal = nil
 local M = {
     'akinsho/toggleterm.nvim',
     version = "*",
-    opts = {
-        persist_size = false,
-        persist_mode = true,
-        shade_terminals = true,
-        shading_factor = -45,
-        float_opts = {
-            border = "none",
-            title_pos = "center",
-            winblend = 0,
-            width = 1000,
-            height = 1000,
-        },
-        winbar = {
-            enabled = true,
-            name_formatter = function(term)
-                return " " .. (term.display_name or ("terminal " .. term.id))
-            end
-        }
-    },
+    config = function()
+        local nvim_tree_normal_hl = vim.api.nvim_get_hl(0, { name = "NvimTreeNormal" })
+
+        require("toggleterm").setup({
+            persist_size = false,
+            persist_mode = true,
+            shade_terminals = true,
+            shading_factor = -45,
+            float_opts = {
+                border = "none",
+                title_pos = "center",
+                winblend = 0,
+                width = 1000,
+                height = 1000,
+            },
+            winbar = {
+                enabled = true,
+                name_formatter = function(term)
+                    return " " .. (term.display_name or ("terminal " .. term.id))
+                end
+            },
+            highlights = {
+                Normal = {
+                    link = "NvimTreeNormal"
+                },
+                WinBar = {
+                    link = "NvimTreeNormal"
+                },
+                WinBarNC = {
+                    link = "NvimTreeNormal"
+                },
+                WinBarActive = {
+                    guibg = nvim_tree_normal_hl.bg,
+                    gui = "bold"
+                },
+                WinBarInactive = {
+                    link = "NvimTreeNormal"
+                }
+            },
+        })
+    end,
     keys = {
         {
             '<leader>tt',

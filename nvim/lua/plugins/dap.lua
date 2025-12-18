@@ -88,6 +88,14 @@ return {
       desc = "Debugger add expression"
     },
     {
+      "<leader>dh",
+      function()
+        require("dap.ui.widgets").hover(nil, { border = vim.g.border_style})
+      end,
+      mode = { "v", "n" },
+      desc = "Debugger add expression"
+    },
+    {
       "<leader>du",
       function()
         require("dap-view").toggle()

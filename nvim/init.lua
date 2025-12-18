@@ -66,3 +66,4 @@ vim.opt.undofile = true
 vim.o.confirm = true
 
 require("keymaps")
+require("autocommands")

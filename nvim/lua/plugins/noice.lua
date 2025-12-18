@@ -5,6 +5,18 @@ return {
         presets = {
             lsp_doc_border = vim.g.border_style,
         },
+        views = {
+            cmdline_popup = {
+                position = {
+                    row = "0",
+                    col = "50%",
+                },
+                size = {
+                    width = "90%",
+                    height = "auto",
+                },
+            },
+        },
     },
     dependencies = {
         "MunifTanjim/nui.nvim",
