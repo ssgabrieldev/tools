@@ -18,6 +18,12 @@ return {
                     highlight = "NvimTreeNormal"
                 }
             },
+            offset_separator = {
+                bg = {
+                    attribute = "bg",
+                    highlight = "NvimTreeNormal"
+                }
+            },
             separator = {
                 bg = {
                     attribute = "bg",
