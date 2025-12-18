@@ -50,13 +50,6 @@ return {
                     separator = true,
                     highlight = "NvimTreeNormal"
                 },
-                {
-                    filetype = "Outline",
-                    text = "",
-                    text_align = "center",
-                    separator = true,
-                    highlight = "NvimTreeNormal"
-                },
             },
             show_buffer_close_icons = true,
             show_close_icon = false,

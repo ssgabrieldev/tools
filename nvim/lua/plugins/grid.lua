@@ -22,19 +22,6 @@ return {
                             return vim.tbl_contains(filetypes, buffer:filetype())
                         end,
                     },
-                    {
-                        type = "row",
-                        width = 35,
-                        height = 10,
-                        buffer_match = function(buffer)
-                            local filetype = buffer:filetype()
-                            local filetypes = {
-                                "Outline"
-                            }
-
-                            return vim.tbl_contains(filetypes, filetype)
-                        end,
-                    }
                 }
             },
             {
