@@ -21,7 +21,7 @@ return {
             offset_separator = {
                 bg = {
                     attribute = "bg",
-                    highlight = "NvimTreeNormal"
+                    highlight = "Normal"
                 }
             },
             separator = {

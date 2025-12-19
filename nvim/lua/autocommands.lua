@@ -6,6 +6,7 @@ vim.api.nvim_set_hl(dark_ns, "CursorLine", { link = "Normal" })
 vim.api.nvim_set_hl(dark_ns, "EndOfBuffer", { link = "NvimTreeEndOfBuffer" })
 vim.api.nvim_set_hl(dark_ns, "NvimDapViewTab", { link = "NvimTreeNormal" })
 vim.api.nvim_set_hl(dark_ns, "WinBar", { link = "NvimTreeNormal" })
+vim.api.nvim_set_hl(dark_ns, "WinBarNC", { link = "NvimTreeNormal" })
 vim.api.nvim_set_hl(dark_ns, "NvimDapViewTabSelected", {
     bold = true,
     bg = nvim_tree_hl.bg
