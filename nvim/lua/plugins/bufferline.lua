@@ -5,38 +5,6 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
-        highlights = {
-            fill = {
-                bg = {
-                    attribute = "bg",
-                    highlight = "NvimTreeNormal"
-                }
-            },
-            background = {
-                bg = {
-                    attribute = "bg",
-                    highlight = "NvimTreeNormal"
-                }
-            },
-            offset_separator = {
-                bg = {
-                    attribute = "bg",
-                    highlight = "Normal"
-                }
-            },
-            separator = {
-                bg = {
-                    attribute = "bg",
-                    highlight = "NvimTreeNormal"
-                }
-            },
-            tab = {
-                bg = {
-                    attribute = "bg",
-                    highlight = "NvimTreeNormal"
-                }
-            },
-        },
         options = {
             mode = "buffers",
             style_preset = "default",
