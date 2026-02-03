@@ -21,7 +21,7 @@ return {
       }
     },
     defaults = {
-      preview = true,
+      preview = false,
       layout_strategy = "horizontal",
       sorting_strategy = "ascending",
       borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
