@@ -24,7 +24,7 @@ return {
       preview = true,
       layout_strategy = "horizontal",
       sorting_strategy = "ascending",
-      borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+      borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
       layout_config = {
         horizontal = {
           prompt_position = "top",

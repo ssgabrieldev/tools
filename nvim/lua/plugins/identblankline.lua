@@ -4,7 +4,7 @@ local M = {
   config = function()
     require("ibl").setup({
       indent = {
-        char = '|'
+        char = "|"
       }
     })
   end

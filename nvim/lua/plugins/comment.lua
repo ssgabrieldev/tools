@@ -9,6 +9,6 @@ return {
     },
   },
   config = function()
-    require('nvim_comment').setup()
+    require("nvim_comment").setup()
   end
 }

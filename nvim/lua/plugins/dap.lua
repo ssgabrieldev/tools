@@ -11,8 +11,8 @@ return {
   init = function()
     local dap = require("dap")
 
-    vim.fn.sign_define('DapBreakpoint', { text = '', texthl = '', linehl = '', numhl = '' })
-    vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = '', linehl = '', numhl = '' })
+    vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "", linehl = "", numhl = "" })
 
     local js_debugger = { "pwa-chrome", "pwa-node" }
     for _, debugger in ipairs(js_debugger) do

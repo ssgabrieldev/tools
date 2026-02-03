@@ -35,7 +35,7 @@ local M = {
         }),
       },
       mapping = cmp.mapping.preset.insert({
-        ['<c-e>'] = cmp.mapping.abort(),
+        ["<c-e>"] = cmp.mapping.abort(),
         ["<c-u>"] = cmp.mapping.scroll_docs(-4),
         ["<c-d>"] = cmp.mapping.scroll_docs(4),
         ["<c-Space>"] = cmp.mapping.complete(),
@@ -73,19 +73,19 @@ local M = {
       }
     })
 
-    cmp.setup.cmdline({ '/', '?' }, {
+    cmp.setup.cmdline({ "/", "?" }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
-        { name = 'buffer' }
+        { name = "buffer" }
       }
     })
 
-    cmp.setup.cmdline(':', {
+    cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
-        { name = 'path' }
+        { name = "path" }
       }, {
-        { name = 'cmdline' }
+        { name = "cmdline" }
       }),
       matching = { disallow_symbol_nonprefix_matching = false }
     })

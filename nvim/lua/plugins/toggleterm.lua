@@ -1,7 +1,7 @@
 local lazygit_terminal = nil
 
 local M = {
-    'akinsho/toggleterm.nvim',
+    "akinsho/toggleterm.nvim",
     version = "*",
     config = function()
         local nvim_tree_normal_hl = vim.api.nvim_get_hl(0, { name = "NvimTreeNormal" })
@@ -49,26 +49,26 @@ local M = {
     end,
     keys = {
         {
-            '<leader>tt',
+            "<leader>tt",
             function()
                 vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
             end,
             mode = { "n", "t" },
-            { desc = 'Toggle terminal' }
+            { desc = "Toggle terminal" }
         },
         {
-            '<leader>tf',
+            "<leader>tf",
             function()
                 vim.cmd(vim.v.count .. "ToggleTerm direction=float")
             end,
             mode = { "n", "t" },
-            { desc = 'Toggle terminal' }
+            { desc = "Toggle terminal" }
         },
         {
             "<leader>tg",
             function()
                 if not lazygit_terminal then
-                    local Terminal = require('toggleterm.terminal').Terminal
+                    local Terminal = require("toggleterm.terminal").Terminal
                     lazygit_terminal = Terminal:new({
                         cmd = "lg",
                         direction = "float",

@@ -38,7 +38,7 @@ return {
             float = { border = border },
             signs = true,
             virtual_text = {
-                prefix = ' ',
+                prefix = " ",
                 spacing = 1,
             }
         })

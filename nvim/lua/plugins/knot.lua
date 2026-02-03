@@ -4,7 +4,7 @@ return {
     dir = "~/Documentos/projects/nvim/knot.nvim",
     lazy = false,
     priority = 1000,
-    dependencies = { 'rktjmp/lush.nvim' },
+    dependencies = { "rktjmp/lush.nvim" },
     config = function()
         vim.cmd("color knot")
     end,
