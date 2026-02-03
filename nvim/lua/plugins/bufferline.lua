@@ -19,7 +19,14 @@ return {
             offsets = {
                 {
                     filetype = "NvimTree",
-                    text = "",
+                    text = "Explorer",
+                    text_align = "center",
+                    separator = true,
+                    highlight = "NvimTreeNormal"
+                },
+                {
+                    filetype = "codecompanion",
+                    text = "AI",
                     text_align = "center",
                     separator = true,
                     highlight = "NvimTreeNormal"

@@ -17,7 +17,9 @@ return {
                         type = "row",
                         width = 35,
                         buffer_match = function(buffer)
-                            local filetypes = { "NvimTree" }
+                            local filetypes = {
+                                "NvimTree"
+                            }
 
                             return vim.tbl_contains(filetypes, buffer:filetype())
                         end,
