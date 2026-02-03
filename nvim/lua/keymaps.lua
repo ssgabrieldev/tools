@@ -1,5 +1,7 @@
 local keymap_set = vim.keymap.set
 
+keymap_set({ 'n', 'v' }, 'k', 'gk', { silent = true, desc = "Soft wrap up" })
+keymap_set({ 'n', 'v' }, 'j', 'gj', { silent = true, desc = "Soft wrap down" })
 keymap_set({ "n" }, "<A-h>", "<cmd>vertical resize -2<CR>", { silent = true, desc = "Decrease window width" })
 keymap_set({ "n" }, "<A-l>", "<cmd>vertical resize +2<CR>", { silent = true, desc = "Increase window width" })
 keymap_set({ "n" }, "<A-j>", "<cmd>resize -2<CR>", { silent = true, desc = "Decrease window height" })
