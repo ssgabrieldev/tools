@@ -42,7 +42,23 @@ return {
                 delay = 200,
                 reveal = { "close" },
             },
-        }
+            get_element_icon = function(element)
+                local devicons = require("nvim-web-devicons")
+                local icon_text, icon_color = devicons.get_icon_by_filetype(element.filetype, { default = true })
+                local current_bufpath = vim.api.nvim_buf_get_name(0)
+
+                if current_bufpath ~= "" and element.path and element.path ~= "" then
+                    local norm_current = vim.fs.normalize(current_bufpath)
+                    local norm_element = vim.fs.normalize(element.path)
+
+                    if norm_current == norm_element then
+                        return icon_text, icon_color
+                    end
+                end
+
+                return icon_text, ""
+            end
+        },
     },
     keys = {
         { "<TAB>",          "<Cmd>BufferLineCycleNext<CR>",   desc = "Next Buffer" },
