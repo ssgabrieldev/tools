@@ -62,6 +62,16 @@ vim.opt.termsync = false
 vim.opt.timeout = false
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.undofile = true
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldcolumn = '1'
+vim.opt.fillchars:append({
+  fold = " ",
+  foldopen = "",
+  foldsep = " ",
+  foldclose = "",
+})
 
 vim.o.confirm = true
 
