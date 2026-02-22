@@ -66,7 +66,7 @@ vim.opt.undofile = true
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
 vim.opt.foldlevel = 99
-vim.opt.foldcolumn = '1'
+-- vim.opt.foldcolumn = '2'
 vim.opt.fillchars:append({
   fold = " ",
   foldopen = "",
