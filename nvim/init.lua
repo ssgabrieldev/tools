@@ -46,6 +46,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 
 local tab_len = 4
+vim.opt.splitkeep = "screen"
 vim.opt.termguicolors = true
 vim.opt.mouse = ""
 vim.opt.cursorline = true

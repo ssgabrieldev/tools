@@ -1,7 +1,7 @@
 return {
     enabled = true,
     -- "ssgabrieldev/knot.nvim",
-    dir = "~/Documentos/projects/nvim/knot.nvim",
+    dir = "~/Documentos/opensource/knot.nvim",
     lazy = false,
     priority = 1000,
     dependencies = { "rktjmp/lush.nvim" },
