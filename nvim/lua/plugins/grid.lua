@@ -3,7 +3,7 @@ local vim = vim
 return {
     -- "ssgabrieldev/grid.nvim",
     dir = "~/Documentos/projects/nvim/grid.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     dependecies = {
         "nvim-tree/nvim-web-devicons"
