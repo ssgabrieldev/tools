@@ -15,8 +15,8 @@ local M = {
                 border = "none",
                 title_pos = "center",
                 winblend = 0,
-                width = 1000,
-                height = 1000,
+                width = vim.o.columns,
+                height = vim.o.lines - 2,
             },
             winbar = {
                 enabled = true,
