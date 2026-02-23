@@ -15,8 +15,12 @@ local M = {
                 border = "none",
                 title_pos = "center",
                 winblend = 0,
-                width = vim.o.columns,
-                height = vim.o.lines - 2,
+                width = function()
+                    return vim.o.columns
+                end,
+                height = function ()
+                    return vim.o.lines - 2
+                end,
             },
             winbar = {
                 enabled = true,
