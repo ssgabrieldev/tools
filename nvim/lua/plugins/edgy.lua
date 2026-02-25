@@ -7,7 +7,8 @@ return {
             {
                 ft = "NvimTree",
                 wo = {
-                    winfixbuf = false
+                    winfixbuf = false,
+                    winbar = false
                 }
             }
         },
@@ -18,53 +19,65 @@ return {
                     return vim.api.nvim_win_get_config(win).relative == ""
                 end,
                 wo = {
+                    winfixbuf = true,
                     winbar = false
                 }
             },
             {
                 ft = "dap-view://main",
                 wo = {
+                    winfixbuf = true,
                     winbar = false
                 }
             },
             {
                 ft = "dap-view-term",
                 wo = {
+                    winfixbuf = true,
                     winbar = false
                 }
             },
             {
                 ft = "dap-view",
                 wo = {
+                    winfixbuf = true,
                     winbar = false
                 }
             },
             {
                 ft = "dap-repl",
                 wo = {
+                    winfixbuf = true,
                     winbar = false
                 }
             },
-            "qf",
-            "help",
+            {
+                ft = "qf",
+                wo = {
+                    winfixbuf = true
+                }
+            },
+            {
+                ft = "help",
+                wo = {
+                    winfixbuf = true
+                }
+            },
         },
-        right = { "codecompanion" },
+        right = {
+            {
+                ft = "codecompanion",
+                wo = {
+                    winfixbuf = true
+                }
+            },
+        },
         top = {},
         options = {
             left = { size = 35 },
-            bottom = {
-                size = 15,
-                wo = {
-                    winhighlight = "Normal:EdgyNormal",
-                }
-            },
+            bottom = { size = 15 },
             right = { size = 35 },
             top = { size = 15 },
-        },
-        wo = {
-            winfixbuf = false,
-            winfixwidth = false,
-            winfixheight = false,
         },
         animate = {
             enabled = false
