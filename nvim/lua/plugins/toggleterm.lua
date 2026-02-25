@@ -4,13 +4,12 @@ local M = {
     "akinsho/toggleterm.nvim",
     version = "*",
     config = function()
-        local nvim_tree_normal_hl = vim.api.nvim_get_hl(0, { name = "NvimTreeNormal" })
+        local hl_win_separator = vim.api.nvim_get_hl(0, { name = "WinSeparator", link = false })
 
         require("toggleterm").setup({
             persist_size = false,
             persist_mode = true,
-            shade_terminals = true,
-            shading_factor = -45,
+            shade_terminals = false,
             float_opts = {
                 border = "none",
                 title_pos = "center",
@@ -18,37 +17,21 @@ local M = {
                 width = function()
                     return vim.o.columns
                 end,
-                height = function ()
+                height = function()
                     return vim.o.lines - 2
                 end,
             },
             winbar = {
                 enabled = true,
                 name_formatter = function(term)
-                    return " " .. (term.display_name or ("terminal " .. term.id))
+                    return "  " .. (term.display_name or ("terminal " .. term.id)) .. " "
                 end
             },
             highlights = {
-                Normal = {
-                    link = "NvimTreeNormal"
-                },
-                WinBar = {
-                    link = "NvimTreeNormal"
-                },
-                WinBarNC = {
-                    link = "NvimTreeNormal"
-                },
                 WinBarActive = {
-                    guibg = nvim_tree_normal_hl.bg,
-                    gui = "bold"
-                },
-                WinBarInactive = {
-                    link = "NvimTreeNormal"
-                },
-                CursorLine = {
-                    link = "NvimTreeNormal"
+                    guibg = hl_win_separator.fg
                 }
-            },
+            }
         })
     end,
     keys = {

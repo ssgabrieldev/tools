@@ -52,11 +52,18 @@ return {
                     local norm_element = vim.fs.normalize(element.path)
 
                     if norm_current == norm_element then
+                        local hl_win_separator = vim.api.nvim_get_hl(0, { name = "WinSeparator" })
+                        local hl_icon = vim.api.nvim_get_hl(0, { name = icon_color })
+
+                        vim.api.nvim_set_hl(0, "BufferLine" .. icon_color .. "Selected", {
+                            fg = hl_icon.fg,
+                            bg = hl_win_separator.fg
+                        })
                         return icon_text, icon_color
                     end
                 end
 
-                return icon_text, ""
+                return icon_text, icon_color
             end
         },
     },

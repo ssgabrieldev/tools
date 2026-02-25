@@ -2,7 +2,7 @@ return {
     "folke/edgy.nvim",
     event = "VeryLazy",
     opts = {
-        fix_win_height = false,
+        fix_win_height = true,
         left = {
             {
                 ft = "NvimTree",
@@ -12,26 +12,62 @@ return {
             }
         },
         bottom = {
-            "terminal", "dap-view://main", "dap-view-term", "dap-view", "dap-repl", "qf", "help",
             {
                 ft = "toggleterm",
                 filter = function(buf, win)
                     return vim.api.nvim_win_get_config(win).relative == ""
                 end,
+                wo = {
+                    winbar = false
+                }
             },
+            {
+                ft = "dap-view://main",
+                wo = {
+                    winbar = false
+                }
+            },
+            {
+                ft = "dap-view-term",
+                wo = {
+                    winbar = false
+                }
+            },
+            {
+                ft = "dap-view",
+                wo = {
+                    winbar = false
+                }
+            },
+            {
+                ft = "dap-repl",
+                wo = {
+                    winbar = false
+                }
+            },
+            "qf",
+            "help",
         },
         right = { "codecompanion" },
         top = {},
         options = {
             left = { size = 35 },
-            bottom = { size = 15 },
+            bottom = {
+                size = 15,
+                wo = {
+                    winhighlight = "Normal:EdgyNormal",
+                }
+            },
             right = { size = 35 },
             top = { size = 15 },
         },
         wo = {
-            winfixbuf = true,
+            winfixbuf = false,
             winfixwidth = false,
             winfixheight = false,
+        },
+        animate = {
+            enabled = false
         },
         keys = {
             ["<a-l>"] = function(win)
