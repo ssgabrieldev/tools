@@ -1,12 +1,9 @@
--- local presets = require("markview.presets").headings;
-
 return {
     "OXY2DEV/markview.nvim",
     lazy = false,
     opts = {
         preview = {
             filetypes = { "markdown", "codecompanion" },
-            ignore_buftypes = { "nofile" }
         },
         markdown = {
             headings = {
