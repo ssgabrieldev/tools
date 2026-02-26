@@ -76,7 +76,7 @@ return {
         options = {
             left = { size = 35 },
             bottom = { size = 15 },
-            right = { size = 35 },
+            right = { size = 40 },
             top = { size = 15 },
         },
         animate = {
