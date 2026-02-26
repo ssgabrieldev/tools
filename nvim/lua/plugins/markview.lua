@@ -32,4 +32,11 @@ return {
             }
         }
     },
+    keys = {
+        {
+            "<leader>mt",
+            "<cmd>Markview toggle<cr>",
+            mode = { "n" }
+        }
+    }
 }
