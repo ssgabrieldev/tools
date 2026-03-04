@@ -4,13 +4,11 @@ local M = {
     "akinsho/toggleterm.nvim",
     version = "*",
     config = function()
-        local hl_win_separator = vim.api.nvim_get_hl(0, { name = "WinSeparator" })
-        local hl_normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-
         require("toggleterm").setup({
             persist_size = false,
             persist_mode = true,
             shade_terminals = false,
+            winbar = { enabled = false },
             float_opts = {
                 border = "none",
                 title_pos = "center",
@@ -22,19 +20,6 @@ local M = {
                     return vim.o.lines - 2
                 end,
             },
-            winbar = {
-                enabled = true,
-                name_formatter = function(term)
-                    return "    " .. (term.display_name or ("terminal " .. term.id)) .. "  "
-                end
-            },
-            highlights = {
-                WinBarActive = {
-                    guifg = hl_normal.fg and string.format("#%06x", hl_normal.fg) or "NONE",
-                    guibg = hl_win_separator.fg and string.format("#%06x", hl_win_separator.fg) or "NONE",
-                    -- gui = "bold"
-                }
-            }
         })
     end,
     keys = {

@@ -7,11 +7,10 @@ return {
     opts = {
         options = {
             mode = "buffers",
-            style_preset = "default",
-            separator_style = "thin",
+            separator_style = { "", "" },
             indicator = {
-                icon = '|',
-                style = 'none',
+                icon = '▎',
+                style = "icon",
             },
             themable = true,
             diagnostics = "nvim_lsp",
@@ -46,23 +45,36 @@ return {
                 local devicons = require("nvim-web-devicons")
                 local icon_text, icon_color = devicons.get_icon_by_filetype(element.filetype, { default = true })
                 local current_bufpath = vim.api.nvim_buf_get_name(0)
+                local hl_icon = vim.api.nvim_get_hl(0, { name = icon_color })
 
                 if current_bufpath ~= "" and element.path and element.path ~= "" then
                     local norm_current = vim.fs.normalize(current_bufpath)
                     local norm_element = vim.fs.normalize(element.path)
 
                     if norm_current == norm_element then
-                        local hl_win_separator = vim.api.nvim_get_hl(0, { name = "WinSeparator" })
-                        local hl_icon = vim.api.nvim_get_hl(0, { name = icon_color })
+                        local hl_bufferline_buffer_selected = vim.api.nvim_get_hl(0, {
+                            name = "BufferLineBufferSelected"
+                        })
 
                         vim.api.nvim_set_hl(0, "BufferLine" .. icon_color .. "Selected", {
                             fg = hl_icon.fg,
-                            bg = hl_win_separator.fg
+                            bg = hl_bufferline_buffer_selected.bg,
+                            bold = true
                         })
                         return icon_text, icon_color
                     end
                 end
 
+                local hl_bufferline_background = vim.api.nvim_get_hl(0, { name = "BufferLineBackground" })
+
+                vim.api.nvim_set_hl(0, "BufferLine" .. icon_color, {
+                    fg = hl_icon.fg,
+                    bg = hl_bufferline_background.bg
+                })
+                vim.api.nvim_set_hl(0, "BufferLine" .. icon_color .. "Inactive", {
+                    fg = hl_icon.fg,
+                    bg = hl_bufferline_background.bg
+                })
                 return icon_text, icon_color
             end
         },

@@ -1,3 +1,34 @@
+-- _G.switch_toggleterm_buf = function(bufnr)
+--   if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
+--     vim.wo.winfixbuf = false
+--     vim.api.nvim_set_current_buf(bufnr)
+--     vim.wo.winfixbuf = true
+--   end
+-- end
+
+local function get_toggleterm_winbar()
+    local bufs = vim.api.nvim_list_bufs()
+    local current_buf = vim.api.nvim_get_current_buf()
+    local items = {}
+
+    for _, buf in ipairs(bufs) do
+        if vim.bo[buf].filetype == "toggleterm" then
+            local id = vim.b[buf].toggle_number or "T"
+            local name = "    Terminal " .. id .. "  "
+            local indicator = buf == current_buf and "▎" or ""
+            local hl = buf == current_buf and "%#BufferLineBufferSelected#" or "%#BufferLineBackground#"
+            -- local click_attr = "%" .. buf .. "@v:lua.switch_toggleterm_buf@"
+
+            -- table.insert(items, click_attr .. hl .. indicator .. name .. "%*" .. "%X")
+            table.insert(items,  hl .. indicator .. name .. "%*" .. "%X")
+        end
+    end
+
+    return table.concat(items, "")
+end
+
+_G.custom_toggleterm_bar = get_toggleterm_winbar
+
 return {
     "folke/edgy.nvim",
     event = "VeryLazy",
@@ -20,8 +51,8 @@ return {
                 end,
                 wo = {
                     winfixbuf = true,
-                    winbar = false
-                }
+                    winbar = "%{%v:lua.custom_toggleterm_bar()%}",
+                },
             },
             {
                 ft = "dap-view://main",
