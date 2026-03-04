@@ -15,16 +15,15 @@ local function get_toggleterm_winbar()
         if vim.bo[buf].filetype == "toggleterm" then
             local id = vim.b[buf].toggle_number or "T"
             local name = "    Terminal " .. id .. "  "
-            local indicator = buf == current_buf and "▎" or ""
             local hl = buf == current_buf and "%#BufferLineBufferSelected#" or "%#BufferLineBackground#"
             -- local click_attr = "%" .. buf .. "@v:lua.switch_toggleterm_buf@"
 
             -- table.insert(items, click_attr .. hl .. indicator .. name .. "%*" .. "%X")
-            table.insert(items,  hl .. indicator .. name .. "%*" .. "%X")
+            table.insert(items,  hl .. name .. "%#BufferLineFill#" .. "%X")
         end
     end
 
-    return table.concat(items, "")
+    return table.concat(items, "%#WinSeparator#│")
 end
 
 _G.custom_toggleterm_bar = get_toggleterm_winbar

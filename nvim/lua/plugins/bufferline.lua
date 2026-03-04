@@ -7,11 +7,9 @@ return {
     opts = {
         options = {
             mode = "buffers",
-            separator_style = { "", "" },
-            indicator = {
-                icon = '▎',
-                style = "icon",
-            },
+            separator_style = { "│", "│" },
+            -- separator_style = { "▏", "▕" },
+            indicator = { style = "none" },
             themable = true,
             diagnostics = "nvim_lsp",
             diagnostics_indicator = false,
