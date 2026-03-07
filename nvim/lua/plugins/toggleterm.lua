@@ -1,6 +1,29 @@
 local lazygit_terminal = nil
 
-local M = {
+local get_current_terminal = function()
+    local toggle_terminal = require("toggleterm.terminal")
+    local terminals = toggle_terminal.get_all()
+    local bufnr = vim.api.nvim_get_current_buf()
+
+    for _, terminal in ipairs(terminals) do
+        if terminal.bufnr == bufnr then
+            return terminal
+        end
+    end
+end
+
+local get_terminal_by_id = function(id)
+    local toggle_terminal = require("toggleterm.terminal")
+    local terminals = toggle_terminal.get_all()
+
+    for _, terminal in ipairs(terminals) do
+        if terminal.id == id then
+            return terminal
+        end
+    end
+end
+
+return {
     "akinsho/toggleterm.nvim",
     version = "*",
     config = function()
@@ -26,10 +49,53 @@ local M = {
         {
             "<leader>tt",
             function()
-                vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
+                local toggle_terminal = require("toggleterm.terminal")
+                local current_terminal = get_current_terminal()
+                local current_win = vim.api.nvim_get_current_win()
+
+                if current_terminal then
+                    if vim.v.count == 0 then
+                        vim.cmd("ToggleTerm")
+                    else
+                        local terminal = get_terminal_by_id(vim.v.count)
+
+                        if terminal then
+                            if terminal.id == current_terminal.id then
+                                vim.cmd("quit")
+
+                                return
+                            end
+
+                            vim.wo.winfixbuf = false
+                            vim.api.nvim_win_set_buf(0, terminal.bufnr)
+                            terminal.window = current_win
+                            terminal:__resurrect()
+                            vim.wo.winfixbuf = true
+                        else
+                            local new_terminal = toggle_terminal.Terminal:new({
+                                count = vim.v.count,
+                                id = vim.v.count,
+                            })
+
+                            new_terminal:spawn()
+                            vim.wo.winfixbuf = false
+                            vim.api.nvim_win_set_buf(0, new_terminal.bufnr)
+                            new_terminal.window = current_win
+                            vim.wo.winbar = "%{%v:lua.custom_toggleterm_bar()%}"
+                            new_terminal:__resurrect()
+                            vim.wo.winfixbuf = true
+                        end
+                    end
+                else
+                    if vim.v.count == 0 then
+                        vim.cmd("ToggleTerm direction=horizontal")
+                    else
+                        vim.cmd(vim.v.count .. "ToggleTerm direction=horizontal")
+                    end
+                end
             end,
             mode = { "n", "t" },
-            { desc = "Toggle terminal" }
+            { desc = "Toggle terminal", silent = true }
         },
         {
             "<leader>tf",
@@ -61,5 +127,3 @@ local M = {
         },
     }
 }
-
-return M
