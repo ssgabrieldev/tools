@@ -1,9 +1,8 @@
 local lazygit_terminal = nil
 
-local get_current_terminal = function()
+local get_terminal_by_buffer = function(bufnr)
     local toggle_terminal = require("toggleterm.terminal")
     local terminals = toggle_terminal.get_all()
-    local bufnr = vim.api.nvim_get_current_buf()
 
     for _, terminal in ipairs(terminals) do
         if terminal.bufnr == bufnr then
@@ -50,7 +49,7 @@ return {
             "<leader>tt",
             function()
                 local toggle_terminal = require("toggleterm.terminal")
-                local current_terminal = get_current_terminal()
+                local current_terminal = get_terminal_by_buffer(vim.api.nvim_get_current_buf())
                 local current_win = vim.api.nvim_get_current_win()
 
                 if current_terminal then
@@ -63,6 +62,10 @@ return {
                             if terminal.id == current_terminal.id then
                                 current_terminal:toggle()
 
+                                return
+                            end
+
+                            if terminal:is_open() then
                                 return
                             end
 
