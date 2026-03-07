@@ -1,11 +1,3 @@
--- _G.switch_toggleterm_buf = function(bufnr)
---   if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
---     vim.wo.winfixbuf = false
---     vim.api.nvim_set_current_buf(bufnr)
---     vim.wo.winfixbuf = true
---   end
--- end
-
 local function get_toggleterm_winbar()
     local bufs = vim.api.nvim_list_bufs()
     local current_buf = vim.api.nvim_get_current_buf()
@@ -16,9 +8,7 @@ local function get_toggleterm_winbar()
             local id = vim.b[buf].toggle_number or "T"
             local name = "    Terminal " .. id .. "  "
             local hl = buf == current_buf and "%#BufferLineBufferSelected#" or "%#BufferLineBackground#"
-            -- local click_attr = "%" .. buf .. "@v:lua.switch_toggleterm_buf@"
 
-            -- table.insert(items, click_attr .. hl .. indicator .. name .. "%*" .. "%X")
             table.insert(items,  hl .. name .. "%#BufferLineFill#" .. "%X")
         end
     end
