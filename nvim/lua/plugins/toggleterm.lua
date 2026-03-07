@@ -61,7 +61,7 @@ return {
 
                         if terminal then
                             if terminal.id == current_terminal.id then
-                                vim.cmd("quit")
+                                current_terminal:toggle()
 
                                 return
                             end
