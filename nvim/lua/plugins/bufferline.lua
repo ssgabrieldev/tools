@@ -20,17 +20,17 @@ local get_element_icon = function(element)
     })
     vim.api.nvim_set_hl(0, hl_icon_prefix .. "Visible", {
         fg = hl_icon.fg,
-        bg = hl_bufferline_buffer_selected.bg,
+        bg = hl_bufferline_background.bg,
         bold = true
+    })
+    vim.api.nvim_set_hl(0, hl_icon_prefix .. "Inactive", {
+        fg = hl_icon.fg,
+        bg = hl_bufferline_background.bg,
     })
     vim.api.nvim_set_hl(0, hl_icon_prefix .. "Selected", {
         fg = hl_icon.fg,
         bg = hl_bufferline_buffer_selected.bg,
         bold = true
-    })
-    vim.api.nvim_set_hl(0, hl_icon_prefix .. "Inactive", {
-        fg = hl_icon.fg,
-        bg = hl_bufferline_buffer_selected.bg
     })
 
     return icon_text, icon_color

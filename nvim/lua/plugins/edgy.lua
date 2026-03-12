@@ -1,19 +1,28 @@
+local vim = vim
+
 local function get_toggleterm_winbar()
+    local toggle_terminal = require("toggleterm.terminal")
     local bufs = vim.api.nvim_list_bufs()
-    local current_buf = vim.api.nvim_get_current_buf()
+    local current_buf = vim.api.nvim_win_get_buf(0)
     local items = {}
 
     for _, buf in ipairs(bufs) do
         if vim.bo[buf].filetype == "toggleterm" then
-            local id = vim.b[buf].toggle_number or "T"
-            local name = "    Terminal " .. id .. "  "
-            local hl = buf == current_buf and "%#BufferLineBufferSelected#" or "%#BufferLineBackground#"
+            local id = vim.b[buf].toggle_number
+            local term = toggle_terminal.get(id)
 
-            table.insert(items, hl .. name .. "%#BufferLineFill#" .. "%X")
+            if term then
+                local name = "   " .. (term.name or term.count) .. "  "
+                local hl = buf == current_buf and "%#BufferLineBufferSelected#" or "%#BufferLineBackground#"
+
+                table.insert(items, hl .. name)
+            end
         end
     end
 
-    return table.concat(items, "")
+    local winbar = "%*" .. table.concat(items, "") .. "%#BufferLineFill#"
+
+    return winbar
 end
 
 _G.custom_toggleterm_bar = get_toggleterm_winbar
