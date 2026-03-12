@@ -3,17 +3,24 @@ local vim = vim
 local function get_toggleterm_winbar()
     local toggle_terminal = require("toggleterm.terminal")
     local bufs = vim.api.nvim_list_bufs()
-    local current_buf = vim.api.nvim_win_get_buf(0)
+    local current_buf = vim.api.nvim_get_current_buf()
+    local current_win = vim.g.actual_curwin
     local items = {}
 
     for _, buf in ipairs(bufs) do
-        if vim.bo[buf].filetype == "toggleterm" then
-            local id = vim.b[buf].toggle_number
+        local id = vim.b[buf].toggle_number
+
+        if id ~= nil then
             local term = toggle_terminal.get(id)
 
             if term then
+                -- print(type(current_win) .. " " .. type(term.window))
+
                 local name = "   " .. (term.name or term.count) .. "  "
-                local hl = buf == current_buf and "%#BufferLineBufferSelected#" or "%#BufferLineBackground#"
+                local hl_active = "%#BufferLineBufferSelected#"
+                local hl_inactive = "%#BufferLineBackground#"
+                local hl = buf == current_buf and hl_active or hl_inactive
+                hl = term.window ~= tonumber(current_win) and hl_inactive or hl
 
                 table.insert(items, hl .. name)
             end
