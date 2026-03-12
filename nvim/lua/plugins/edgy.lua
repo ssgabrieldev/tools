@@ -9,11 +9,11 @@ local function get_toggleterm_winbar()
             local name = "    Terminal " .. id .. "  "
             local hl = buf == current_buf and "%#BufferLineBufferSelected#" or "%#BufferLineBackground#"
 
-            table.insert(items,  hl .. name .. "%#BufferLineFill#" .. "%X")
+            table.insert(items, hl .. name .. "%#BufferLineFill#" .. "%X")
         end
     end
 
-    return table.concat(items, "%#WinSeparator#│")
+    return table.concat(items, "")
 end
 
 _G.custom_toggleterm_bar = get_toggleterm_winbar

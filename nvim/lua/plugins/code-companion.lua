@@ -18,6 +18,11 @@ return {
         }
     },
     keys = {
-        { "<leader>cc", "<cmd>CodeCompanionActions<cr>", desc = "Code Companion Actions" },
+        {
+            "<leader>cc",
+            "<cmd>CodeCompanionActions<cr>",
+            desc = "Code Companion Actions",
+            silent = true
+        },
     }
 }

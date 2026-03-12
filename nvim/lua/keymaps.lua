@@ -1,13 +1,13 @@
 local keymap_set = vim.keymap.set
 
+keymap_set({ "n", "i", "v", "c" }, "<leader><leader>", "<esc>", { silent = false, desc = "Nomal mode" })
+keymap_set({ "t" }, "<leader><leader>", "<c-\\><c-n>", { silent = true, desc = "Exit terminal mode" })
 keymap_set({ 'n', 'v' }, 'k', 'gk', { silent = true, desc = "Soft wrap up" })
 keymap_set({ 'n', 'v' }, 'j', 'gj', { silent = true, desc = "Soft wrap down" })
 keymap_set({ "n" }, "<A-h>", "<cmd>vertical resize -2<CR>", { silent = true, desc = "Decrease window width" })
 keymap_set({ "n" }, "<A-l>", "<cmd>vertical resize +2<CR>", { silent = true, desc = "Increase window width" })
 keymap_set({ "n" }, "<A-j>", "<cmd>resize -2<CR>", { silent = true, desc = "Decrease window height" })
 keymap_set({ "n" }, "<A-k>", "<cmd>resize +2<CR>", { silent = true, desc = "Increase window height" })
-keymap_set({ "n", "i", "v", "c" }, "<leader><leader>", "<esc>", { silent = false, desc = "Nomal mode" })
-keymap_set({ "t" }, "<leader><leader>", "<c-\\><c-n>", { silent = true, desc = "Exit terminal mode" })
 keymap_set({ "n" }, "<leader>wo", "<c-w>o", { silent = true, desc = "Close others windows" })
 keymap_set({ "n" }, "<leader>wx", "<c-w>c", { silent = true, desc = "Close current window" })
 keymap_set({ "n" }, "<leader>wv", "<c-w>v", { silent = true, desc = "Split window vertical" })

@@ -1,5 +1,41 @@
 local nvim_tree_hl = vim.api.nvim_get_hl(0, { name = "NvimTreeNormal" })
 
+local get_element_icon = function(element)
+    local devicons = require("nvim-web-devicons")
+    local icon_text, icon_color = devicons.get_icon_by_filetype(element.filetype, { default = true })
+    local hl_icon_prefix = "BufferLine" .. icon_color
+    local hl_icon = vim.api.nvim_get_hl(0, {
+        name = icon_color
+    })
+    local hl_bufferline_background = vim.api.nvim_get_hl(0, {
+        name = "BufferLineBackground"
+    })
+    local hl_bufferline_buffer_selected = vim.api.nvim_get_hl(0, {
+        name = "BufferLineBufferSelected"
+    })
+
+    vim.api.nvim_set_hl(0, hl_icon_prefix, {
+        fg = hl_icon.fg,
+        bg = hl_bufferline_background.bg
+    })
+    vim.api.nvim_set_hl(0, hl_icon_prefix .. "Visible", {
+        fg = hl_icon.fg,
+        bg = hl_bufferline_buffer_selected.bg,
+        bold = true
+    })
+    vim.api.nvim_set_hl(0, hl_icon_prefix .. "Selected", {
+        fg = hl_icon.fg,
+        bg = hl_bufferline_buffer_selected.bg,
+        bold = true
+    })
+    vim.api.nvim_set_hl(0, hl_icon_prefix .. "Inactive", {
+        fg = hl_icon.fg,
+        bg = hl_bufferline_buffer_selected.bg
+    })
+
+    return icon_text, icon_color
+end
+
 return {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
@@ -7,9 +43,8 @@ return {
     opts = {
         options = {
             mode = "buffers",
-            separator_style = { "│", "│" },
-            -- separator_style = { "▏", "▕" },
-            indicator = { style = "none" },
+            separator_style = { "", "" },
+            indicator = { icon = "", style = "none" },
             themable = true,
             diagnostics = "nvim_lsp",
             diagnostics_indicator = false,
@@ -29,52 +64,7 @@ return {
                     highlight = "NvimTreeNormal"
                 },
             },
-            show_buffer_close_icons = true,
-            show_close_icon = false,
-            color_icons = true,
-            enforce_regular_tabs = true,
-            always_show_bufferline = true,
-            hover = {
-                enabled = true,
-                delay = 200,
-                reveal = { "close" },
-            },
-            get_element_icon = function(element)
-                local devicons = require("nvim-web-devicons")
-                local icon_text, icon_color = devicons.get_icon_by_filetype(element.filetype, { default = true })
-                local current_bufpath = vim.api.nvim_buf_get_name(0)
-                local hl_icon = vim.api.nvim_get_hl(0, { name = icon_color })
-
-                if current_bufpath ~= "" and element.path and element.path ~= "" then
-                    local norm_current = vim.fs.normalize(current_bufpath)
-                    local norm_element = vim.fs.normalize(element.path)
-
-                    if norm_current == norm_element then
-                        local hl_bufferline_buffer_selected = vim.api.nvim_get_hl(0, {
-                            name = "BufferLineBufferSelected"
-                        })
-
-                        vim.api.nvim_set_hl(0, "BufferLine" .. icon_color .. "Selected", {
-                            fg = hl_icon.fg,
-                            bg = hl_bufferline_buffer_selected.bg,
-                            bold = true
-                        })
-                        return icon_text, icon_color
-                    end
-                end
-
-                local hl_bufferline_background = vim.api.nvim_get_hl(0, { name = "BufferLineBackground" })
-
-                vim.api.nvim_set_hl(0, "BufferLine" .. icon_color, {
-                    fg = hl_icon.fg,
-                    bg = hl_bufferline_background.bg
-                })
-                vim.api.nvim_set_hl(0, "BufferLine" .. icon_color .. "Inactive", {
-                    fg = hl_icon.fg,
-                    bg = hl_bufferline_background.bg
-                })
-                return icon_text, icon_color
-            end
+            get_element_icon = get_element_icon
         },
     },
     keys = {

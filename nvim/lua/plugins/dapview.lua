@@ -36,5 +36,23 @@ return {
                 console = { label = build_title_fn("Console", ""), keymap = "C" },
             },
         }
+    },
+    keys = {
+        {
+            "<leader>du",
+            function()
+                require("dap-view").toggle()
+            end,
+            mode = { "n" },
+            desc = "Debugger toggle ui"
+        },
+        {
+            "<leader>dw",
+            function()
+                require("dap-view").add_expr()
+            end,
+            mode = { "v", "n" },
+            desc = "Debugger add expression"
+        },
     }
 }

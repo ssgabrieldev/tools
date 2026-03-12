@@ -42,9 +42,8 @@ return {
             mode = {
                 "n"
             },
-            {
-                desc = "Toggle NvimTree"
-            }
+            desc = "Toggle NvimTree",
+            silent = true
         }
     },
 }
