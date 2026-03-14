@@ -83,14 +83,14 @@ return {
             shade_terminals = false,
             winbar = { enabled = false },
             float_opts = {
-                border = "none",
+                border = vim.g.border_style,
                 title_pos = "center",
                 winblend = 0,
                 width = function()
-                    return vim.o.columns
+                    return vim.o.columns - 2
                 end,
                 height = function()
-                    return vim.o.lines - 2
+                    return vim.o.lines - 4
                 end,
             },
         })
@@ -107,7 +107,7 @@ return {
         {
             "<leader>tf",
             function()
-                vim.cmd(vim.v.count .. "ToggleTerm direction=float")
+                vim.cmd(vim.v.count + 1000 .. "ToggleTerm direction=float")
             end,
             mode = { "n", "t" },
             desc = "Toggle float terminals",
